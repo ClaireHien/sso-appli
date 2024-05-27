@@ -1,47 +1,159 @@
 <aside class="fixed w-80 p-5 top-20 left-6 bg-light3">
     <span class="block font-blakely text-4xl -mt-8 text-right">Filtres</span>
     <div>
-        <span>Dès</span>
-        <button>D4</button>
-        <button>D6</button>
-        <button>D8</button>
-        <button>D10</button>
+        <span class="ml-1">Dès</span>
+        <div class="flex flex-wrap"> 
+            <button class="uppercase rounded block text-sm bg-light4 tracking-widest pt-1 pr-2 pl-2 pb-0 mr-2"
+                    [ngClass]="{'filter-select': selectedDice.has('D4')}"
+                    (click)="toggleFilter(selectedDice, 'D4')">D4</button>
+            <button class="uppercase rounded block text-sm bg-light4 tracking-widest pt-1 pr-2 pl-2 pb-0 mr-2"
+                    [ngClass]="{'filter-select': selectedDice.has('D6')}"
+                    (click)="toggleFilter(selectedDice, 'D6')">D6</button>
+            <button class="uppercase rounded block text-sm bg-light4 tracking-widest pt-1 pr-2 pl-2 pb-0 mr-2"
+                    [ngClass]="{'filter-select': selectedDice.has('D8')}"
+                    (click)="toggleFilter(selectedDice, 'D8')">D8</button>
+            <button class="uppercase rounded block text-sm bg-light4 tracking-widest pt-1 pr-2 pl-2 pb-0 mr-2"
+                    [ngClass]="{'filter-select': selectedDice.has('D10')}"
+                    (click)="toggleFilter(selectedDice, 'D10')">D10</button>
+        </div>
     </div>
     <div>
-        <span>Statistiques</span> 
-        <button *ngFor="let statistic of statistics">{{ statistic.abreviation }}</button>
+        <span class="ml-1">Statistiques</span> 
+        <div class="flex flex-wrap"> 
+            <button class="uppercase rounded block text-sm bg-light4 tracking-widest pt-1 pr-2 pl-2 pb-0 mr-2"
+                    *ngFor="let statistic of statistics"
+                    [ngClass]="{'filter-select': selectedStatistics.has(statistic.abreviation)}"
+                    (click)="toggleFilter(selectedStatistics, statistic.abreviation)">{{ statistic.abreviation }}</button>
+        </div>
     </div>
     <div>
-        <span>Portée</span>
-        <button *ngFor="let range of ranges">{{ range.label }}</button>
+        <span class="ml-1">Portée</span>
+        <div class="flex flex-wrap"> 
+            <button class="uppercase rounded block text-sm bg-light4 tracking-widest pt-1 pr-2 pl-2 pb-0 m-1"
+                    *ngFor="let range of ranges"
+                    [ngClass]="{'filter-select': selectedRanges.has(range.label)}"
+                    (click)="toggleFilter(selectedRanges, range.label)">{{ range.label }}</button>
+        </div>
     </div>
     <div>
-        <span>Types de dégâts</span>
-        <button *ngFor="let range of ranges">{{ range.label }}</button>
+        <span class="ml-1">Types de dégâts</span>
+        <div class="flex flex-wrap"> 
+            <button class="uppercase rounded block text-sm bg-light4 tracking-widest pt-1 pr-2 pl-2 pb-0 m-1"
+                    *ngFor="let type of damages"
+                    [ngClass]="{'filter-select': selectedDamages.has(type.label)}"
+                    (click)="toggleFilter(selectedDamages, type.label)">{{ type.label }}</button>
+        </div>
     </div>
     <div>
-        <span>Stéréotypes</span>
-        <button *ngFor="let stereotype of stereotypes">{{ stereotype.label }}</button>
+        <span class="ml-1">Stéréotypes</span>
+        <div class="flex flex-wrap"> 
+            <button class="uppercase rounded block text-sm bg-light4 tracking-widest pt-1 pr-2 pl-2 pb-0 m-1"
+                    *ngFor="let stereotype of stereotypes"
+                    [ngClass]="{'filter-select': selectedStereotypes.has(stereotype.label)}"
+                    (click)="toggleFilter(selectedStereotypes, stereotype.label)">{{ stereotype.label }}</button>
+        </div>
     </div>
-        
 </aside>
+
+
 <section class="ml-96 pt-20 mr-20">
     <h1 class="font-blakely text-7xl">Les armes</h1>
     <div class="flex gap-5 mt-5 flex-wrap">
 
-        <div *ngFor="let tree of trees" class="w-96 bg-white4 hover:bg-white6 p-5" [ngClass]="{'open-tree': isOpen(tree.id)}">
-            <i class="fa-solid fa-angles-down" (click)="openTree(tree.id)"></i>
-            <h2 (click)="openTree(tree.id)">{{ tree.name }}</h2>
-            <p>{{ tree.description }}</p>
+        <div *ngFor="let tree of filteredTrees" class="open-tree w-96 bg-white4 hover:bg-white6 p-5" [ngClass]="{'open-tree': isOpen(tree.id)}">
+            <div class="-mt-8 float-right w-14 h-14 text-3xl cursor-pointer hover:bg-mid1 hover:scale-110 flex justify-center items-center rounded-full bg-light3">
+                <i class="fa-solid fa-angles-down text-mid5" (click)="openTree(tree.id)"></i>
+            </div>
+            <h2 (click)="openTree(tree.id)" class="cursor-pointer font-blakely text-5xl">{{ tree.name }}</h2>
             
-            <div>
-                <strong>Stereotypes:</strong>
-                <ul>
-                <li *ngFor="let stereotype of tree.stereotypes">{{ stereotype.label }}</li>
-                </ul>
+            <div class="text-justify font-light leading-5">
+                <strong class="text-mid3 uppercase text-sm font-bold">Stéréotypes</strong> <span class="uppercase text-sm" *ngFor="let stereotype of tree.stereotypes"> - {{ stereotype.label }}</span>
+                <em class="block">{{ tree.description }}</em>
+            </div>
+            <div class="my-2 flex items-center gap-3">
+                <div class="grid dice-base">
+                    <i class="fa-solid fa-dice-d20 text-light2 text-6xl"></i>
+                    <span class="font-bold tracking-widest text-2xl">{{ tree.dice }}</span>
+                </div>
+                <div class="text-sm">
+                    <strong class="text-mid3 uppercase">Portée</strong>  -  {{ tree.range.label }}
+                    <br>
+                    <strong class="text-mid3 uppercase">Type de dégâts</strong> - {{ tree.type_damage.label }}
+                    <br>
+                    <strong class="text-mid3 uppercase">Statistiques </strong> <span *ngFor="let statistic of tree.statistics"> - {{ statistic.abreviation }}</span>
+                    <span *ngIf="tree.statuses.length > 0">
+                        <br>
+                        <strong class="text-mid3 uppercase">Status </strong>
+                        <span class="status" *ngFor="let status of tree.statuses">
+                             - <span class="decoration-1 cursor-pointer underline decoration-dotted decoration-mid3">{{ status.name }}
+                                <div>
+                                    <strong class="uppercase text-mid4">Effet - </strong>{{ status.description }}
+                                    <br> <br>
+                                    <strong class="uppercase text-mid4">Soin - </strong>{{ status.healing }}
+                                </div>
+                            </span>
+                        </span>               
+                    </span>
+
+                </div>
+            </div>
+            
+            <div class="tree-skill hidden mt-5">
+                <h3 class="font-bold text-xl uppercase tracking-widest">Les compétences</h3>
+                <div class="mt-2">
+                    <div class="text-sm text-black4 italic"><span class="font-bold uppercase tracking-widest">Passif inné </span> <span>(Passif débloqué uniquement lorsque l'arme a été choisie à la création du personnage)</span></div>
+                    <span class="font-bold uppercase tracking-widest text-mid3">{{ tree.passive_innate }} </span> - {{ tree.passive_innate_description }}
+                </div>
+                <div class="list-skill mt-8">
+                    <div *ngFor="let skill of tree.skills">
+                        <div class="flex justify-center items-center">
+                            <span class="font-blakely text-4xl text-center pr-2">{{ skill.name }}</span>
+                            <span *ngIf="skill.statistics.length > 0">
+                                <span class="bg-light1 m-1 pt-1 pr-1 pl-1 text-mid4 rounded" *ngFor="let statistic of skill.statistics">{{ statistic.abreviation }}</span>
+                            </span>
+                        </div>
+                        <div class="uppercase rounded text-sm pt-1 text-center tracking-widest" [ngClass]="{
+                            'bg-light2': skill.type_skill_id === 1,
+                            'bg-light4': skill.type_skill_id === 2 ||  skill.type_skill_id === 3
+                          }">
+                          {{ skill.type_skill.label }}
+                        </div>
+                        <div *ngIf="skill.statuses.length > 0" class="bg-light1 pt-1 pr-2 pl-2 rounded mt-2 text-sm">
+                            <strong class="text-mid3 uppercase tracking-widest">Status </strong>
+                            <span class="status" *ngFor="let status of skill.statuses">
+                                 - <span class="decoration-1 cursor-pointer underline decoration-dotted decoration-mid3">{{ status.name }}
+                                    <div>
+                                        <strong class="uppercase text-mid4">Effet - </strong>{{ status.description }}
+                                        <br> <br>
+                                        <strong class="uppercase text-mid4">Soin - </strong>{{ status.healing }}
+                                    </div>
+                                </span>
+                            </span>               
+                        </div>
+
+                        <p class="text-justify leading-5 font-light my-5">
+                            {{ skill.description }}
+                        </p>
+                        <p class="text-justify leading-5 font-light my-5">
+                            <span class="font-bold uppercase block text-sm text-mid3 tracking-widest">Amélioration</span>
+                            {{ skill.upgrade }}
+                        </p>
+                        <p class="text-justify leading-5 font-light my-5">
+                            <span class="font-bold uppercase block text-sm text-mid3 tracking-widest">Amélioration d'ultime</span>
+                            {{ skill.ultimate_upgrade }}
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-8">
+                    <div class="font-blakely text-5xl text-center">{{ tree.ultimate_skill }}</div>
+                    <div class="uppercase rounded text-sm pt-1 bg-mid2 text-white text-center tracking-widest"> Ultime </div>
+                    <p class="my-5 text-justify leading-5 font-light">{{ tree.ultimate_skill_description }}</p>
+                </div>
+
             </div>
 
         </div>
+
     </div>
 
 </section>

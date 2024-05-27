@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
 import { WeaponTreeService } from '../services/weapon-tree.service';
 import { CommonModule } from '@angular/common'; 
 import { HttpClientModule } from '@angular/common/http';
 import { StereotypeService } from '../services/stereotype.service';
 import { RangeService } from '../services/range.service';
 import { StatisticPhysicService } from '../services/statistic-physic.service';
+import { TypeDamageService } from '../services/type-damage.service';
+
+import { Tree, Stereotype, Range, Statistic, TypeDamage } from '../tree.type'; // Importation des interfaces
 
 @Component({
   selector: 'app-weapon',
@@ -18,18 +21,30 @@ export class WeaponComponent implements OnInit {
   stereotypes: any[] = [];
   ranges: any[] = [];
   statistics: any[] = [];
+  damages: any[] = [];
+
+  filteredTrees: any[] = [];
+  
+  selectedDice: Set<string> = new Set<string>();
+  selectedStatistics: Set<string> = new Set<string>();
+  selectedRanges: Set<string> = new Set<string>();
+  selectedDamages: Set<string> = new Set<string>();
+  selectedStereotypes: Set<string> = new Set<string>();
 
   constructor(
     private weaponTreeService: WeaponTreeService,
     private stereotypeService: StereotypeService,
     private rangeService: RangeService,
+    private typeDamageService: TypeDamageService,
     private statisticPhysicService: StatisticPhysicService,
+    private cdr: ChangeDetectorRef 
   ) { }
 
   ngOnInit() {
     this.weaponTreeService.getWeapons().subscribe(
-      data => {
+      (data: Tree[]) => {
         this.trees = data;
+        this.filteredTrees = data;
         console.log(data);
       },
       error => {
@@ -38,9 +53,8 @@ export class WeaponComponent implements OnInit {
     );
     
     this.stereotypeService.getStereotypes().subscribe(
-      data => {
+      (data: Stereotype[]) => {
         this.stereotypes = data;
-        console.log(data);
       },
       error => {
         console.error('Error fetching weapon trees', error);
@@ -48,9 +62,8 @@ export class WeaponComponent implements OnInit {
     );
     
     this.rangeService.getRanges().subscribe(
-      data => {
+      (data: Range[]) => {
         this.ranges = data;
-        console.log(data);
       },
       error => {
         console.error('Error fetching weapon trees', error);
@@ -58,9 +71,17 @@ export class WeaponComponent implements OnInit {
     );
 
     this.statisticPhysicService.getStatisticPhysics().subscribe(
-      data => {
+      (data: Statistic[]) => {
         this.statistics = data;
-        console.log(data);
+      },
+      error => {
+        console.error('Error fetching weapon trees', error);
+      }
+    );
+
+    this.typeDamageService.getTypeDamages().subscribe(
+      (data: TypeDamage[]) => {
+        this.damages = data;
       },
       error => {
         console.error('Error fetching weapon trees', error);
@@ -79,6 +100,29 @@ export class WeaponComponent implements OnInit {
 
   isOpen(treeId: number): boolean {
     return this.openTrees.has(treeId);
+  }
+
+  
+  toggleFilter(set: Set<string>, value: string) {
+    if (set.has(value)) {
+      set.delete(value);
+    } else {
+      set.add(value);
+    }
+    this.applyFilters();
+  }
+
+  applyFilters() {
+    this.filteredTrees = this.trees.filter(tree => {
+      return (
+        (this.selectedDice.size === 0 || this.selectedDice.has(tree.dice)) &&
+        (this.selectedStatistics.size === 0 || tree.statistics.some((statistic: Statistic) => this.selectedStatistics.has(statistic.abreviation))) &&
+        (this.selectedRanges.size === 0 || this.selectedRanges.has(tree.range.label)) &&
+        (this.selectedDamages.size === 0 || this.selectedDamages.has(tree.type_damage.label)) &&
+        (this.selectedStereotypes.size === 0 || tree.stereotypes.some((stereotype: Stereotype) => this.selectedStereotypes.has(stereotype.label)))
+      );
+    });
+    this.cdr.markForCheck();  // Forcer la détection des changements
   }
 
 }
