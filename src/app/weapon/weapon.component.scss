@@ -1,0 +1,24 @@
+.open-tree{
+    width:100%;
+    background-color: var(--white);
+}
+aside>div{
+    margin:0em 0em 3em 0em;
+    clear: both;
+}
+aside>div span{
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    display: block;
+    margin-top:1em;
+}
+aside>div button{
+    text-transform: uppercase;
+    display: block;
+    font-size: .9em;
+    float: left;
+    padding:.2em .5em 0em .5em;
+    margin:.2em;
+    background-color: var(--light2);
+
+}

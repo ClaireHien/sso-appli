@@ -1,40 +1,47 @@
-<p>weapon works!</p>
+<aside class="fixed w-80 p-5 top-20 left-6 bg-light3">
+    <span class="block font-blakely text-4xl -mt-8 text-right">Filtres</span>
+    <div>
+        <span>Dès</span>
+        <button>D4</button>
+        <button>D6</button>
+        <button>D8</button>
+        <button>D10</button>
+    </div>
+    <div>
+        <span>Statistiques</span> 
+        <button *ngFor="let statistic of statistics">{{ statistic.abreviation }}</button>
+    </div>
+    <div>
+        <span>Portée</span>
+        <button *ngFor="let range of ranges">{{ range.label }}</button>
+    </div>
+    <div>
+        <span>Types de dégâts</span>
+        <button *ngFor="let range of ranges">{{ range.label }}</button>
+    </div>
+    <div>
+        <span>Stéréotypes</span>
+        <button *ngFor="let stereotype of stereotypes">{{ stereotype.label }}</button>
+    </div>
+        
+</aside>
+<section class="ml-96 pt-20 mr-20">
+    <h1 class="font-blakely text-7xl">Les armes</h1>
+    <div class="flex gap-5 mt-5 flex-wrap">
 
-<p>weapon works!</p>
+        <div *ngFor="let tree of trees" class="w-96 bg-white4 hover:bg-white6 p-5" [ngClass]="{'open-tree': isOpen(tree.id)}">
+            <i class="fa-solid fa-angles-down" (click)="openTree(tree.id)"></i>
+            <h2 (click)="openTree(tree.id)">{{ tree.name }}</h2>
+            <p>{{ tree.description }}</p>
+            
+            <div>
+                <strong>Stereotypes:</strong>
+                <ul>
+                <li *ngFor="let stereotype of tree.stereotypes">{{ stereotype.label }}</li>
+                </ul>
+            </div>
 
-<br><br><br>
-<div *ngFor="let tree of trees">
-    <h2>{{ tree.name }}</h2>
-    <p>{{ tree.description }}</p>
-    <p><strong>Type Damage:</strong> {{ tree.typeDamage.name }}</p>
-    <p><strong>Range:</strong> {{ tree.range.name }}</p>
-  
-    <div>
-      <strong>Statistics:</strong>
-      <ul>
-        <li *ngFor="let statistic of tree.statistics">{{ statistic.name }}: {{ statistic.value }}</li>
-      </ul>
+        </div>
     </div>
-  
-    <div>
-      <strong>Skills:</strong>
-      <ul>
-        <li *ngFor="let skill of tree.skills">{{ skill.name }} ({{ skill.typeSkill.name }})</li>
-      </ul>
-    </div>
-  
-    <div>
-      <strong>Status:</strong>
-      <ul>
-        <li *ngFor="let status of tree.statuses">{{ status.name }}</li>
-      </ul>
-    </div>
-  
-    <div>
-      <strong>Stereotypes:</strong>
-      <ul>
-        <li *ngFor="let stereotype of tree.stereotypes">{{ stereotype.name }}</li>
-      </ul>
-    </div>
-  </div>
-  
+
+</section>
