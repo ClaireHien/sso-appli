@@ -1,0 +1,17 @@
+button span{
+    border-radius: 20em;
+}
+
+a{
+    display:flex;
+    align-items:center;
+    padding:0em 1em;
+}
+a:hover{
+    background-color: var(--light3);
+}
+
+.active {
+    background:linear-gradient(145deg,var(--mid2) 0%, var(--mid4) 100%);
+    color:var(--white);
+}

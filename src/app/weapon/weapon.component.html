@@ -1,0 +1,40 @@
+<p>weapon works!</p>
+
+<p>weapon works!</p>
+
+<br><br><br>
+<div *ngFor="let tree of trees">
+    <h2>{{ tree.name }}</h2>
+    <p>{{ tree.description }}</p>
+    <p><strong>Type Damage:</strong> {{ tree.typeDamage.name }}</p>
+    <p><strong>Range:</strong> {{ tree.range.name }}</p>
+  
+    <div>
+      <strong>Statistics:</strong>
+      <ul>
+        <li *ngFor="let statistic of tree.statistics">{{ statistic.name }}: {{ statistic.value }}</li>
+      </ul>
+    </div>
+  
+    <div>
+      <strong>Skills:</strong>
+      <ul>
+        <li *ngFor="let skill of tree.skills">{{ skill.name }} ({{ skill.typeSkill.name }})</li>
+      </ul>
+    </div>
+  
+    <div>
+      <strong>Status:</strong>
+      <ul>
+        <li *ngFor="let status of tree.statuses">{{ status.name }}</li>
+      </ul>
+    </div>
+  
+    <div>
+      <strong>Stereotypes:</strong>
+      <ul>
+        <li *ngFor="let stereotype of tree.stereotypes">{{ stereotype.name }}</li>
+      </ul>
+    </div>
+  </div>
+  

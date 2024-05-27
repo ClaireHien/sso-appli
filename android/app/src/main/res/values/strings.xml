@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">soumini</string>
+    <string name="title_activity_main">soumini</string>
+    <string name="package_name">fr.nhei.soumini</string>
+    <string name="custom_url_scheme">fr.nhei.soumini</string>
+</resources>

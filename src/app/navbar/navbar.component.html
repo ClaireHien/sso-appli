@@ -1,0 +1,18 @@
+<nav class="fixed bg-white w-full h-12 flex justify-between pl-20">
+
+  <div class="tracking-widest uppercase font-thin flex">
+      <a routerLink="/">Acceuil</a>
+      <a routerLink="/armes" routerLinkActive="active">Armes</a>
+      <a routerLink="/magies" routerLinkActive="active">Magies</a>
+      <a routerLink="/neutre" routerLinkActive="active">Neutre</a>
+      <a routerLink="/combat" routerLinkActive="active">Combat</a>
+      <a routerLink="/artisanat" routerLinkActive="active">Artisanat</a>
+  </div>
+
+  <button (click)="toggleTheme()" class="flex gap-2 items-center mr-10">
+      <i class="fa-solid fa-sun"></i>
+      <span class="w-10 flex items-center bg-light3"><i class="fa-solid fa-circle text-mid2"></i></span>
+      <i class="fa-solid fa-moon"></i>
+  </button>
+
+</nav>

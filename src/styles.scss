@@ -1,0 +1,94 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+// @import url("https://use.typekit.net/ghh5rno.css");
+@import '../node_modules/@fortawesome/fontawesome-free/css/all.css';
+
+
+.lightmode {
+    --black:#000000;
+    --dark-grey:#202020;
+    --light-grey:#f8f8f8;
+    --white:#ffffff;
+    --white6:rgba(255,255,255,.6);
+    --white4:rgba(255,255,255,.4);
+    --white2:rgba(255,255,255,.2);
+    --black6:rgba(0,0,0,.6);
+    --black4:rgba(0,0,0,.4);
+    --black2:rgba(0,0,0,.2);
+    
+    --light1:#EFFAFD;
+    --light2:#CEEFF7;
+    --light3:#B5E7F3;
+    --light4:#9CDEEE;
+    --light5:#7BD2E8;
+
+    --mid1:#6ECDDD;
+    --mid2:#60C7D2;
+    --mid3:#44BBBC;
+    --mid4:#38899B;
+    --mid5:#32708A;
+
+    --dark1:#2C5779;
+    --dark2:#21425B;
+    --dark3:#162C3D;
+    --dark4:#0B161F;
+    --dark5:#060B10;
+
+    --sans:"quasimoda", sans-serif;
+    --blakely:"blakely", sans-serif;
+}
+
+.darkmode {
+    --white:#000000;
+    --dark-grey:#202020;
+    --light-grey:#f8f8f8;
+    --black:#ffffff;
+    --black6:rgba(255,255,255,.6);
+    --black4:rgba(255,255,255,.4);
+    --black2:rgba(255,255,255,.2);
+    --white6:rgba(0,0,0,.6);
+    --white4:rgba(0,0,0,.4);
+    --white2:rgba(0,0,0,.2);
+    
+    --dark5:#EFFAFD;
+    --dark4:#CEEFF7;
+    --dark3:#B5E7F3;
+    --dark2:#9CDEEE;
+    --dark1:#7BD2E8;
+
+    --mid5:#6ECDDD;
+    --mid4:#60C7D2;
+    --mid3:#44BBBC;
+    --mid2:#38899B;
+    --mid1:#32708A;
+
+    --light5:#2C5779;
+    --light4:#21425B;
+    --light3:#162C3D;
+    --light2:#0B161F;
+    --light1:#060B10;
+
+    --sans:"quasimoda", sans-serif;
+    --blakely:"blakely", sans-serif;
+}
+
+*{
+    scroll-behavior: smooth;
+    transition: all .5s, color 0s;
+}
+body{
+    font-family: "quasimoda", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    height:100vh; width: 100vw;overflow: auto;
+    color:var(--black);
+    background: linear-gradient(160deg,var(--light1) 0%, var(--light3) 100%);
+}
+
+/* personnalisation du darkmode */ 
+
+.darkmode nav button span{justify-content: end;}
+.lightmode .fa-sun{color: var(--mid4);} .lightmode .fa-moon{color:var(--light3);}
+.darkmode .fa-sun{color: var(--light5);} .darkmode .fa-moon{color:var(--mid5);}
