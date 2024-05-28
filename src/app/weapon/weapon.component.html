@@ -57,7 +57,15 @@
 
 
 <section class="mr-5 ml-5 md:ml-20 lg:ml-96 pt-20 md:mr-20 md:mb-20">
+
     <h1 class="font-blakely text-7xl">Les armes</h1>
+    
+    <div class="text-left">
+        <span class="text-mid4 text-sm italic">Compétences infligeant des dégâts phyiques et se jouant sur les statistiques de corps</span>
+        <br>
+        <span class="uppercase text-mid3 tracking-widest">compétence - 1pc | amélioration - 2pc | Amélioration d'ultime - 3 PC | Ultime - 5 PC</span>
+    </div>
+
     <div class="flex gap-5 mt-5 flex-wrap">
 
         <div *ngFor="let tree of filteredTrees" class="open-tree w-96 bg-white4 hover:bg-white6 p-5" [ngClass]="{'open-tree': isOpen(tree.id)}">

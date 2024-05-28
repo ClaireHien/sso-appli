@@ -13,19 +13,25 @@ export class FightComponent implements OnInit{
 
   skills: any[] = [];
   stereotypes: any[] = [];
+  
+  filteredSkills: any[] = [];
+  
+  selectedStereotypes: Set<string> = new Set<string>();
 
   constructor(
     private stereotypeService: StereotypeService,
     private fightSkillService: FightSkillService,
     private cdr: ChangeDetectorRef 
   ) { }
+  
 
   
   ngOnInit() {
 
     this.fightSkillService.getSkills().subscribe(
       (data: FightSkill[]) => {
-        this.skills = data;
+        this.skills = data; 
+        this.filteredSkills = data; 
         console.log(data);
       },
       error => {
@@ -43,4 +49,24 @@ export class FightComponent implements OnInit{
     );
 
   };
+
+  
+  toggleFilter(set: Set<string>, value: string) {
+    if (set.has(value)) {
+      set.delete(value);
+    } else {
+      set.add(value);
+    }
+    this.applyFilters();
+  }
+
+  applyFilters() {
+    this.filteredSkills = this.skills.filter(skill => {
+      return (
+        (this.selectedStereotypes.size === 0 || skill.stereotypes.some((stereotype: Stereotype) => this.selectedStereotypes.has(stereotype.label)))
+      );
+    });
+    this.cdr.markForCheck();  // Forcer la détection des changements
+  }
+
 }

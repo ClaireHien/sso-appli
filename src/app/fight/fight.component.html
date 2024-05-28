@@ -1,1 +1,43 @@
-<p>fight works!</p>
+<aside class="lg:fixed lg:top-20 pt-24 lg:pt-5 w-full left-5 bg-light3 p-2 lg:w-40">
+    <span class="block font-blakely text-4xl -mt-8 text-center">Filtres</span>
+    
+    <div class="flex lg:block flex-wrap gap-2 justify-center">
+        <button class="mb-1 uppercase block lg:w-full rounded text-xs bg-light4 tracking-widest pt-1 pr-2 pl-2 pb-0"
+            *ngFor="let stereotype of stereotypes"
+            [ngClass]="{'filter-select': selectedStereotypes.has(stereotype.label)}"
+            (click)="toggleFilter(selectedStereotypes, stereotype.label)">
+            {{ stereotype.label }}
+        </button>
+    </div>
+</aside>
+
+<section class="pt-20 lg:ml-52 ml-5 mr-5 mb-5 sm:ml-20 sm:mr-20 sm:mb-20">
+    
+    <h1 class="font-blakely text-7xl">Les compétences de combat</h1>
+    <div>
+        <span class="text-mid4 text-sm italic">Compétences passives pouvant être débloqué avec tous les arbres</span>
+        <br>
+        <span class="uppercase text-mid3 tracking-widest">compétence - 1pc | amélioration - 2pc</span>
+    </div>
+
+    <div class="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-2 mt-5">
+        <div class="bg-white4 hover:bg-white p-3" *ngFor="let skill of filteredSkills">
+
+            <h2 class="font-blakely text-5xl">{{skill.name}}</h2>
+            <div class="uppercase tracking-widest text-xs flex flex-wrap gap-2 mb-4">
+                <span *ngFor="let stereotype of skill.stereotypes" class="bg-light2 rounded pt-1 pl-2 pr-2">
+                    {{ stereotype.label}}
+                </span> 
+            </div>
+            
+            <div class="mb-4 font-light text-justify">
+                {{ skill.description }}
+            </div>
+            <div class="font-light text-justify">
+                <div class="uppercase tracking-widest text-xs font-bold text-mid3">Amélioration</div>
+                {{ skill.upgrade }}
+            </div>
+            
+        </div> 
+    </div>
+</section>
