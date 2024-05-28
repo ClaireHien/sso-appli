@@ -6,12 +6,12 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class NeutralSkillService {
+export class CraftService {
 
   constructor(private http: HttpClient) {}
 
   backendUrl = environment.backendUrl;
-  getSkills(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.backendUrl}/neutral`);
+  getCrafts(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.backendUrl}/craft`);
   };
 }
