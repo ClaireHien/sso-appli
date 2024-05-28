@@ -1,4 +1,8 @@
+<div class="grid craft-skill">
+
+<!--
 <div class="grid" [ngClass]="{'craft-table': activeSection === 'craft-table', 'craft-skill': activeSection === 'craft-skill'}">
+-->
 
     <section class="pt-20 p-10 craft-table" (click)="setActiveSection('craft-table')">
         <h1 class="font-blakely text-7xl text-right">Artisanat et matériaux</h1>
@@ -18,25 +22,43 @@
                         <strong class="pr-4 justify-self-end text-right text-mid3">20 ou plus</strong><span>Excellent</span>
                     </div>
                     
-                    <a class="block text-center bg-white text-mid5 text-xs hover:bg-mid1 hover:text-dark4 pt-1 px-3 my-1 rounded uppercase tracking-widest" [routerLink]="[]" fragment="arme">Forge d'arme</a>
-                    <a class="block text-center bg-white text-mid5 text-xs hover:bg-mid1 hover:text-dark4 pt-1 px-3 my-1 rounded uppercase tracking-widest" [routerLink]="[]" fragment="armure">Forge d'armure</a>
-                    <a class="block text-center bg-white text-mid5 text-xs hover:bg-mid1 hover:text-dark4 pt-1 px-3 my-1 rounded uppercase tracking-widest" [routerLink]="[]" fragment="couture">Couture</a>
-                    <a class="block text-center bg-white text-mid5 text-xs hover:bg-mid1 hover:text-dark4 pt-1 px-3 my-1 rounded uppercase tracking-widest" [routerLink]="[]" fragment="bijouterie">Bijouterie</a>
+                    <a class="block text-center bg-white text-mid5 text-xs hover:bg-mid1 hover:text-dark4 pt-1 px-3 my-1 rounded uppercase tracking-widest" [routerLink]="[]" fragment="materiaux-arme">Forge d'arme</a>
+                    <a class="block text-center bg-white text-mid5 text-xs hover:bg-mid1 hover:text-dark4 pt-1 px-3 my-1 rounded uppercase tracking-widest" [routerLink]="[]" fragment="materiaux-armure">Forge d'armure</a>
+                    <a class="block text-center bg-white text-mid5 text-xs hover:bg-mid1 hover:text-dark4 pt-1 px-3 my-1 rounded uppercase tracking-widest" [routerLink]="[]" fragment="materiaux-couture">Couture</a>
+                    <a class="block text-center bg-white text-mid5 text-xs hover:bg-mid1 hover:text-dark4 pt-1 px-3 my-1 rounded uppercase tracking-widest" [routerLink]="[]" fragment="materiaux-bijouterie">Bijouterie</a>
                 </div>
             </div>
-            <div style="min-height:100vh;">
+            <div>
 
                 <ng-container *ngFor="let i of [1, 2, 3, 4]">
                 
                     <h2 class="font-blakely text-5xl">
-                        <span *ngIf="i === 1" id="arme">Forge d'arme</span>
-                        <span *ngIf="i === 2" id="armure">Forge d'armure</span>
-                        <span *ngIf="i === 3" id="couture">Couture</span>
-                        <span *ngIf="i === 4" id="bijouterie">Bijouterie</span>
+                        <span *ngIf="i === 1" id="materiaux-arme">Forge d'arme</span>
+                        <span *ngIf="i === 2" id="materiaux-armure">Forge d'armure</span>
+                        <span *ngIf="i === 3" id="materiaux-couture">Couture</span>
+                        <span *ngIf="i === 4" id="materiaux-bijouterie">Bijouterie</span>
                     </h2>
+                    <div class="text-mid4 text-sm italic text-justify">
+                        <span *ngIf="i === 1">
+                            La forge d'arme permet de forger des armes : il est impératif d'avoir une arme pour effectuer des attaques physiques (hors arts martiaux) <br>
+                            <strong>Chaque joueur ne peut équiper qu'une arme. </strong>
+                        </span>
+                        <span *ngIf="i === 2">
+                            La forge d'arme permet de forger des armures : les armures octroient des résistances physiques et / ou magiques (diminuant les dégâts reçus) mais donnent un malus de vitesse. <br>
+                            <strong>Chaque joueur ne peut équiper qu'une armure. </strong>
+                        </span>
+                        <span *ngIf="i === 3">
+                            La couture permet de confectionner des vêtements : ils octroient des bonus divers en physique / corps. <br>
+                            <strong>Chaque joueur peut équiper jusqu'à deux vêtements. </strong>
+                        </span>
+                        <span *ngIf="i === 4">
+                            La bijouterie permet de confectionner des bijoux : ils octroient des bonus divers en magique / esprit. <br>
+                            <strong>Chaque joueur peut équiper jusqu'à deux bijoux. </strong>
+                        </span>
+                    </div>
                     <div class="flex flex-wrap justify-start mb-10 flex-col lg:flex-row">
                         <div *ngFor="let craft of craftTables">
-                            <div class="mt-5 mr-5 lg:w-96 p-5 bg-white4 hover:bg-white" *ngIf="craft.craft_id === i">
+                            <div class="mt-5 lg:mr-5 lg:w-96 p-5 bg-white4 hover:bg-white" *ngIf="craft.craft_id === i">
                                 
                                 <h3 class="ml-8 leading-5 py-3 text-xl uppercase text-mid3 tracking-widest font-bold">{{craft.material.name}}</h3>
 
@@ -69,9 +91,6 @@
                     
                 </ng-container>
 
-                
-
-
             </div>
 
         </div>
@@ -87,8 +106,59 @@
         </div>
         <div> 
 
+        <div class="lg:fixed gap-2 lg:w-52 top-20 right-10">
+            <a class="block text-center bg-white text-mid5 text-xs hover:bg-mid1 hover:text-dark4 pt-1 px-3 my-1 rounded uppercase tracking-widest" [routerLink]="[]" fragment="competences-arme">Forge d'arme</a>
+            <a class="block text-center bg-white text-mid5 text-xs hover:bg-mid1 hover:text-dark4 pt-1 px-3 my-1 rounded uppercase tracking-widest" [routerLink]="[]" fragment="competences-armure">Forge d'armure</a>
+            <a class="block text-center bg-white text-mid5 text-xs hover:bg-mid1 hover:text-dark4 pt-1 px-3 my-1 rounded uppercase tracking-widest" [routerLink]="[]" fragment="competences-couture">Couture</a>
+            <a class="block text-center bg-white text-mid5 text-xs hover:bg-mid1 hover:text-dark4 pt-1 px-3 my-1 rounded uppercase tracking-widest" [routerLink]="[]" fragment="competences-bijouterie">Bijouterie</a>
+        </div>
+
             
-            <div *ngFor="let skill of craftSkills">{{skill.name}}</div>
+        <ng-container *ngFor="let i of [1, 2, 3, 4]">
+            
+            <h2 class="font-blakely text-5xl mt-10">
+                <span *ngIf="i === 1" id="competences-arme">Forge d'arme</span>
+                <span *ngIf="i === 2" id="competences-armure">Forge d'armure</span>
+                <span *ngIf="i === 3" id="competences-couture">Couture</span>
+                <span *ngIf="i === 4" id="competences-bijouterie">Bijouterie</span>
+            </h2>
+            
+            <div class="text-mid4 text-sm italic text-justify mb-5">
+                <span *ngIf="i === 1">
+                    La forge d'arme permet de forger des armes : il est impératif d'avoir une arme pour effectuer des attaques physiques (hors arts martiaux) <br>
+                    <strong>Chaque joueur ne peut équiper qu'une arme. </strong>
+                </span>
+                <span *ngIf="i === 2">
+                    La forge d'arme permet de forger des armures : les armures octroient des résistances physiques et / ou magiques (diminuant les dégâts reçus) mais donnent un malus de vitesse. <br>
+                    <strong>Chaque joueur ne peut équiper qu'une armure. </strong>
+                </span>
+                <span *ngIf="i === 3">
+                    La couture permet de confectionner des vêtements : ils octroient des bonus divers en physique / corps. <br>
+                    <strong>Chaque joueur peut équiper jusqu'à deux vêtements. </strong>
+                </span>
+                <span *ngIf="i === 4">
+                    La bijouterie permet de confectionner des bijoux : ils octroient des bonus divers en magique / esprit. <br>
+                    <strong>Chaque joueur peut équiper jusqu'à deux bijoux. </strong>
+                </span>
+            </div>
+            
+        
+            <div class="flex flex-wrap justify-start flex-col lg:flex-row">
+                <div *ngFor="let skill of craftSkills">
+                    <div class="lg:w-96 bg-white4 w-full mr-5 mb-5 hover:bg-white p-4" *ngIf="skill.craft_id === i">
+                        <strong class="uppercase tracking-widest text-mid3">
+                            {{skill.name}}
+                        </strong>
+                        <span class="block text-justify font-light">
+                            {{skill.description}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </ng-container>
+
+
             
         </div>
 

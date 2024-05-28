@@ -22,7 +22,6 @@ export class CraftComponent implements OnInit {
     private cdr: ChangeDetectorRef 
   ) { }
   
-
   
   calculateRoundedValue(value: number): number {
     return Math.floor(value);

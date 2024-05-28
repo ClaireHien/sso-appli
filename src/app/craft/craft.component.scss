@@ -35,8 +35,8 @@ section.craft-table>div:nth-child(3),.quality-craft{grid-template-columns: auto 
         display: block;
         color:var(--black);
     }
-    div.craft-table section.craft-skill{
-        background:linear-gradient(12deg,var(--light4) 0%, var(--light3) 100%);
+    section.craft-skill{
+        background:linear-gradient(40deg,var(--light3) 0%, var(--light4) 100%);
     }
     
     div.craft-table section.craft-skill>div,
