@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { StereotypeService } from '../services/stereotype.service';
 import { RangeService } from '../services/range.service';
-import { StatisticPhysicService } from '../services/statistic-physic.service';
+import { StatisticMagicService } from '../services/statistic-magic.service';
 import { TypeDamageService } from '../services/type-damage.service';
 import { Tree, Stereotype, Range, Statistic, TypeDamage } from '../tree.type'; // Importation des interfaces
 
@@ -35,7 +35,7 @@ export class MagicComponent implements OnInit {
     private stereotypeService: StereotypeService,
     private rangeService: RangeService,
     private typeDamageService: TypeDamageService,
-    private statisticPhysicService: StatisticPhysicService,
+    private statisticMagicService: StatisticMagicService,
     private cdr: ChangeDetectorRef 
   ) { }
 
@@ -47,7 +47,7 @@ export class MagicComponent implements OnInit {
         console.log(data);
       },
       error => {
-        console.error('Error fetching weapon trees', error);
+        console.error('Error fetching magic trees', error);
       }
     );
     
@@ -56,7 +56,7 @@ export class MagicComponent implements OnInit {
         this.stereotypes = data;
       },
       error => {
-        console.error('Error fetching weapon trees', error);
+        console.error('Error fetching stereotype', error);
       }
     );
     
@@ -65,16 +65,16 @@ export class MagicComponent implements OnInit {
         this.ranges = data;
       },
       error => {
-        console.error('Error fetching weapon trees', error);
+        console.error('Error fetching range', error);
       }
     );
 
-    this.statisticPhysicService.getStatisticPhysics().subscribe(
+    this.statisticMagicService.getStatisticMagics().subscribe(
       (data: Statistic[]) => {
         this.statistics = data;
       },
       error => {
-        console.error('Error fetching weapon trees', error);
+        console.error('Error fetching Magic stat', error);
       }
     );
 
@@ -83,7 +83,7 @@ export class MagicComponent implements OnInit {
         this.damages = data;
       },
       error => {
-        console.error('Error fetching weapon trees', error);
+        console.error('Error fetching damage', error);
       }
     );
     

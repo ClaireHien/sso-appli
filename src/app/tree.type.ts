@@ -1,13 +1,24 @@
 // src/app/weapon-tree.types.ts
 
 export interface Statistic {
+  id: number;
+  label: string;
+  type: number;
+  abreviation: string;
+  pivot: {
+    tree_id: number;
+    statistic_id: number;
+  };
+}
+
+export interface FightSkill {
     id: number;
-    label: string;
-    type: number;
-    abreviation: string;
+    name: string;
+    description: number;
+    upgrade: string;
     pivot: {
-      tree_id: number;
-      statistic_id: number;
+      stereotype_id: number;
+      fight_skill_id: number;
     };
   }
   

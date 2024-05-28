@@ -32,12 +32,6 @@ aside>div span{
 .open-tree .tree-skill{
     display:block;
 }
-.list-skill{
-    display:grid;
-    grid-template-columns: repeat(4,1fr);
-    grid-gap: 1em;
-}
-
 
 .filter-select{
     background:var(--white);

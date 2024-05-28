@@ -57,7 +57,7 @@ export class WeaponComponent implements OnInit {
         this.stereotypes = data;
       },
       error => {
-        console.error('Error fetching weapon trees', error);
+        console.error('Error fetching stereotype', error);
       }
     );
     
@@ -66,7 +66,7 @@ export class WeaponComponent implements OnInit {
         this.ranges = data;
       },
       error => {
-        console.error('Error fetching weapon trees', error);
+        console.error('Error fetching range', error);
       }
     );
 
@@ -75,7 +75,7 @@ export class WeaponComponent implements OnInit {
         this.statistics = data;
       },
       error => {
-        console.error('Error fetching weapon trees', error);
+        console.error('Error fetching physic stats', error);
       }
     );
 
@@ -84,7 +84,7 @@ export class WeaponComponent implements OnInit {
         this.damages = data;
       },
       error => {
-        console.error('Error fetching weapon trees', error);
+        console.error('Error fetching damage', error);
       }
     );
     
