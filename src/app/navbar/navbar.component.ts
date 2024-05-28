@@ -19,5 +19,12 @@ export class NavbarComponent {
     this.darkmodeService.toggleTheme();
   }
 
+  
+  isMenuVisible: boolean = false;
+
+  toggleMenu() {
+    this.isMenuVisible = !this.isMenuVisible;
+  }
+
 
 }

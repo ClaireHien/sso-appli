@@ -15,3 +15,10 @@ a:hover{
     background:linear-gradient(145deg,var(--mid2) 0%, var(--mid4) 100%);
     color:var(--white);
 }
+
+.open-menu a{
+    height:2.5em;
+    line-height: 2.5em;
+    display:block;
+    font-size:1.5em;
+}

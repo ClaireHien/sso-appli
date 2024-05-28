@@ -1,4 +1,4 @@
-<nav class="z-50 fixed bg-white w-full h-12 flex justify-between pl-20">
+<nav class="hidden lg:flex fixed z-50 bg-white w-full h-12 justify-between pl-20">
 
   <div class="tracking-widest uppercase font-thin flex">
       <a routerLink="/">Accueil</a>
@@ -7,6 +7,31 @@
       <a routerLink="/combat" routerLinkActive="active">Combat</a>
       <a routerLink="/artisanat" routerLinkActive="active">Artisanat</a>
       <a routerLink="/neutre" routerLinkActive="active">Neutre</a>
+  </div>
+
+  <button (click)="toggleTheme()" class="flex gap-2 items-center mr-10">
+      <i class="fa-solid fa-sun"></i>
+      <span class="w-10 flex items-center bg-light3"><i class="fa-solid fa-circle text-mid2"></i></span>
+      <i class="fa-solid fa-moon"></i>
+  </button>
+
+</nav>
+
+<nav class="lg:hidden z-50 fixed bg-white w-full h-12 flex justify-between px-2">
+
+  <div class="tracking-widest uppercase font-thin flex">
+    <button  (click)="toggleMenu()" class="w-96 flex tracking-widest uppercase font-bold items-center">
+      <i class="fa-solid fa-bars text-3xl m-1"></i>
+      <span class="text-xl mx-3 text-mid3">SSO</span>
+    </button>
+    <div *ngIf="isMenuVisible"  class="open-menu absolute top-12 left-0 bg-white w-full">
+      <a routerLink="/">Accueil</a>
+      <a routerLink="/armes" routerLinkActive="active">Armes</a>
+      <a routerLink="/magies" routerLinkActive="active">Magies</a>
+      <a routerLink="/combat" routerLinkActive="active">Combat</a>
+      <a routerLink="/artisanat" routerLinkActive="active">Artisanat</a>
+      <a routerLink="/neutre" routerLinkActive="active">Neutre</a>
+    </div>
   </div>
 
   <button (click)="toggleTheme()" class="flex gap-2 items-center mr-10">
