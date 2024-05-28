@@ -11,7 +11,7 @@ export class CraftSkillService {
   constructor(private http: HttpClient) {}
 
   backendUrl = environment.backendUrl;
-  getSkills(): Observable<any[]> {
+  getCraftSkills(): Observable<any[]> {
     return this.http.get<any[]>(`${this.backendUrl}/craft-skill`);
   };
 }

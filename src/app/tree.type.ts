@@ -45,6 +45,23 @@ export interface FightSkill {
     id: number;
     label: string;
   }
+  export interface CraftTable {
+    id: number;
+    poor: string;
+    fair: string;
+    super: string;
+    good: string;
+    excellent: string;
+    craft_id: number;
+    material_id: number;
+  }
+  
+  export interface CraftSkill {
+    id: number;
+    name: string;
+    description: string;
+    craft_id: number;
+  }
   
   export interface Tree {
     id: number;
