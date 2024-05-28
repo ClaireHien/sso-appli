@@ -1,1 +1,19 @@
-<p>neutral works!</p>
+<section class="pt-20 p-5 sm:p-20">
+
+    <h1 class="font-blakely text-7xl text-center">Les compétences neutres</h1>
+    <div class="text-center">
+        <span class="text-mid4 text-sm italic">Compétences passives pouvant être débloqué avec tous les arbres</span>
+        <br>
+        <span class="uppercase text-mid3 tracking-widest">compétence - 1pc</span>
+    </div>
+
+    <div class="mt-10 flex justify-center flex-wrap gap-2">
+
+    <div class="md:w-80 w-full bg-white4 hover:bg-white p-4" *ngFor="let skill of skills">
+        <div class="uppercase tracking-widest font-bold text-mid3">{{skill.name}}</div>
+        <div class="font-light text-justify">{{skill.description}}</div>
+       
+    </div>
+    </div>
+
+</section>

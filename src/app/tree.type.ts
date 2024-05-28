@@ -35,6 +35,11 @@ export interface FightSkill {
     id: number;
     label: string;
   }
+  export interface NeutralSkill {
+    id: number;
+    name: string;
+    description: string;
+  }
   
   export interface TypeDamage {
     id: number;
