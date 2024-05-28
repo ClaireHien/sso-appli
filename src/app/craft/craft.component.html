@@ -1,1 +1,96 @@
-<p>craft works!</p>
+<div class="grid" [ngClass]="{'craft-table': activeSection === 'craft-table', 'craft-skill': activeSection === 'craft-skill'}">
+
+    <section class="pt-20 p-10 craft-table" (click)="setActiveSection('craft-table')">
+        <h1 class="font-blakely text-7xl text-right">Artisanat et matériaux</h1>
+        <div class="text-right">
+            <span class="text-mid4 text-sm italic">Liste des matériaux et effets disponibles pour l'artisanat</span>
+        </div>
+        <div class="lg:grid gap-10">
+            <div class="lg:-mt-40 mt-5">
+                <div class="sticky top-20 mb-10">
+                    <div class="bg-light3 p-2 lg:w-72 w-full mb-5 grid uppercase tracking-widest grid-cols-2">
+                        <h2 class="col-span-2 text-center font-blakely text-3xl tracking-normal -mt-5 mb-3">Qualité des équipements</h2>
+                        <strong class="pr-4 justify-self-end text-right text-mid3">5 ou moins</strong><span>Raté</span>
+                        <strong class="pr-4 justify-self-end text-right text-mid3">6 à 9</strong><span>Médiocre</span>
+                        <strong class="pr-4 justify-self-end text-right text-mid3">10 à 13</strong><span>Correct</span>
+                        <strong class="pr-4 justify-self-end text-right text-mid3">14 à 16</strong><span>Bon</span>
+                        <strong class="pr-4 justify-self-end text-right text-mid3">17 à 19</strong><span>Super</span>
+                        <strong class="pr-4 justify-self-end text-right text-mid3">20 ou plus</strong><span>Excellent</span>
+                    </div>
+                    
+                    <a class="block text-center bg-white text-mid5 text-xs hover:bg-mid1 hover:text-dark4 pt-1 px-3 my-1 rounded uppercase tracking-widest" [routerLink]="[]" fragment="arme">Forge d'arme</a>
+                    <a class="block text-center bg-white text-mid5 text-xs hover:bg-mid1 hover:text-dark4 pt-1 px-3 my-1 rounded uppercase tracking-widest" [routerLink]="[]" fragment="armure">Forge d'armure</a>
+                    <a class="block text-center bg-white text-mid5 text-xs hover:bg-mid1 hover:text-dark4 pt-1 px-3 my-1 rounded uppercase tracking-widest" [routerLink]="[]" fragment="couture">Couture</a>
+                    <a class="block text-center bg-white text-mid5 text-xs hover:bg-mid1 hover:text-dark4 pt-1 px-3 my-1 rounded uppercase tracking-widest" [routerLink]="[]" fragment="bijouterie">Bijouterie</a>
+                </div>
+            </div>
+            <div style="min-height:100vh;">
+
+                <ng-container *ngFor="let i of [1, 2, 3, 4]">
+                
+                    <h2 class="font-blakely text-5xl">
+                        <span *ngIf="i === 1" id="arme">Forge d'arme</span>
+                        <span *ngIf="i === 2" id="armure">Forge d'armure</span>
+                        <span *ngIf="i === 3" id="couture">Couture</span>
+                        <span *ngIf="i === 4" id="bijouterie">Bijouterie</span>
+                    </h2>
+                    <div class="flex flex-wrap justify-start mb-10 flex-col lg:flex-row">
+                        <div *ngFor="let craft of craftTables">
+                            <div class="mt-5 mr-5 lg:w-96 p-5 bg-white4 hover:bg-white" *ngIf="craft.craft_id === i">
+                                
+                                <h3 class="ml-8 leading-5 py-3 text-xl uppercase text-mid3 tracking-widest font-bold">{{craft.material.name}}</h3>
+
+                                <div class="text-mid4 uppercase tracking-widest text-xs" *ngIf="craft.material.basic === 1">
+                                    <strong class="text-dark3">Matériaux basique</strong>
+                                    <br>
+                                    <em class="text-mid2">
+                                        Prix boutique - {{craft.material.price}} cristaux
+                                        <br>
+                                        Prix revente - {{ calculateRoundedValue(craft.material.price / 4) }} cristaux
+                                    </em>
+                                </div>
+                                
+                                <div class="text-mid4 uppercase tracking-widest text-xs" *ngIf="craft.material.basic === 0">
+                                    <strong>Matériaux exclusif</strong>
+                                    <br>
+                                    <em class="text-light4">Non disponible en boutique</em>
+                                </div> 
+
+                                <div class="mt-3 quality-craft grid gap-2">
+                                    <strong>Médiocre</strong><span>{{craft.poor}}</span>
+                                    <strong>Correct</strong><span>{{craft.fair}}</span>
+                                    <strong>Bon</strong><span>{{craft.good}}</span>
+                                    <strong>Super</strong><span>{{craft.super}}</span>
+                                    <strong>Excellent</strong><span>{{craft.excellent}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </ng-container>
+
+                
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="pt-20 p-10 craft-skill" (click)="setActiveSection('craft-skill')">
+        <h1 class="font-blakely text-7xl">Compétences d'artisanat</h1>
+        <div>
+            <span class="text-mid4 text-sm italic">Compétences passives pouvant être débloqué avec tous les arbres, chaque compétence est liée et active qu'avec l'artisanat correspondant</span>
+            <br>
+            <span class="uppercase text-mid3 tracking-widest">compétence - 1pc</span>
+        </div>
+        <div> 
+
+            
+            <div *ngFor="let skill of craftSkills">{{skill.name}}</div>
+            
+        </div>
+
+    </section>
+</div>

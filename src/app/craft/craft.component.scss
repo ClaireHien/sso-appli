@@ -1,0 +1,47 @@
+.craft-table, .craft-skill{min-height:100vh;}
+div.craft-table{grid-template-columns: 1fr 10em;}
+div.craft-skill{grid-template-columns: 10em 1fr;}
+
+div.craft-table section.craft-skill,
+div.craft-skill section.craft-table{
+    background-color: var(--mid1);
+    writing-mode: vertical-rl;
+    text-orientation: sideways;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    color:var(--dark2);
+    cursor:pointer;
+}
+
+div.craft-table section.craft-skill>div,
+div.craft-skill section.craft-table>div{
+    display:none;
+}
+
+section.craft-table>div:nth-child(3),.quality-craft{grid-template-columns: auto 1fr;}
+.quality-craft strong{text-align: right;padding-left:1em; align-self: start;}
+.quality-craft span{font-weight: 200; text-align: justify;}
+
+@media screen and (max-width: 1024px) {
+    
+    div.craft-table{grid-template-columns: 1fr;}
+    div.craft-skill{grid-template-columns: 1fr;}
+
+    div.craft-table section.craft-skill,
+    div.craft-skill section.craft-table{
+        background-color: transparent;
+        writing-mode:horizontal-tb;
+        display: block;
+        color:var(--black);
+    }
+    div.craft-table section.craft-skill{
+        background:linear-gradient(12deg,var(--light4) 0%, var(--light3) 100%);
+    }
+    
+    div.craft-table section.craft-skill>div,
+    div.craft-skill section.craft-table>div{
+        display:block;
+    }
+
+}

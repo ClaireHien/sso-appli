@@ -4,6 +4,7 @@ import { CraftSkillService } from '../services/craft-skill.service';
 import { CraftService } from '../services/craft.service';
 import { CraftTable, CraftSkill } from '../tree.type'; // Importation des interfaces
 
+declare var Math: any;
 
 @Component({
   selector: 'app-craft',
@@ -21,6 +22,12 @@ export class CraftComponent implements OnInit {
     private cdr: ChangeDetectorRef 
   ) { }
   
+
+  
+  calculateRoundedValue(value: number): number {
+    return Math.floor(value);
+  }
+
   ngOnInit() {
 
     this.craftSkillService.getCraftSkills().subscribe(
@@ -44,5 +51,12 @@ export class CraftComponent implements OnInit {
     );
 
   };
+
+  
+  activeSection: string = 'craft-table'; // Initial section
+
+  setActiveSection(section: string) {
+    this.activeSection = section;
+  }
 
 }
