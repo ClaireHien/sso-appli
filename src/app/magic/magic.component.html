@@ -56,7 +56,7 @@
 </aside>
 
 
-<section class="mr-5 ml-5 md:mr-20 lg:mr-96 pt-20 md:ml-20 md:mb-20">
+<section class="mr-5 ml-5 md:mr-20 lg:mr-96 pt-20 md:ml-20 mb-20">
 
     <h1 class="font-blakely text-7xl text-right">Les magies</h1>
     
@@ -74,10 +74,8 @@
             </div>
             <h2 (click)="openTree(tree.id)" class="cursor-pointer font-blakely text-5xl">{{ tree.name }}</h2>
             
-            <div class="text-justify font-light leading-5">
-                <strong class="text-mid3 uppercase text-xs font-bold">Stéréotypes</strong> <span class="uppercase text-xs" *ngFor="let stereotype of tree.stereotypes"> - {{ stereotype.label }}</span>
-                <em class="block leading-4">{{ tree.description }}</em>
-            </div>
+            <span class="uppercase text-xs pt-1 pl-2 pr-2 bg-light2 rounded mr-1 mb-1 tracking-widest text-mid5" *ngFor="let stereotype of tree.stereotypes">{{ stereotype.label }}</span>
+            <em class="text-justify mt-1 font-light leading-5 block leading-4">{{ tree.description }}</em>
             <div class="my-2 flex items-center gap-3">
                 <div class="grid dice-base">
                     <i class="fa-solid fa-dice-d20 text-light2 text-6xl"></i>

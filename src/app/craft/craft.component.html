@@ -57,23 +57,18 @@
                         <div *ngFor="let craft of craftTables">
                             <div class="mt-5 lg:mr-5 lg:w-96 p-5 bg-white4 hover:bg-white" *ngIf="craft.craft_id === i">
                                 
-                                <h3 class="ml-8 leading-5 py-3 text-xl uppercase text-mid3 tracking-widest font-bold">{{craft.material.name}}</h3>
+                                <h3 class="leading-5 py-3 text-xl uppercase text-mid3 tracking-widest font-bold">{{craft.material.name}}</h3>
 
-                                <div class="text-mid4 uppercase tracking-widest text-xs" *ngIf="craft.material.basic === 1">
-                                    <strong class="text-dark3">Matériaux basique</strong>
-                                    <br>
-                                    <em class="text-mid2">
-                                        Prix boutique - {{craft.material.price}} cristaux
-                                        <br>
-                                        Prix revente - {{ calculateRoundedValue(craft.material.price / 4) }} cristaux
-                                    </em>
+                                <div class="text-justify" *ngIf="craft.material.basic === 1">
+                                    <strong class="text-dark3 text-xs uppercase tracking-widest">Matériaux basique</strong>
+                                    <span class="uppercase tracking-widest text-mid2 text-xs pl-3">({{craft.material.price}} cristaux)</span>
                                 </div>
                                 
-                                <div class="text-mid4 uppercase tracking-widest text-xs" *ngIf="craft.material.basic === 0">
-                                    <strong>Matériaux exclusif</strong>
-                                    <br>
-                                    <em class="text-light4">Non disponible en boutique</em>
+                                <div class="text-justify" *ngIf="craft.material.basic === 0">
+                                    <strong class="text-dark3 text-xs uppercase tracking-widest">Matériaux exclusif</strong>
+                                    <span class="uppercase tracking-widest text-light4 text-xs pl-3">(Non disponible en boutique)</span>
                                 </div> 
+                                <div class="italic text-mid4">{{craft.material.description}}</div>
 
                                 <div class="mt-3 quality-craft grid gap-2">
                                     <strong>Médiocre</strong><span>{{craft.poor}}</span>
@@ -84,6 +79,40 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    
+                    <div *ngIf="i === 3 || i === 4" id="materiaux-arme"> 
+                        
+                        <div *ngIf="i === 3">
+                            <div class="uppercase tracking-widest font-bold text-xl">Ornements</div>
+                            <span class="italic text-mid4">Les ornements peuvent être rajouté sur les vêtements, leurs octroyant des bonus supplémentaires à condition qu'ils aient des emplacements d'ornement libre</span>
+                        </div>
+                        <div *ngIf="i === 4">
+                            <div class="uppercase tracking-widest font-bold text-xl">Pierres</div>
+                            <span class="italic text-mid4">Les pierres peuvent être rajoutée sur les bijoux, leurs octroyant des bonus supplémentaires à condition qu'ils aient des emplacements de pierre libre</span>
+                        </div>
+                        <div class="mt-2 mb-5 flex justify-start flex-wrap lg:flex-row flex-col">
+                            <div *ngFor="let material of materials">
+                                <div *ngIf="material.type_material_id === i+1" class="lg:w-96 bg-white4 hover:bg-white p-2 mr-3 mb-3">
+                                    <div class="uppercase tracking-widest font-bold text-mid3">{{material.name}}</div>
+                                    
+                                    <div class="text-justify" *ngIf="material.basic === 1">
+                                        <strong class="text-dark3 text-xs uppercase tracking-widest">Matériaux basique</strong>
+                                        <span class="uppercase tracking-widest text-mid2 text-xs pl-3">({{material.price}} cristaux)</span>
+                                    </div>
+                                    
+                                    <div class="text-justify" *ngIf="material.basic === 0">
+                                        <strong class="text-dark3 text-xs uppercase tracking-widest">Matériaux exclusif</strong>
+                                        <span class="uppercase tracking-widest text-light4 text-xs pl-3">(Non disponible en boutique)</span>
+                                    </div> 
+
+                                    <div class="text-justify">{{material.description}}</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
                     </div>
                     
                 </ng-container>

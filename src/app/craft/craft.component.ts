@@ -2,7 +2,8 @@ import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
 
 import { CraftSkillService } from '../services/craft-skill.service';
 import { CraftService } from '../services/craft.service';
-import { CraftTable, CraftSkill } from '../tree.type'; // Importation des interfaces
+import { MaterialService } from '../services/material.service';
+import { CraftTable, CraftSkill, Material } from '../tree.type'; // Importation des interfaces
 
 declare var Math: any;
 
@@ -15,10 +16,12 @@ export class CraftComponent implements OnInit {
   
   craftSkills: any[] = [];
   craftTables: any[] = [];
+  materials: any[] = [];
   
   constructor(
     private craftSkillService: CraftSkillService,
     private craftService: CraftService,
+    private materialService: MaterialService,
     private cdr: ChangeDetectorRef 
   ) { }
   
@@ -42,6 +45,16 @@ export class CraftComponent implements OnInit {
     this.craftService.getCraftTables().subscribe(
       (data: CraftTable[]) => {
         this.craftTables = data;
+        console.log(data);
+      },
+      error => {
+        console.error('Error fetching stereotype', error);
+      }
+    );
+
+    this.materialService.getMaterials().subscribe(
+      (data: Material[]) => {
+        this.materials = data;
         console.log(data);
       },
       error => {

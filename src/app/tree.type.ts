@@ -35,6 +35,17 @@ export interface FightSkill {
     id: number;
     label: string;
   }
+  
+  export interface Material {
+    id: number;
+    name: string;
+    description: string;
+    price: number;
+    basic: boolean;
+    display: boolean;
+    type_material_id: number;
+  }
+
   export interface NeutralSkill {
     id: number;
     name: string;
