@@ -53,6 +53,15 @@
                     (click)="toggleFilter(selectedStereotypes, stereotype.label)">{{ stereotype.label }}</button>
         </div>
     </div>
+    <div>
+        <span class="ml-1">Status</span>
+        <div class="flex flex-wrap"> 
+            <button class="uppercase rounded block text-xs bg-light4 tracking-widest pt-1 pr-2 pl-2 pb-0 m-1"
+                    *ngFor="let status of statuses"
+                    [ngClass]="{'filter-select': selectedStatuses.has(status.name)}"
+                    (click)="toggleFilter(selectedStatuses, status.name)">{{ status.name }}</button>
+        </div>
+    </div>
 </aside>
 
 

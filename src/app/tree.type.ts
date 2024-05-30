@@ -35,6 +35,12 @@ export interface FightSkill {
     id: number;
     label: string;
   }
+  export interface Status {
+    id: number;
+    name: string;
+    description: string;
+    healing: string;
+  }
   
   export interface Material {
     id: number;

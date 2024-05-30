@@ -6,7 +6,9 @@ import { StereotypeService } from '../services/stereotype.service';
 import { RangeService } from '../services/range.service';
 import { StatisticMagicService } from '../services/statistic-magic.service';
 import { TypeDamageService } from '../services/type-damage.service';
-import { Tree, Stereotype, Range, Statistic, TypeDamage } from '../tree.type'; // Importation des interfaces
+import { StatusService } from '../services/status.service';
+
+import { Tree, Stereotype, Range, Statistic, TypeDamage,Status } from '../tree.type'; // Importation des interfaces
 
 @Component({
   selector: 'app-magic',
@@ -21,6 +23,7 @@ export class MagicComponent implements OnInit {
   ranges: any[] = [];
   statistics: any[] = [];
   damages: any[] = [];
+  statuses: any[] = [];
 
   filteredTrees: any[] = [];
   
@@ -29,11 +32,13 @@ export class MagicComponent implements OnInit {
   selectedRanges: Set<string> = new Set<string>();
   selectedDamages: Set<string> = new Set<string>();
   selectedStereotypes: Set<string> = new Set<string>();
+  selectedStatuses: Set<string> = new Set<string>();
 
   constructor(
     private magicTreeService: MagicTreeService,
     private stereotypeService: StereotypeService,
     private rangeService: RangeService,
+    private statusService: StatusService,
     private typeDamageService: TypeDamageService,
     private statisticMagicService: StatisticMagicService,
     private cdr: ChangeDetectorRef 
@@ -87,6 +92,15 @@ export class MagicComponent implements OnInit {
       }
     );
     
+    this.statusService.getStatuses().subscribe(
+      (data: Status[]) => {
+        this.statuses = data;
+      },
+      error => {
+        console.error('Error fetching damage', error);
+      }
+    );
+    
   }
   
   openTree(treeId: number): void {
@@ -118,7 +132,8 @@ export class MagicComponent implements OnInit {
         (this.selectedStatistics.size === 0 || tree.statistics.some((statistic: Statistic) => this.selectedStatistics.has(statistic.abreviation))) &&
         (this.selectedRanges.size === 0 || this.selectedRanges.has(tree.range.label)) &&
         (this.selectedDamages.size === 0 || this.selectedDamages.has(tree.type_damage.label)) &&
-        (this.selectedStereotypes.size === 0 || tree.stereotypes.some((stereotype: Stereotype) => this.selectedStereotypes.has(stereotype.label)))
+        (this.selectedStereotypes.size === 0 || tree.stereotypes.some((stereotype: Stereotype) => this.selectedStereotypes.has(stereotype.label))) &&
+        (this.selectedStatuses.size === 0 || tree.statuses.some((status: Status) => this.selectedStatuses.has(status.name)))
       );
     });
     this.cdr.markForCheck();  // Forcer la détection des changements

@@ -18,6 +18,12 @@
                         <strong class="pr-4 justify-self-end text-right text-mid3">17 à 19</strong><span>Super</span>
                         <strong class="pr-4 justify-self-end text-right text-mid3">20 ou plus</strong><span>Excellent</span>
                     </div>
+                    <div class="bg-light3 p-2 lg:w-72 w-full mb-5 grid uppercase tracking-widest grid-cols-2">
+                        <h2 class="col-span-2 text-center font-blakely text-3xl tracking-normal -mt-5 mb-3">Pierres et ornements</h2>
+                        <strong class="pr-4 justify-self-end text-right text-mid3">1 - 2</strong><span>Sauvage</span>
+                        <strong class="pr-4 justify-self-end text-right text-mid3">3 - 4</strong><span>Mystérieux</span>
+                        <strong class="pr-4 justify-self-end text-right text-mid3">5 - 6</strong><span>Élégant</span>
+                    </div>
                     
                     <a class="block text-center bg-white text-mid5 text-xs hover:bg-mid1 hover:text-dark4 pt-1 px-3 my-1 rounded uppercase tracking-widest" [routerLink]="[]" fragment="materiaux-arme">Forge d'arme</a>
                     <a class="block text-center bg-white text-mid5 text-xs hover:bg-mid1 hover:text-dark4 pt-1 px-3 my-1 rounded uppercase tracking-widest" [routerLink]="[]" fragment="materiaux-armure">Forge d'armure</a>
@@ -68,7 +74,7 @@
                                     <strong class="text-dark3 text-xs uppercase tracking-widest">Matériaux exclusif</strong>
                                     <span class="uppercase tracking-widest text-light4 text-xs pl-3">(Non disponible en boutique)</span>
                                 </div> 
-                                <div class="italic text-mid4">{{craft.material.description}}</div>
+                                <div class="italic text-mid4 text-justify">{{craft.material.description}}</div>
 
                                 <div class="mt-3 quality-craft grid gap-2">
                                     <strong>Médiocre</strong><span>{{craft.poor}}</span>
@@ -85,11 +91,18 @@
                         
                         <div *ngIf="i === 3">
                             <div class="uppercase tracking-widest font-bold text-xl">Ornements</div>
-                            <span class="italic text-mid4">Les ornements peuvent être rajouté sur les vêtements, leurs octroyant des bonus supplémentaires à condition qu'ils aient des emplacements d'ornement libre</span>
+                            <div class="italic text-justify text-mid4">
+                                Les ornements peuvent être rajouté sur les vêtements, leurs octroyant des bonus supplémentaires à condition qu'ils aient des emplacements d'ornement libre.
+                                <strong class="block">A l'achat, le style de l'ornement est déterminé sur 1D6 : ce style influe sur les bonus qu'il apporte. </strong>
+                                
+                            </div>
                         </div>
                         <div *ngIf="i === 4">
                             <div class="uppercase tracking-widest font-bold text-xl">Pierres</div>
-                            <span class="italic text-mid4">Les pierres peuvent être rajoutée sur les bijoux, leurs octroyant des bonus supplémentaires à condition qu'ils aient des emplacements de pierre libre</span>
+                            <div class="italic text-justify text-mid4">
+                                Les pierres peuvent être rajoutée sur les bijoux, leurs octroyant des bonus supplémentaires à condition qu'ils aient des emplacements de pierre libre. 
+                                <strong class="block">A l'achat, le style des pierres est déterminé sur 1D6 : ce style influe sur les bonus qu'elle apporte. </strong> 
+                            </div>
                         </div>
                         <div class="mt-2 mb-5 flex justify-start flex-wrap lg:flex-row flex-col">
                             <div *ngFor="let material of materials">
@@ -106,7 +119,12 @@
                                         <span class="uppercase tracking-widest text-light4 text-xs pl-3">(Non disponible en boutique)</span>
                                     </div> 
 
-                                    <div class="text-justify">{{material.description}}</div>
+                                    <div class="italic text-mid4 text-justify">{{material.description}}</div>
+                                    <div *ngIf="material.material_tables" class="mt-3 quality-craft grid gap-2">
+                                        <strong>Sauvage</strong><span>{{material.material_tables.wild}}</span>
+                                        <strong>Mystérieux</strong><span>{{material.material_tables.mysterious}}</span>
+                                        <strong>Élégant</strong><span>{{material.material_tables.elegant}}</span>
+                                    </div>
                                 </div>
                             </div>
 
