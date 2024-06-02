@@ -47,9 +47,8 @@ export class WeaponComponent implements OnInit {
   ngOnInit() {
     this.weaponTreeService.getWeapons().subscribe(
       (data: Tree[]) => {
-        this.trees = data;
-        this.filteredTrees = data;
-        console.log(data);
+        this.trees = data.sort((a, b) => a.name.localeCompare(b.name));
+        this.filteredTrees = this.trees.slice();
       },
       error => {
         console.error('Error fetching weapon trees', error);
@@ -58,7 +57,7 @@ export class WeaponComponent implements OnInit {
     
     this.stereotypeService.getStereotypes().subscribe(
       (data: Stereotype[]) => {
-        this.stereotypes = data;
+        this.stereotypes = data.filter(stereotype => stereotype.id !== 1 && stereotype.id !== 2 && stereotype.id !== 12 && stereotype.id !== 13);
       },
       error => {
         console.error('Error fetching stereotype', error);
@@ -94,7 +93,7 @@ export class WeaponComponent implements OnInit {
     
     this.statusService.getStatuses().subscribe(
       (data: Status[]) => {
-        this.statuses = data;
+        this.statuses = data.filter(status => status.id !== 6 && status.id !== 7);
       },
       error => {
         console.error('Error fetching damage', error);
