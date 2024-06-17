@@ -8,19 +8,6 @@ aside>div span{
     display: block;
 }
 
-.status>span>div{
-    position:absolute;
-    width:20em;
-    background-color: var(--light2);
-    padding:.8em;
-    text-transform: none;
-    line-height: 1em;
-    display:none;
-    text-align: justify;
-}
-.status>span:hover>div{
-    display:block;
-}
 
 .filter-select{
     background:var(--white);

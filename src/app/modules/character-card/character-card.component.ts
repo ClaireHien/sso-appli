@@ -14,5 +14,12 @@ export class CharacterCardComponent {
   @Input() level: any; 
   @Input() group: any;
   @Input() world: any;
+  @Input() id:any;
+  
+  constructor(
+  ) {}
 
+  slugify(text: string): string {
+    return text.toLowerCase().replace(/\s+/g, '-');
+  }
 }

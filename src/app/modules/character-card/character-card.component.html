@@ -1,10 +1,11 @@
-<div class="bg-img bg-light1 p-5 w-96" [ngStyle]="{'background-image': 'url(' + image + ')'}">
+<a [href]="'/personnage/'+id+'/'+slugify(name)" class="block bg-img bg-light1 w-72 rounded opacity-70 hover:opacity-100 hover:scale-105 cursor-pointer">
 
-    {{name}}
-    {{description}}
-    {{level}}
-    {{group}}
-    {{world}}
-    {{user}}
+    <img [src]="image" [alt]="name" class="rounded">
 
-</div>
+    <h3 class="font-blakely text-4xl px-5 text-center mt-2">{{name}}</h3>
+    <div class="uppercase tracking-widest font-bold text-center text-xs">niveau {{level}}</div>
+    <div class="uppercase tracking-widest text-center text-mid4 text-xs pr-3 pb-1">{{world}}</div>
+    <p class="m-2 text-justify leading-3 text-xs" [innerHTML]="description"></p>
+    <div class="uppercase tracking-widest text-right text-mid4 text-2xs pr-3 pb-1">{{group}} <span  *ngIf="user!==''"> - {{user}}</span></div>
+
+</a>

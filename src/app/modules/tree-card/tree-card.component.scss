@@ -11,3 +11,17 @@
 }
 
 .dice-base>*{grid-area:1/1/2/2; align-self: center; justify-self: center;}
+
+.status>span>div{
+    position:absolute;
+    width:20em;
+    background-color: var(--light2);
+    padding:.8em;
+    text-transform: none;
+    line-height: 1em;
+    display:none;
+    text-align: justify;
+}
+.status>span:hover>div{
+    display:block;
+}

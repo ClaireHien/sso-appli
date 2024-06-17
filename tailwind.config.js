@@ -37,6 +37,9 @@ module.exports = {
         blakely: ["blakely", 'sans-serif'],
         sans: ["quasimoda", 'sans-serif'],
       },
+      spacing: {
+        '128': '32rem',
+      }
     },
   },
   plugins: [
