@@ -1,12 +1,27 @@
-<nav class="hidden lg:flex fixed z-50 bg-white w-full h-12 justify-between pl-20">
+<nav class="hidden lg:flex fixed z-50 bg-white w-full justify-between pl-20">
 
   <div class="tracking-widest uppercase font-thin flex">
-      <a routerLink="/">Accueil</a>
-      <a routerLink="/armes" routerLinkActive="active">Armes</a>
-      <a routerLink="/magies" routerLinkActive="active">Magies</a>
-      <a routerLink="/combat" routerLinkActive="active">Combat</a>
-      <a routerLink="/artisanat" routerLinkActive="active">Artisanat</a>
-      <a routerLink="/neutre" routerLinkActive="active">Neutre</a>
+      <a routerLink="/" class="px-5">Accueil</a>
+      <div class="menu">
+        <div class="font-bold px-5">Livret des compétences</div>
+        <div class="flex flex-col">
+          <a class="px-5 hover:bg-white" routerLink="/armes" routerLinkActive="active">Armes</a>
+          <a class="px-5 hover:bg-white" routerLink="/magies" routerLinkActive="active">Magies</a>
+          <a class="px-5 hover:bg-white" routerLink="/combat" routerLinkActive="active">Combat</a>
+          <a class="px-5 hover:bg-white" routerLink="/artisanat" routerLinkActive="active">Artisanat</a>
+          <a class="px-5 hover:bg-white" routerLink="/neutre" routerLinkActive="active">Neutre</a>
+        </div>
+      </div>
+      <div class="menu">
+        <div class="font-bold px-5">Mes personnages</div>
+        <div class="flex flex-col">
+          <a class="px-5 hover:bg-white" routerLink="/personnage/1/nom" routerLinkActive="active">Nom</a>
+          <a class="px-5 hover:bg-white" routerLink="/personnage/2/nom" routerLinkActive="active">Prénom</a>
+          <a class="px-5 hover:bg-white" routerLink="/personnage/3/nom" routerLinkActive="active">Surnom</a>
+        </div>
+      </div>
+      <a routerLink="/profil/1/user" class="px-5"><i class="fa-solid fa-user"></i></a>
+      <a routerLink="/" class="px-5"><i class="fa-solid fa-right-from-bracket"></i></a>
   </div>
 
   <button (click)="toggleTheme()" class="flex gap-2 items-center mr-10">
@@ -17,7 +32,7 @@
 
 </nav>
 
-<nav class="lg:hidden z-50 fixed bg-white w-full h-12 flex justify-between px-2">
+<nav class="mobile lg:hidden z-50 fixed bg-white w-full h-12 flex justify-between px-2">
 
   <div class="tracking-widest uppercase font-thin flex">
     <button  (click)="toggleMenu()" class="w-60 flex tracking-widest uppercase font-bold items-center">

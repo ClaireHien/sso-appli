@@ -14,6 +14,10 @@ import { WeaponComponent } from './weapon/weapon.component';
 import { MagicComponent } from './magic/magic.component';
 import { NeutralComponent } from './neutral/neutral.component';
 import { FightComponent } from './fight/fight.component';
+import { ProfileComponent } from './profile/profile.component';
+import { CharacterComponent } from './character/character.component';
+import { CharacterCardComponent } from './modules/character-card/character-card.component';
+import { TreeCardComponent } from './modules/tree-card/tree-card.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +29,10 @@ import { FightComponent } from './fight/fight.component';
     MagicComponent,
     NeutralComponent,
     FightComponent,
+    ProfileComponent,
+    CharacterComponent,
+    CharacterCardComponent,
+    TreeCardComponent,
   ],
   imports: [
     BrowserModule,

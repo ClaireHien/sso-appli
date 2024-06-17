@@ -88,6 +88,7 @@ body{
     background: linear-gradient(160deg,var(--light1) 0%, var(--light3) 100%);
 }
 
+.bg-img{background-size: cover; background-repeat: no-repeat;}
 /* personnalisation du darkmode */ 
 
 .darkmode nav button span{justify-content: end;}

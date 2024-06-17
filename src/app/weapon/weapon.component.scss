@@ -8,13 +8,6 @@ aside>div span{
     display: block;
 }
 .dice-base>*{grid-area:1/1/2/2; align-self: center; justify-self: center;}
-.open-tree{
-    width:100%;
-    background-color: var(--white);
-}
-.open-tree>div:first-child>i{transform: rotate(-180deg);color:var(--white);}
-.open-tree>div:first-child{background-color: var(--mid3);}
-
 .status>span>div{
     position:absolute;
     width:20em;
@@ -29,9 +22,6 @@ aside>div span{
     display:block;
 }
 
-.open-tree .tree-skill{
-    display:block;
-}
 .list-skill{
     display:grid;
     grid-template-columns: repeat(4,1fr);

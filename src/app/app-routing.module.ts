@@ -7,6 +7,8 @@ import { WeaponComponent } from './weapon/weapon.component';
 import { MagicComponent } from './magic/magic.component';
 import { NeutralComponent } from './neutral/neutral.component';
 import { FightComponent } from './fight/fight.component';
+import { CharacterComponent } from './character/character.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 const routes: Routes = [
@@ -16,6 +18,8 @@ const routes: Routes = [
   { path: 'magies', component: MagicComponent },
   { path: 'neutre', component: NeutralComponent },
   { path: 'combat', component: FightComponent },
+  { path: 'personnage/:characterId/:characterName', component: CharacterComponent },
+  { path: 'profil/:userId/:userName', component: ProfileComponent },
 ];
 
 @NgModule({
