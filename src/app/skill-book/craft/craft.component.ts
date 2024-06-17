@@ -1,10 +1,10 @@
 import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
 
-import { CraftSkillService } from '../services/craft-skill.service';
-import { CraftService } from '../services/craft.service';
-import { MaterialService } from '../services/material.service';
+import { CraftSkillService } from '../../services/craft-skill.service';
+import { CraftService } from '../../services/craft.service';
+import { MaterialService } from '../../services/material.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { CraftTable, CraftSkill, Material } from '../tree.type'; // Importation des interfaces
+import { CraftTable, CraftSkill, Material } from '../../tree.type'; // Importation des interfaces
 
 declare var Math: any;
 

@@ -1,21 +1,21 @@
 import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
-import { WeaponTreeService } from '../services/weapon-tree.service';
+import { MagicTreeService } from '../../services/magic-tree.service';
 import { CommonModule } from '@angular/common'; 
 import { HttpClientModule } from '@angular/common/http';
-import { StereotypeService } from '../services/stereotype.service';
-import { RangeService } from '../services/range.service';
-import { StatisticPhysicService } from '../services/statistic-physic.service';
-import { TypeDamageService } from '../services/type-damage.service';
-import { StatusService } from '../services/status.service';
+import { StereotypeService } from '../../services/stereotype.service';
+import { RangeService } from '../../services/range.service';
+import { StatisticMagicService } from '../../services/statistic-magic.service';
+import { TypeDamageService } from '../../services/type-damage.service';
+import { StatusService } from '../../services/status.service';
 
-import { Tree, Stereotype, Range, Statistic, TypeDamage, Status } from '../tree.type'; // Importation des interfaces
+import { Tree, Stereotype, Range, Statistic, TypeDamage,Status } from '../../tree.type'; // Importation des interfaces
 
 @Component({
-  selector: 'app-weapon',
-  templateUrl: './weapon.component.html',
-  styleUrl: './weapon.component.scss'
+  selector: 'app-magic',
+  templateUrl: './magic.component.html',
+  styleUrl: './magic.component.scss'
 })
-export class WeaponComponent implements OnInit {
+export class MagicComponent implements OnInit {
   
   trees: any[] = [];
   openTrees: Set<number> = new Set<number>();
@@ -35,23 +35,23 @@ export class WeaponComponent implements OnInit {
   selectedStatuses: Set<string> = new Set<string>();
 
   constructor(
-    private weaponTreeService: WeaponTreeService,
+    private magicTreeService: MagicTreeService,
     private stereotypeService: StereotypeService,
     private rangeService: RangeService,
     private statusService: StatusService,
     private typeDamageService: TypeDamageService,
-    private statisticPhysicService: StatisticPhysicService,
+    private statisticMagicService: StatisticMagicService,
     private cdr: ChangeDetectorRef 
   ) { }
 
   ngOnInit() {
-    this.weaponTreeService.getWeapons().subscribe(
+    this.magicTreeService.getMagics().subscribe(
       (data: Tree[]) => {
         this.trees = data.sort((a, b) => a.name.localeCompare(b.name));
         this.filteredTrees = this.trees.slice();
       },
       error => {
-        console.error('Error fetching weapon trees', error);
+        console.error('Error fetching magic trees', error);
       }
     );
     
@@ -73,12 +73,12 @@ export class WeaponComponent implements OnInit {
       }
     );
 
-    this.statisticPhysicService.getStatisticPhysics().subscribe(
+    this.statisticMagicService.getStatisticMagics().subscribe(
       (data: Statistic[]) => {
         this.statistics = data;
       },
       error => {
-        console.error('Error fetching physic stats', error);
+        console.error('Error fetching Magic stat', error);
       }
     );
 

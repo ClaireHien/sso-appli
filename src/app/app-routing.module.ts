@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
-import { CraftComponent } from './craft/craft.component';
-import { WeaponComponent } from './weapon/weapon.component';
-import { MagicComponent } from './magic/magic.component';
-import { NeutralComponent } from './neutral/neutral.component';
-import { FightComponent } from './fight/fight.component';
+import { CraftComponent } from './skill-book/craft/craft.component';
+import { WeaponComponent } from './skill-book/weapon/weapon.component';
+import { MagicComponent } from './skill-book/magic/magic.component';
+import { NeutralComponent } from './skill-book/neutral/neutral.component';
+import { FightComponent } from './skill-book/fight/fight.component';
 import { CharacterComponent } from './character/character.component';
 import { ProfileComponent } from './profile/profile.component';
 

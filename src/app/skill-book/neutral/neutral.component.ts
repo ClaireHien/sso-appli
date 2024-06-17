@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NeutralSkillService } from '../services/neutral-skill.service';
-import { NeutralSkill } from '../tree.type'; // Importation des interfaces
+import { NeutralSkillService } from '../../services/neutral-skill.service';
+import { NeutralSkill } from '../../tree.type'; // Importation des interfaces
 
 @Component({
   selector: 'app-neutral',

@@ -1,8 +1,8 @@
 import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
 
-import { FightSkillService } from '../services/fight-skill.service';
-import { StereotypeService } from '../services/stereotype.service';
-import { Stereotype, FightSkill } from '../tree.type'; // Importation des interfaces
+import { FightSkillService } from '../../services/fight-skill.service';
+import { StereotypeService } from '../../services/stereotype.service';
+import { Stereotype, FightSkill } from '../../tree.type'; // Importation des interfaces
 
 @Component({
   selector: 'app-fight',
