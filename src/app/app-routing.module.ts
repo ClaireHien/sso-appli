@@ -9,6 +9,7 @@ import { NeutralComponent } from './skill-book/neutral/neutral.component';
 import { FightComponent } from './skill-book/fight/fight.component';
 import { CharacterComponent } from './character/character.component';
 import { ProfileComponent } from './profile/profile.component';
+import { WorldComponent } from './world/world.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'magies', component: MagicComponent },
   { path: 'neutre', component: NeutralComponent },
   { path: 'combat', component: FightComponent },
+  { path: 'les-univers', component: WorldComponent },
   { path: 'personnage/:characterId/:characterName', component: CharacterComponent },
   { path: 'profil/:userId/:userName', component: ProfileComponent },
 ];

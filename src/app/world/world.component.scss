@@ -1,0 +1,22 @@
+#world-section{
+    position: fixed;
+}
+
+@media screen and (max-width: 1024px) {
+    #world-section{
+        position: static;
+    }
+}
+
+
+.bg-img{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.world>div{
+    max-width: 90em;
+    margin:auto;
+    grid-template-rows: auto;
+}

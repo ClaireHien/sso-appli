@@ -18,6 +18,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { CharacterComponent } from './character/character.component';
 import { CharacterCardComponent } from './modules/character-card/character-card.component';
 import { TreeCardComponent } from './modules/tree-card/tree-card.component';
+import { WorldComponent } from './world/world.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { TreeCardComponent } from './modules/tree-card/tree-card.component';
     CharacterComponent,
     CharacterCardComponent,
     TreeCardComponent,
+    WorldComponent,
   ],
   imports: [
     BrowserModule,
