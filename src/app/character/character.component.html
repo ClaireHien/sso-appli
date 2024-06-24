@@ -1,9 +1,76 @@
 <div *ngIf="character" class="opacity-40 bg-img h-screen fixed top-0 left-0 w-screen z-0" [ngStyle]="{'background-image': 'url(../../assets/image/landscape/' + character.group.world.image + ')'}"></div>
 
 
-<section class="relative z-10">
-    texte texte
+<section *ngIf="character" class="items-start grid lg:grid-cols-3 pt-20 pl-5 pr-5 pb-20 gap-3 relative z-10 md:grid-cols-2 grid-cols-1">
+    
+    <div class="col-span-2 row-span-2 bg-white rounded">
+        <img [src]="character.image" class="rounded h-72 overflow-hidden w-full object-cover">
+        <h1 class="text-center font-blakely uppercase tracking-widest text-5xl mt-5">{{character.name}}</h1>
+        <p class="text-justify px-5 mb-5 leading-4 font-light h-40 overflow-auto mt-3" [innerHTML]="character.description"></p>
+    </div>
 
-    <br><br><br><br><br><br>
-    tewte xtexte
+
+    <div class="p-2 bg-black2 rounded text-xs uppercase tracking-widest grid grid-cols-2">
+        <strong class="justify-self-end text-white pr-3">Joueur</strong><span>{{character.user.name}}</span>
+        <strong class="justify-self-end text-white pr-3">Groupe </strong><span>{{character.group.name}}</span>
+        <strong class="justify-self-end text-white pr-3">Monde </strong><span>{{character.group.world.name}}</span>
+    </div>
+
+
+    <div class="rounded bg-white6 hover:bg-white pb-5 row-span-2">
+        <img [src]="character.spirit.image" class="rounded h-40 overflow-hidden w-full object-cover">
+        <div class="head-spirit">
+            <h2 class="mt-3 mb-0 font-blakely uppercase tracking-widest text-center text-3xl">{{character.spirit.name}}</h2>
+            <p class="mx-3 text-sm font-light leading-4 text-justify">{{character.spirit.description}}</p>
+        </div>
+        <div class="grid grid-cols-2 justify-items-center uppercase mt-2">
+            <span class="tracking-widest text-mid4 font-bold">Affinité</span>
+            <span class="tracking-widest text-mid4 font-bold">Niveau</span>
+            <span class="text-2xl">{{character.affinity}}</span>
+            <span class="text-2xl">{{character.spirit_level}}</span>
+        </div>
+
+        <div class="spirit-murmur mt-5 leading-4 font-light text-sm text-justify mx-3">
+            <strong class="block uppercase tracking-widest font-bold">Murmure de l'esprit</strong>
+            <p>Permet de demander de l'aide à son esprit. Le joueur lance alors 1d12 et il doit obtenir sa statistique d'AFFINITÉ ou moins pour le réussir. L'aide apporté intervient alors de manière RP, il faut donc que l'esprit ai les connaissances ou les capacités pour aider son joueur.</p>
+        </div>
+
+        <div class="mt-5 leading-4 font-light text-sm text-justify mx-3">
+            <strong class="block uppercase tracking-widest font-bold">{{character.spirit.skill_name}}</strong>
+            <div *ngIf="character.spirit_level == 1" class="text-mid4">Compétence d'esprit encore non débloquée</div>
+            <div *ngIf="character.spirit_level > 1">
+                <p [innerHTML]="character.spirit.skill"></p>
+            </div>
+            <div *ngIf="character.spirit_level > 2">
+                <span class="text-mid4 uppercase tracking-widest text-xs mt-2 block">Amélioration de compétence</span>
+                <p [innerHTML]="character.spirit.skill_upgrade"></p>
+            </div>
+            <div *ngIf="character.spirit_level > 3">
+                <span class="text-mid4 uppercase tracking-widest text-xs mt-2 block">Amélioration d'ultime</span>
+                <p [innerHTML]="character.spirit.ultimate_upgrade"></p>
+            </div>
+        </div>
+
+        <span class="mt-5 bg-light1 block mx-2 rounded pt-1 pb-0 text-sm font-bold text-center uppercase tracking-widest">Quêtes d'esprit</span>
+        <div [ngClass]="{'quest-completed': character.spirit_level > 1}" class="text-justify text-sm leading-4 mx-2 mt-3 font-light">
+            <strong class="uppercase tracking-widest pr-2 font-bold">{{character.spirit.quest1_name}}</strong>
+            <div>
+                {{character.spirit.quest_1}}
+            </div>
+        </div>
+        <div *ngIf="character.spirit_level > 1" [ngClass]="{'quest-completed': character.spirit_level > 2}" class="text-justify text-sm leading-4 mx-2 mt-3 font-light">
+            <strong class="uppercase tracking-widest pr-2 font-bold">{{character.spirit.quest2_name}}</strong>
+            <div>
+                {{character.spirit.quest_2}}
+            </div>
+        </div>
+        <div *ngIf="character.spirit_level > 2" [ngClass]="{'quest-completed': character.spirit_level > 3}" class="text-justify text-sm leading-4 mx-2 mt-3 font-light">
+            <strong class="uppercase tracking-widest pr-2 font-bold">{{character.spirit.quest3_name}}</strong>
+            <div>
+                {{character.spirit.quest_3}}
+            </div>
+        </div>
+
+    </div>
+    <div>opôp^p</div>
 </section>

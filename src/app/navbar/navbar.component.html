@@ -15,7 +15,7 @@
       <div class="menu" *ngIf="isLoggedIn();">
         <div class="font-bold px-5">Mes personnages</div>
         <div class="flex flex-col" *ngIf="userData">
-          <a *ngFor="let character of userData.characters" class="cursor-pointer px-5 hover:bg-white" (click)="redirectToCharacter(character.id, character.name)">{{character.name}}</a>
+          <a [href]="'/personnage/'+character.id+'/'+slugify(character.name)" *ngFor="let character of userData.characters" class="cursor-pointer px-5 hover:bg-white">{{character.name}}</a>
         </div>
       </div>
 

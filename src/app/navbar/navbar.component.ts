@@ -125,7 +125,6 @@ export class NavbarComponent implements OnInit {
 
   redirectToCharacter(id:number,name:string){
     this.router.navigate([`/personnage/${id}/${this.slugify(name)}`]);
-
   }
   
   //inscription
