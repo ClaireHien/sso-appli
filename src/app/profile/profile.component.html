@@ -1,76 +1,65 @@
-<section class="pt-40">
+<section class="pt-40 flex flex-col justify-center items-center">
 
     <h1 class="text-center font-blakely text-6xl uppercase tracking-widest">Username</h1>
 
+    <button (click)="popNewCharacter()" class="uppercase tracking-widest font-bold bg-light3 pt-2 pb-1 px-5 hover:scale-110 hover:bg-light4">Créer un personnage</button>
 
-    <div class="flex gap-3 justify-center flex-wrap mt-10">
+    <div class="flex gap-3 justify-center flex-wrap mt-10" *ngIf="user">
 
-        
-        <app-character-card 
-        [name]="'Nom du personnage'"
-        [id]="5"
-        [image]="'https://cdn.midjourney.com/b86293da-4d93-4f9f-9279-f4126acfeb05/0_3.png'"
-        [level]="18"
-        [group]="'groupe1'"
-        [world]="'forêt'"
-        [user]="''"
-        [description]="'Une petite description ici, un texte blablabla blablabla'"
+        <app-character-card *ngFor="let character of user.characters"
+        [name]="character.name"
+        [id]="character.id"
+        [image]="character.image"
+        [level]="character.level"
+        [group]="character.group.name"
+        [world]="character.group.world.name"
+        [user]="user.name"
+        [description]="character.description"
         ></app-character-card>
-
-
-        
-        <app-character-card 
-        [name]="'Nom du personnage'"
-        [id]="5"
-        [image]="'https://cdn.midjourney.com/b86293da-4d93-4f9f-9279-f4126acfeb05/0_3.png'"
-        [level]="18"
-        [group]="'groupe1'"
-        [world]="'forêt'"
-        [user]="'patpat'"
-        [description]="'Une petite description ici, un texte blablabla blablabla'"
-        ></app-character-card>
-
-
-        
-        <app-character-card 
-        [name]="'Nom du personnage'"
-        [id]="5"
-        [image]="'https://cdn.midjourney.com/b86293da-4d93-4f9f-9279-f4126acfeb05/0_3.png'"
-        [level]="18"
-        [group]="'groupe1'"
-        [world]="'forêt'"
-        [user]="'patpat'"
-        [description]="'Une petite description ici, un texte blablabla blablabla'"
-        ></app-character-card>
-
-
-        
-        <app-character-card 
-        [name]="'Nom du personnage'"
-        [id]="5"
-        [image]="'https://cdn.midjourney.com/b86293da-4d93-4f9f-9279-f4126acfeb05/0_3.png'"
-        [level]="18"
-        [group]="'groupe1'"
-        [world]="'forêt'"
-        [user]="'patpat'"
-        [description]="'Une petite description ici, un texte blablabla blablabla'"
-        ></app-character-card>
-
-
-        
-        <app-character-card 
-        [name]="'Nom du personnage'"
-        [id]="5"
-        [image]="'https://cdn.midjourney.com/b86293da-4d93-4f9f-9279-f4126acfeb05/0_3.png'"
-        [level]="18"
-        [group]="'groupe1'"
-        [world]="'forêt'"
-        [user]="'patpat'"
-        [description]="'Une petite description ici, un texte blablabla blablabla'"
-        ></app-character-card>
-
-
 
     </div>
 
 </section>
+
+<div *ngIf="popupCharacter" class="bg-light1 popup p-5">
+    <i (click)="popNewCharacter()" class="text-2xl cursor-pointer fa-solid fa-xmark float-right"></i>
+    
+    <h2 class="text-4xl text-center font-blakely uppercase tracking-widest font-normal py-5">Création de personnage</h2>
+        
+    <form [formGroup]="formCharacter" (ngSubmit)="onSubmitCharacter()" class="flex flex-col p-5">
+
+        <label class="font-bold uppercase" for="name">Nom</label>
+        <div *ngIf="formCharacter.get('name')?.hasError('required') && formCharacter.get('name')?.touched" class="rounded p-1 uppercase text-xs tracking-widest">
+            Nom requis.
+        </div>
+        <input  class="p-2 bg-white" formControlName="name">
+        
+        <label for="weapon" class="font-bold uppercase mt-5">Arme innée</label>
+        <select class="p-2 bg-white" id="weapon_id" name="weapon" formControlName="weapon_id">
+            <option *ngFor="let weapon of weapons" [value]="weapon.id">{{ weapon.name }}</option>
+        </select>
+        
+        <label for="magic" class="font-bold uppercase mt-5">Magie innée</label>
+        <select class="p-2 bg-white" id="magic_id" name="magic" formControlName="magic_id">
+            <option *ngFor="let magic of magics" [value]="magic.id">{{ magic.name }}</option>
+        </select>
+        
+        <label for="group" class="font-bold uppercase mt-5">Groupe</label>
+        <select class="p-2 bg-white" id="group_id" name="group" formControlName="group_id" (change)="onGroupChange()">
+            <option *ngFor="let group of groups" [value]="group.id">{{ group.name }}</option>
+        </select>
+
+        <div *ngIf="spiritVisible" class="flex flex-col mt-5">
+            <label for="spirit" class="font-bold uppercase" >Esprit</label>
+            <select class="p-2 bg-white" id="spirit_id" name="spirit" formControlName="spirit_id" (change)="onButtonnCreateVisible()">>
+                <option *ngFor="let spirit of spirits" [value]="spirit.id">{{spirit.name}}</option>
+            </select>
+        </div>
+
+        <button *ngIf="buttonCreateVisible" type="submit" class="hover:text-mid5 z-10 font-bold uppercase tracking-widest mt-5 p-1">Créer le personnage</button>
+        <div *ngIf="invalidCredentialsErrorRegister">Erreur lors de la création du personnage</div>
+
+    </form>
+  
+  
+</div>

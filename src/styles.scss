@@ -89,7 +89,9 @@ body{
 }
 
 .text-2xs{font-size:.6em;}
-.bg-img{background-size: cover; background-repeat: no-repeat;}
+.bg-img{background-size: cover; background-repeat: no-repeat;background-position: center;}
+.popup{position: fixed; left:50%; top:50%; transform: translate(-50%,-50%);}
+
 /* personnalisation du darkmode */ 
 
 .darkmode nav button span{justify-content: end;}

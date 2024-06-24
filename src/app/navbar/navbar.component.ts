@@ -61,7 +61,6 @@ export class NavbarComponent implements OnInit {
   toggleTheme() {
     this.darkmodeService.toggleTheme();
   }
-
   isMenuVisible: boolean = false;
   toggleMenu() {
     this.isMenuVisible = !this.isMenuVisible;
@@ -116,7 +115,6 @@ export class NavbarComponent implements OnInit {
     this.http.get(`${this.backendUrl}/user/${tokenId}`, { headers }).subscribe(
       data => {
         this.userData = data;
-        console.log(data);
       },
       error => {
         console.error('Erreur lors de la récupération des informations de l\'utilisateur:', error);
@@ -144,7 +142,6 @@ export class NavbarComponent implements OnInit {
       if (this.formRegister.valid) {
         this.http.post<LoginResponse>(`${this.backendUrl}/register`, this.formRegister.value).subscribe(
           (data: LoginResponse) => {
-            console.log(data);
             this.router.navigate(['/message'], { state: { message: 'Inscription réussie' } });
             this.registerVisible = false;
             this.loginVisible = true;
