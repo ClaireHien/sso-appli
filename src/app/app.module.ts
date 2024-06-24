@@ -19,6 +19,7 @@ import { CharacterComponent } from './character/character.component';
 import { CharacterCardComponent } from './modules/character-card/character-card.component';
 import { TreeCardComponent } from './modules/tree-card/tree-card.component';
 import { WorldComponent } from './world/world.component';
+import { MessagePageComponent } from './message-page/message-page.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { WorldComponent } from './world/world.component';
     CharacterCardComponent,
     TreeCardComponent,
     WorldComponent,
+    MessagePageComponent,
   ],
   imports: [
     BrowserModule,

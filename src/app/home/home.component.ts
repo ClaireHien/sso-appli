@@ -21,14 +21,10 @@ export class HomeComponent implements OnInit {
   showComponentsBasedOnPath(): void {
     switch (this.currentPath) {
       case '/path1':
-        // Logique pour afficher les composants pour /path1
         break;
       case '/path2':
-        // Logique pour afficher les composants pour /path2
         break;
-      // Ajoutez d'autres cas selon vos besoins
       default:
-        // Logique par défaut ou pour d'autres chemins
     }
   }
 }

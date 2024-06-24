@@ -44,8 +44,16 @@ export class NavbarComponent implements OnInit {
     });
   }
   
+  isAuthenticated: boolean = false;
   ngOnInit(): void {
     this.name = this.cookieService.get('userName'); 
+    
+    this.authService.isAuthenticated$.subscribe((isAuthenticated) => {
+      this.isAuthenticated = isAuthenticated;
+      if (isAuthenticated) {
+        this.updateUserData();
+      }
+    });
   }
 
   backendUrl = environment.backendUrl;
@@ -57,6 +65,16 @@ export class NavbarComponent implements OnInit {
   isMenuVisible: boolean = false;
   toggleMenu() {
     this.isMenuVisible = !this.isMenuVisible;
+  }
+  
+  profile():void{
+    const userId = this.cookieService.get('userId');
+    const userName = this.cookieService.get('userName');
+    this.router.navigate([`/profil/${userId}/${this.slugify(userName)}`]);
+  }
+  
+  slugify(text: string): string {
+    return text.toLowerCase().replace(/\s+/g, '-');
   }
 
   //connexion
@@ -84,6 +102,34 @@ export class NavbarComponent implements OnInit {
   }
 
   
+  //liste des perso
+  userData: any; 
+  updateUserData(): void {
+    const token = this.cookieService.get('token');
+    const tokenId = this.cookieService.get('userId');
+    
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    });
+
+    this.http.get(`${this.backendUrl}/user/${tokenId}`, { headers }).subscribe(
+      data => {
+        this.userData = data;
+        console.log(data);
+      },
+      error => {
+        console.error('Erreur lors de la récupération des informations de l\'utilisateur:', error);
+      }
+    );
+
+  }
+
+  redirectToCharacter(id:number,name:string){
+    this.router.navigate([`/personnage/${id}/${this.slugify(name)}`]);
+
+  }
+  
   //inscription
   
   errorCode: boolean = false;
@@ -93,7 +139,7 @@ export class NavbarComponent implements OnInit {
     
     const code = this.formRegister.get('code')?.value;
 
-    if (code === 'NomNom'){
+    if (code === 'Feuille'){
 
       if (this.formRegister.valid) {
         this.http.post<LoginResponse>(`${this.backendUrl}/register`, this.formRegister.value).subscribe(
@@ -109,7 +155,6 @@ export class NavbarComponent implements OnInit {
           }
         );
       } else {
-        // Marquer les champs comme touchés pour afficher les messages d'erreur
         this.formRegister.markAllAsTouched();
       }
 
@@ -129,9 +174,8 @@ export class NavbarComponent implements OnInit {
         (data: LoginResponse) => {
           if (data.token && data.userId) {
             this.authService.login(data.token, data.userId, data.userName);
-            this.name = this.cookieService.get('userName');
             this.loginVisible = false;
-            this.router.navigate(['/']);
+            this.router.navigate([`/profil/${data.userId}/${data.userName}`]);
           } else {
             this.invalidCredentialsErrorLogin = true;
             console.error('Token non trouvé dans la réponse du backend.');

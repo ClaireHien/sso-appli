@@ -10,10 +10,12 @@ import { FightComponent } from './skill-book/fight/fight.component';
 import { CharacterComponent } from './character/character.component';
 import { ProfileComponent } from './profile/profile.component';
 import { WorldComponent } from './world/world.component';
+import { MessagePageComponent } from './message-page/message-page.component';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'message', component: MessagePageComponent },
   { path: 'artisanat', component: CraftComponent },
   { path: 'armes', component: WeaponComponent },
   { path: 'magies', component: MagicComponent },

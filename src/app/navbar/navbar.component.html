@@ -12,16 +12,18 @@
           <a class="px-5 hover:bg-white" routerLink="/neutre" routerLinkActive="active">Neutre</a>
         </div>
       </div>
-      <div class="menu">
+      <div class="menu" *ngIf="isLoggedIn();">
         <div class="font-bold px-5">Mes personnages</div>
         <div class="flex flex-col">
-          <a class="px-5 hover:bg-white" routerLink="/personnage/1/nom" routerLinkActive="active">Nom</a>
-          <a class="px-5 hover:bg-white" routerLink="/personnage/2/nom" routerLinkActive="active">Prénom</a>
-          <a class="px-5 hover:bg-white" routerLink="/personnage/3/nom" routerLinkActive="active">Surnom</a>
+          <a *ngFor="let character of userData.characters" class="px-5 hover:bg-white" (click)="redirectToCharacter(character.id, character.name)">{{character.name}}</a>
         </div>
       </div>
-      <a routerLink="/profil/1/user" class="px-5"><i class="fa-solid fa-user"></i></a>
-      <a routerLink="/" class="px-5"><i class="fa-solid fa-right-from-bracket"></i></a>
+
+      <a  *ngIf="isLoggedIn();"  (click)="profile()" class="cursor-pointer px-5"><i class="fa-solid fa-user"></i></a>
+      <a  *ngIf="isLoggedIn();" (click)="logout()" class="cursor-pointer px-5"><i class="fa-solid fa-right-from-bracket"></i></a>
+      
+      <a (click)="login()" *ngIf="!isLoggedIn();" class="cursor-pointer px-5"><i class="fa-solid fa-right-to-bracket"></i></a>
+      <a (click)="register()" *ngIf="!isLoggedIn();" class="cursor-pointer px-5"><i class="fa-solid fa-pen-to-square"></i></a>
   </div>
 
   <button (click)="toggleTheme()" class="flex gap-2 items-center mr-10">
@@ -56,3 +58,72 @@
   </button>
 
 </nav>
+
+
+
+<!-- Pop up d'inscription -->
+
+<div *ngIf="registerVisible" class="z-50 top-24 w-72 left-10 fixed popup rounded">
+  <h2 class="text-4xl text-center font-blakely uppercase tracking-widest font-normal py-5">Inscription</h2>
+  
+  <form [formGroup]="formRegister" (ngSubmit)="onSubmitRegister()" class="flex flex-col p-5">
+
+    <label class="font-bold uppercase" for="name">Identifiant</label>
+    <div *ngIf="formRegister.get('name')?.hasError('required') && formRegister.get('name')?.touched" class="rounded p-1 uppercase text-xs tracking-widest">
+        Identifiant requis.
+    </div>
+    <input class="p-2" formControlName="name">
+
+    <label class="font-bold uppercase mt-2 pt-2" for="password">Mot de passe</label>
+    <div *ngIf="formRegister.get('password')?.hasError('required') && formRegister.get('password')?.touched" class="rounded p-1 uppercase text-xs tracking-widest">
+        Mot de passe requis.
+    </div>
+    <input class="p-2" formControlName="password" type="password">
+
+    <label class="font-bold uppercase mt-2 pt-2" for="code">Code</label>
+    <div *ngIf="formRegister.get('code')?.hasError('required') && formRegister.get('code')?.touched" class="rounded p-1 uppercase text-xs tracking-widest">
+      Code requis.
+    </div>
+    <div *ngIf="errorCode" class="rounded p-1 uppercase text-xs tracking-widest mt-2">
+      Code incorrect
+    </div>
+    <input class="p-2" formControlName="code" type="code">
+
+    <button type="submit" class="z-10 font-bold uppercase tracking-widest mt-5 p-1">S'inscrire</button>
+    <div *ngIf="invalidCredentialsErrorRegister" class="text-red-500 mt-2">
+      Erreur lors de l'inscription
+    </div>
+  </form>
+
+</div>
+
+
+<!-- Pop up de connexion -->
+
+<div *ngIf="loginVisible" class="z-50 fixed top-24 w-72 left-10 popup rounded">
+  
+  <h2 class="text-4xl text-center font-blakely uppercase tracking-widest font-normal py-5">Connexion</h2>
+    
+  <form [formGroup]="formLogin" (ngSubmit)="onSubmitLogin()" class="flex flex-col p-5">
+
+    <label class="font-bold uppercase" for="name">Identifiant</label>
+    <div *ngIf="formLogin.get('name')?.hasError('required') && formLogin.get('name')?.touched" class="rounded p-1 uppercase text-xs tracking-widest">
+        Identifiant requis.
+    </div>
+    <input  class="p-2" formControlName="name">
+
+    <label class="font-bold uppercase mt-2 pt-2" for="password">Mot de passe</label>
+    <div *ngIf="formLogin.get('password')?.hasError('required') && formLogin.get('password')?.touched" class="rounded p-1 uppercase text-xs tracking-widest">
+        Mot de passe requis.
+    </div>
+    <input  class="p-2" formControlName="password" type="password" required>
+
+    <button type="submit" class="z-10 font-bold uppercase tracking-widest mt-5 p-1">Se connecter</button>
+    <div *ngIf="invalidCredentialsErrorLogin" class="rounded p-1 uppercase text-xs tracking-widest mt-2">
+        Identifiant ou mot de passe incorrect.
+    </div>
+
+  </form>
+  
+  
+</div>
