@@ -1,0 +1,10 @@
+
+.quest-completed{
+    color:var(--mid4);
+}
+.quest-completed>div,
+.spirit-murmur>p,
+.head-spirit>p{height:0em;overflow: hidden;}
+.quest-completed:hover>div,
+.spirit-murmur:hover>p,
+.head-spirit:hover>p{height:8em;}

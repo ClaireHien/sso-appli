@@ -5,7 +5,7 @@
     <h3 class="font-blakely text-4xl px-5 text-center mt-2">{{name}}</h3>
     <div class="uppercase tracking-widest font-bold text-center text-xs">niveau {{level}}</div>
     <div class="uppercase tracking-widest text-center text-mid4 text-xs pr-3 pb-1">{{world}}</div>
-    <p class="m-2 text-justify leading-3 text-xs" [innerHTML]="description"></p>
+    <p class="px-2 pt-2 mb-3 text-justify leading-3 text-xs h-40 overflow-auto" [innerHTML]="description"></p>
     <div class="uppercase tracking-widest text-right text-mid4 text-2xs pr-3 pb-1">{{group}} <span  *ngIf="user!==''"> - {{user}}</span></div>
 
 </a>

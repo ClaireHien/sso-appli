@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule,HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-
+ 
 import { RouterModule } from '@angular/router'; 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +20,10 @@ import { CharacterCardComponent } from './modules/character-card/character-card.
 import { TreeCardComponent } from './modules/tree-card/tree-card.component';
 import { WorldComponent } from './world/world.component';
 import { MessagePageComponent } from './message-page/message-page.component';
+import { GlobalComponent } from './character/global/global.component';
+import { GlobalFormComponent } from './character/global-form/global-form.component';
+import { SpiritComponent } from './character/spirit/spirit.component';
+import { SpiritFormComponent } from './character/spirit-form/spirit-form.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +41,10 @@ import { MessagePageComponent } from './message-page/message-page.component';
     TreeCardComponent,
     WorldComponent,
     MessagePageComponent,
+    GlobalComponent,
+    GlobalFormComponent,
+    SpiritComponent,
+    SpiritFormComponent,
   ],
   imports: [
     BrowserModule,

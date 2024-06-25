@@ -4,12 +4,4 @@ section{
     grid-template-rows: auto;
 }
 
-.quest-completed{
-    color:var(--mid4);
-}
-.quest-completed>div,
-.spirit-murmur>p,
-.head-spirit>p{display: none;}
-.quest-completed:hover>div,
-.spirit-murmur:hover>p,
-.head-spirit:hover>p{display: block;}
+.spirit>div:first-child>*{grid-area:1/1/2/2;}

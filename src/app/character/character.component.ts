@@ -44,6 +44,10 @@ export class CharacterComponent implements OnInit {
         console.error('Erreur', error);
       }
     );
+  }
 
+  globalForm:boolean = false;
+  swapGlobal(){
+    this.globalForm = !this.globalForm;
   }
 }
