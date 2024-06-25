@@ -1,28 +1,21 @@
 
 <img [src]="character.image" class="rounded h-72 overflow-hidden w-full object-cover">
-<h1 class="text-center font-blakely uppercase tracking-widest text-5xl mt-5">{{character.name}}</h1>
-<p class="text-justify px-5 mb-5 leading-4 font-light h-40 overflow-auto mt-3" [innerHTML]="character.description"></p>
-
-
 <form [formGroup]="formCharacter" (ngSubmit)="onSubmitCharacter()" class="flex flex-col p-5">
 
     <label class="font-bold uppercase" for="name">Nom du personnage</label>
     <div *ngIf="formCharacter.get('name')?.hasError('required') && formCharacter.get('name')?.touched" class="rounded p-1 uppercase text-xs tracking-widest">
         Nom obligatoire
     </div>
-    <input class="p-2 bg-light3" formControlName="name" [(ngModel)]="character.name">
+    <input class="p-2 bg-white4 hover:bg-white6" formControlName="name" [(ngModel)]="character.name">
 
-    <label class="font-bold uppercase mt-2 pt-2" for="image">Image</label>
-    <div *ngIf="formCharacter.get('image')?.hasError('required') && formCharacter.get('image')?.touched" class="rounded p-1 uppercase text-xs tracking-widest">
-        Image requise
-    </div>
-    {{character.image}}
-    <input class="p-2 bg-light3" formControlName="image" [(ngModel)]="character.image">
+    <label class="font-bold uppercase mt-2 pt-2" for="image">Lien de l'image</label>
+    <span class="uppercase tracking-widest text-xs text-white">Minimum 750*300px | Pas de lien discord</span>
+    <input class="p-2 bg-white4 hover:bg-white6" formControlName="image" [(ngModel)]="character.image">
 
-    {{character.description}}
     <label class="font-bold uppercase mt-2 pt-2" for="description">Description</label>
-    <textarea class="p-2 h-full" formControlName="description" [(ngModel)]="character.description"></textarea>
+    <span class="uppercase tracking-widest text-xs text-white">HTML pris en compte</span>
+    <textarea class="p-2 text-justify bg-white4 h-40 font-light leading-4 hover:bg-white6" formControlName="description" [(ngModel)]="character.description"></textarea>
 
-
-    <button type="submit" class="z-10 font-bold uppercase tracking-widest mt-5 p-1">Valider</button>
-  </form>
+    <button type="submit" class="z-10 font-bold uppercase tracking-widest mt-3 p-1 bg-light3 pt-2 pb-1 hover:bg-light1">Valider</button>
+    
+</form>

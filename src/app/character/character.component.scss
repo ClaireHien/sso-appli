@@ -5,3 +5,5 @@ section{
 }
 
 .spirit>div:first-child>*{grid-area:1/1/2/2;}
+.bg-gradient{background:linear-gradient(-45deg, var(--light3) 0%, var(--mid1) 100%)}
+.form-level{border-top:1px dotted var(--mid1); @apply mt-2 pt-2;}

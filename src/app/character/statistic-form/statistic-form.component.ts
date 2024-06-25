@@ -8,11 +8,11 @@ import { AuthService } from '../../services/auth.service'
 import { ReloadDataService } from '../../services/reload-data.service';
 
 @Component({
-  selector: 'app-global-form',
-  templateUrl: './global-form.component.html',
-  styleUrl: './global-form.component.scss'
+  selector: 'app-statistic-form',
+  templateUrl: './statistic-form.component.html',
+  styleUrl: './statistic-form.component.scss'
 })
-export class GlobalFormComponent {
+export class StatisticFormComponent {
 
   formCharacter: FormGroup;  
   
@@ -29,9 +29,8 @@ export class GlobalFormComponent {
     private authService: AuthService,
   ) {
     this.formCharacter = this.fb.group({
-      name: ['', Validators.required],
-      image: ['', Validators.required],
-      description: ['', Validators.required]
+      affinity: ['', Validators.required],
+      spirit_level: ['', Validators.required]
     });
   }
 
@@ -45,7 +44,7 @@ export class GlobalFormComponent {
       Authorization: `Bearer ${token}`
     });
 
-    this.http.put(`${this.backendUrl}/character/${id}/global`,
+    this.http.put(`${this.backendUrl}/character/${id}/spirit`,
        this.formCharacter.value, { headers }).subscribe(
       (data) => {
         this.reloadDataService.triggerReload();

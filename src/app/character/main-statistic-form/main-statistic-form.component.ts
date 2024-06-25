@@ -8,11 +8,11 @@ import { AuthService } from '../../services/auth.service'
 import { ReloadDataService } from '../../services/reload-data.service';
 
 @Component({
-  selector: 'app-global-form',
-  templateUrl: './global-form.component.html',
-  styleUrl: './global-form.component.scss'
+  selector: 'app-main-statistic-form',
+  templateUrl: './main-statistic-form.component.html',
+  styleUrl: './main-statistic-form.component.scss'
 })
-export class GlobalFormComponent {
+export class MainStatisticFormComponent {
 
   formCharacter: FormGroup;  
   

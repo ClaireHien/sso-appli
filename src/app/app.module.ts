@@ -24,6 +24,10 @@ import { GlobalComponent } from './character/global/global.component';
 import { GlobalFormComponent } from './character/global-form/global-form.component';
 import { SpiritComponent } from './character/spirit/spirit.component';
 import { SpiritFormComponent } from './character/spirit-form/spirit-form.component';
+import { StatisticComponent } from './character/statistic/statistic.component';
+import { StatisticFormComponent } from './character/statistic-form/statistic-form.component';
+import { MainStatisticComponent } from './character/main-statistic/main-statistic.component';
+import { MainStatisticFormComponent } from './character/main-statistic-form/main-statistic-form.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +49,10 @@ import { SpiritFormComponent } from './character/spirit-form/spirit-form.compone
     GlobalFormComponent,
     SpiritComponent,
     SpiritFormComponent,
+    StatisticComponent,
+    StatisticFormComponent,
+    MainStatisticComponent,
+    MainStatisticFormComponent,
   ],
   imports: [
     BrowserModule,

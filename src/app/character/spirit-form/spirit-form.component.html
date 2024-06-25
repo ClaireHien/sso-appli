@@ -1,1 +1,11 @@
-<p>spirit-form works!</p>
+<form [formGroup]="formCharacter" (ngSubmit)="onSubmitCharacter()" class="justify-items-center flex flex-col p-5 grid grid-cols-2">
+
+    <label class="font-bold uppercase" for="affinity">Affinité</label>
+    <label class="font-bold uppercase" for="spirit_level">Niveau</label>
+    <input class="w-20 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6" formControlName="affinity" [(ngModel)]="character.affinity">
+
+    <input class="w-20 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6" formControlName="spirit_level" [(ngModel)]="character.spirit_level">
+
+    <button type="submit" class="mt-5 w-full col-span-2 z-10 font-bold uppercase tracking-widest mt-3 p-1 bg-light3 pt-2 pb-1 hover:bg-light1">Valider</button>
+    
+</form>
