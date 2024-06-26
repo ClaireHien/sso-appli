@@ -1,11 +1,12 @@
-general
-
-<div class="grid-cols-2">
-    <div>
-        corps
+<div class="grid grid-cols-2 items-center justify-items-center gap-8 my-5">
+    <div class="hover:scale-110 grid grid-one items-center justify-self-start" *ngFor="let abreviation of abreviation" 
+    [ngClass]="{
+        'justify-self-end':abreviation == 'FOR' || abreviation == 'DEX' || abreviation == 'INT' || abreviation == 'VIV',
+        'cursor-pointer':createdByUser}">
+        <i class="fa-solid fa-dice-d20 text-light1 text-7xl"></i>
+        <div class="flex flex-col justify-center items-center">
+            <span class="font-bold text-mid4 uppercase tracking-widest">{{abreviation}}</span>
+            <strong class="text-3xl">{{this.searchStat(abreviation)}}</strong>
+        </div>
     </div>
-    <div>
-        esprit
-    </div>
-
 </div>

@@ -16,7 +16,8 @@ export class StatisticFormComponent {
 
   formCharacter: FormGroup;  
   
-  @Input() character: any; 
+  @Input() character: any;  
+  @Input() type: any; 
   @Output() formSubmitted = new EventEmitter<void>();
   
   constructor(

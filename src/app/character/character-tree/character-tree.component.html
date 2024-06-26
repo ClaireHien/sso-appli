@@ -1,0 +1,22 @@
+<div class="rounded bg-white6 hover:bg-white">
+    {{tree.name}} <br>
+    {{tree.dice}} <br>
+    {{tree.passive_innate}} <br>
+    {{tree.passive_innate_description}} <br>
+    {{tree.ultimate_skill}} <br>
+    {{tree.ultimate_skill_description}} <br>
+    {{tree.range.label}} <br>
+    {{tree.type_damage.label}} <br><br>
+    skill
+    <div *ngFor="let skill of tree.skills">
+        {{skill.name}} <br>
+        {{skill.description}} <br>
+        {{skill.upgrade}} <br>
+        {{skill.ultimate_upgrade}} <br>
+        {{skill.type_skill.label}} <br>
+    </div> <br>
+    pivot <br>
+    {{tree.pivot.innate}} <br>
+    {{tree.pivot.ultimate_unlock}} <br>
+    {{tree.name}} <br>
+</div>

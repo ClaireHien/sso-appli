@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ReloadDataService } from '../services/reload-data.service';
 
+
 @Component({
   selector: 'app-character',
   templateUrl: './character.component.html',
@@ -44,6 +45,8 @@ export class CharacterComponent implements OnInit {
     this.reloadDataSubscription.unsubscribe();
   }
 
+  weaponTrees: any[] = [];
+  magicTrees: any[] = [];
   reloadData(){
     const userId = this.cookieService.get('userId');
     this.http.get(`${this.backendUrl}/character/${this.route.snapshot.paramMap.get('characterId')}`,{ headers: new HttpHeaders({ 'Authorization': `Bearer ${this.cookieService.get('token')}` }) }).subscribe(
@@ -51,11 +54,20 @@ export class CharacterComponent implements OnInit {
         this.character = data;
         console.log(this.character)
         if (Number(this.cookieService.get('userId')) === this.character.user_id ){ this.createdByUser = true;}
+        this.filterTrees();
       },
       error => {
         console.error('Erreur', error);
       }
     );
+
+  }
+
+  filterTrees() {
+    this.weaponTrees = this.character.trees.filter((tree: any) => tree.type_tree_id === 1);
+    this.magicTrees = this.character.trees.filter((tree: any) => tree.type_tree_id === 2);
+
+    console.log(this.weaponTrees);
   }
 
   onSubmitAddXp(){
@@ -114,9 +126,23 @@ export class CharacterComponent implements OnInit {
 
   formStatMain:boolean = false;
   swapStatMain(){this.formStatMain = !this.formStatMain;}
+
   formStatPhysical:boolean = false;
   swapStatPhysical(){this.formStatPhysical = !this.formStatPhysical;}
+  
   formStatMagic:boolean = false;
   swapStatMagic(){this.formStatMagic = !this.formStatMagic;}
+  
+  formClothe:boolean = false;
+  swapClothe(){this.formClothe = !this.formClothe;}
+  
+  formJewelry:boolean = false;
+  swapJewelry(){this.formJewelry = !this.formJewelry;}
+  
+  formWeapon:boolean = false;
+  swapWeapon(){this.formWeapon = !this.formWeapon;}
+  
+  formArmor:boolean = false;
+  swapArmor(){this.formArmor = !this.formArmor;}
   
 }

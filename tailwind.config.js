@@ -11,9 +11,11 @@ module.exports = {
         'white2':'var(--white2)',
         'white4':'var(--white4)',
         'white6':'var(--white6)',
+        'white8':'var(--white8)',
         'black2':'var(--black2)',
         'black4':'var(--black4)',
         'black6':'var(--black6)',
+        'black8':'var(--black8)',
 
         'light1':'var(--light1)',
         'light2':'var(--light2)',
