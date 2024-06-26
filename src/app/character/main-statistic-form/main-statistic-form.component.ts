@@ -29,9 +29,18 @@ export class MainStatisticFormComponent {
     private authService: AuthService,
   ) {
     this.formCharacter = this.fb.group({
-      name: ['', Validators.required],
-      image: ['', Validators.required],
-      description: ['', Validators.required]
+      pv_max: ['', Validators.required],
+      pv_bonus: ['', Validators.required],
+      pe_max: ['', Validators.required],
+      pe_bonus: ['', Validators.required],
+      pt_max: ['', Validators.required],
+      pt_bonus: ['', Validators.required],
+      rp: ['', Validators.required],
+      rp_bonus: ['', Validators.required],
+      rm: ['', Validators.required],
+      rm_bonus: ['', Validators.required],
+      speed: ['', Validators.required],
+      speed_bonus: ['', Validators.required],
     });
   }
 
@@ -45,7 +54,7 @@ export class MainStatisticFormComponent {
       Authorization: `Bearer ${token}`
     });
 
-    this.http.put(`${this.backendUrl}/character/${id}/global`,
+    this.http.put(`${this.backendUrl}/character/${id}/main-stat`,
        this.formCharacter.value, { headers }).subscribe(
       (data) => {
         this.reloadDataService.triggerReload();

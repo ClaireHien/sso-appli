@@ -98,22 +98,23 @@
     <div class="bg-white6 hover:bg-white rounded" [ngClass]="{'bg-gradient':formStatMain}">
         <h2 class="text-center font-blakely text-5xl tracking-widest pt-5">Statistiques</h2>
 
-        <app-statistic *ngIf="!formStatMain"
-            [character]="character"
-        ></app-statistic>
-
-        <app-statistic-form *ngIf="formStatMain && createdByUser" (formSubmitted)="swapStatMain()"
-            [character]="character"
-        ></app-statistic-form>
-
-        <div (click)="swapStatMain()" *ngIf="createdByUser" class="uppercase text-center tracking-widest float-right mx-5 text-mid3 text-xs cursor-pointer">
+        <div (click)="swapStatMain()" *ngIf="createdByUser" class="uppercase text-center tracking-widest mx-5 text-mid3 text-xs cursor-pointer">
             <span *ngIf="!formSpirit">Modifier</span>
             <span *ngIf="formSpirit">Annuler</span>
         </div>
+
+        <app-main-statistic *ngIf="!formStatMain"
+            [character]="character"
+            [createdByUser]="createdByUser"
+        ></app-main-statistic>
+
+        <app-main-statistic-form *ngIf="formStatMain && createdByUser" (formSubmitted)="swapStatMain()"
+            [character]="character"
+        ></app-main-statistic-form>
+
     </div>
     <div class="bg-white6 hover:bg-white rounded" [ngClass]="{'bg-gradient':formStatMagic}">
         <h2 class="text-center font-blakely text-3xl tracking-widest pt-5">L'esprit</h2>
-
 
         <app-statistic *ngIf="!formStatMagic"
             [character]="character"

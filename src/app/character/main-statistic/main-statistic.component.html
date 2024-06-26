@@ -1,1 +1,75 @@
-<p>main-statistic works!</p>
+
+<div>
+    <div class="flex flex-col items-center mt-5 justify-center">
+        <div class="grid grid-one items-center">
+            <i class="fa-solid fa-heart text-8xl justify-self-center text-mid1"
+                [ngClass]="{
+                    'pv-full': checkPV === 1,
+                    'pv-mid': checkPV === 2,
+                    'pv-0': checkPV === 0
+                }">
+            </i>
+            <div class="relative z-10">
+                <span class="uppercase tracking-widest font-bold">Points de vie</span>
+                <div  class="text-mid5 flex items-center justify-center font-bold hover:scale-110 hover:text-mid4" [ngClass]="{'cursor-pointer':createdByUser}" (click)="openOption()">
+                    <span class="text-5xl pr-3">{{character.pv}}</span>
+                    <span class="text-xl"> / {{character.pv_max + character.pv_bonus}}</span>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="optionIsOpen && createdByUser">
+            <form [formGroup]="formEditPV" class="form-pv mb-10 rounded p-2 mt-2 grid grid-cols-2 gap-3">
+                <div class="flex gap-2 flex-col justify-center items-center">
+                    <label class="block -mb-3 font-bold uppercase" for="damageValue">Dégâts</label>
+                    <input class="w-20 pt-2 pb-1 text-center text-2xl bg-transparent" formControlName="damageValue">
+                    
+                    <button type="submit" (click)="onSubmitEditPV('physicalDmg')" class="px-4 text-xs rounded w-full col-span-2 z-10 font-bold uppercase tracking-widest bg-light5 pt-2 pb-1 hover:bg-light2">Physique</button>
+                    <button type="submit" (click)="onSubmitEditPV('magicDmg')" class="px-4 text-xs rounded w-full col-span-2 z-10 font-bold uppercase tracking-widest bg-light5 pt-2 pb-1 hover:bg-light2">Magique</button>
+                    <button type="submit" (click)="onSubmitEditPV('fullDmg')" class="px-4 text-xs rounded w-full col-span-2 z-10 font-bold uppercase tracking-widest bg-light5 pt-2 pb-1 hover:bg-light2">Brut</button>
+                </div>
+                <div class="flex gap-2 flex-col justify-center items-center">
+                    <label class="block -mb-3 font-bold uppercase" for="healValue">Soin</label>
+                    <input class="w-20 pt-2 pb-1 text-center text-2xl bg-transparent" formControlName="healValue">
+                    
+                    <button type="submit" (click)="onSubmitEditPV('heal')" class="px-4 text-xs rounded w-full col-span-2 z-10 font-bold uppercase tracking-widest bg-light1 pt-2 pb-1 hover:bg-light4">Soin</button>
+                    <button type="submit" (click)="onSubmitEditPV('healArmor')" class="px-4 text-xs rounded w-full col-span-2 z-10 font-bold uppercase tracking-widest bg-light1 pt-2 pb-1 hover:bg-light4">Soin d'armure</button>
+                    <button type="submit" (click)="onSubmitEditPV('fullHeal')" class="px-4 text-xs rounded w-full col-span-2 z-10 font-bold uppercase tracking-widest bg-light1 pt-2 pb-1 hover:bg-light4">Soin complet</button>
+                </div>
+            </form>            
+        </div>
+    </div>
+</div>
+<div class="grid grid-cols-2 justify-items-center -mt-2">
+    <div class="flex flex-col justify-center items-center">
+        <span class="uppercase text-mid4 block leading-3 text-center tracking-widest text-xs font-bold">Défense <br> physique</span>
+        <span class="block text-4xl text-center font-bold">{{character.rp+character.rp_bonus}}</span>
+    </div>
+    <div class="flex flex-col justify-center items-center">
+        <span class="uppercase text-mid4 block leading-3 text-center tracking-widest text-xs font-bold">Défense <br> magique</span>
+        <span class="block text-4xl text-center font-bold">{{character.rm+character.rm_bonus}}</span>
+    </div>
+</div>
+
+<div class="grid grid-cols-2 justify-items-center mt-4 text-center font-bold">
+    <div (click)="pt()" [ngClass]="{'pt-0':pts_tech == 0}" class="rounded-full bg-light1 w-20 h-20 flex flex-col justify-center items-center hover:scale-110 hover:bg-light3" [ngClass]="{'cursor-pointer':createdByUser}">
+        <span class="uppercase text-mid4 block leading-3 text-center tracking-widest text-xs">
+            Points de techniques
+        </span>
+        <div class="mt-1 flex items-center">
+            <span class="text-3xl pr-2">{{pts_tech}}</span><span> / {{character.pt_max + character.pt_bonus}}</span>
+        </div>
+    </div>
+    <div (click)="pe()" [ngClass]="{'pe-0':pts_esp == 0}"  class="rounded-full bg-light1 w-20 h-20 flex flex-col justify-center items-center hover:scale-110 hover:bg-light3" [ngClass]="{'cursor-pointer':createdByUser}">
+        <span class="uppercase text-mid4 block leading-3 text-center tracking-widest text-xs">
+            Points d'esprit
+        </span>
+        <div class="mt-1 flex items-center">
+            <span class="text-3xl pr-2">{{pts_esp}}</span><span> / {{character.pe_max + character.pe_bonus}}</span>
+        </div>
+    </div>
+</div>
+
+<div class="text-center font-bold tracking-widest uppercase my-5">
+    <span class="text-mid4 pr-4">Vitesse</span>
+    <span class="text-2xl">{{character.speed+character.speed_bonus}}</span>
+</div>

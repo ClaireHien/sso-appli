@@ -1,1 +1,33 @@
-<p>main-statistic-form works!</p>
+<form [formGroup]="formCharacter" (ngSubmit)="onSubmitCharacter()"
+    class="grid grid-cols-3 p-5 gap-1 items-center justify-items-center">
+    <div class="uppercase tracking-widest font-bold"></div>
+    <div class="uppercase tracking-widest font-bold">Base</div>
+    <div class="uppercase tracking-widest font-bold">Bonus</div>
+
+    <label class="font-bold text-xl uppercase" for="pv">PV</label>
+    <input class="w-20 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6"  [(ngModel)]="character.pv_max" formControlName="pv_max">
+    <input class="w-20 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6"  [(ngModel)]="character.pv_bonus" formControlName="pv_bonus">
+    
+    <label class="font-bold text-xl uppercase" for="rp">RP</label>
+    <input class="w-20 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6"  [(ngModel)]="character.rp" formControlName="rp">
+    <input class="w-20 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6"  [(ngModel)]="character.rp_bonus" formControlName="rp_bonus">
+    
+    <label class="font-bold text-xl uppercase" for="rm">RM</label>
+    <input class="w-20 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6"  [(ngModel)]="character.rm" formControlName="rm">
+    <input class="w-20 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6"  [(ngModel)]="character.rm_bonus" formControlName="rm_bonus">
+    
+    <label class="font-bold text-xl uppercase" for="pt">PT</label>
+    <input class="w-20 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6"  [(ngModel)]="character.pt_max" formControlName="pt_max">
+    <input class="w-20 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6"  [(ngModel)]="character.pt_bonus" formControlName="pt_bonus">
+    
+    <label class="font-bold text-xl uppercase" for="pe">PE</label>
+    <input class="w-20 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6"  [(ngModel)]="character.pe_max" formControlName="pe_max">
+    <input class="w-20 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6"  [(ngModel)]="character.pe_bonus" formControlName="pe_bonus">
+    
+    <label class="font-bold text-xl uppercase" for="speed">VIT</label>
+    <input class="w-20 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6"  [(ngModel)]="character.speed" formControlName="speed">
+    <input class="w-20 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6"  [(ngModel)]="character.speed_bonus" formControlName="speed_bonus">
+
+    <button type="submit" class="mt-5 w-full col-span-3 z-10 font-bold uppercase tracking-widest mt-3 p-1 bg-light3 pt-2 pb-1 hover:bg-light1">Valider</button>
+    
+</form>

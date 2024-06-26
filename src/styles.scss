@@ -91,6 +91,7 @@ body{
 .text-2xs{font-size:.6em;}
 .bg-img{background-size: cover; background-repeat: no-repeat;background-position: center;}
 .popup{position: fixed; left:50%; top:50%; transform: translate(-50%,-50%);}
+.grid-one>*{grid-area:1/1/2/2;}
 
 /* personnalisation du darkmode */ 
 

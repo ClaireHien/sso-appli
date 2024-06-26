@@ -29,7 +29,7 @@ export class CharacterComponent implements OnInit {
       xp: ['0', Validators.required]
     });
   }
-
+ 
   character: any;
 
   backendUrl = environment.backendUrl;

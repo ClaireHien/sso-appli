@@ -1,0 +1,57 @@
+.pv-full{
+    @apply text-mid1 opacity-40;
+    animation: pulse 2.5s infinite;
+}
+.pv-mid{
+    @apply text-mid2;
+    animation: heartbeat 1s infinite;
+}
+.pv-0{
+    @apply text-black2;
+}
+.pt-0, .pe-0{
+  @apply bg-black2;
+}
+.pt-0>span, .pe-0>span{
+  @apply text-black6;
+}
+.pt-0>div, .pe-0>div{
+  @apply text-white;
+}
+
+.form-pv{
+  border:1px dotted var(--mid2);
+}
+
+@keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes heartbeat {
+    0% {
+      transform: scale(1);
+    }
+    20% {
+      transform: scale(1.1);
+    }
+    40% {
+      transform: scale(1);
+    }
+    60% {
+      transform: scale(1.1);
+    }
+    80% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
