@@ -7,6 +7,8 @@ import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ReloadDataService } from '../services/reload-data.service';
+import { MaterialService } from '../services/material.service';
+import { Material } from '../tree.type'; // Importation des interfaces
 
 
 @Component({
@@ -17,9 +19,15 @@ import { ReloadDataService } from '../services/reload-data.service';
 export class CharacterComponent implements OnInit {
   reloadDataSubscription!: Subscription;
   
+  materials: any[] = [];
+
   formAddXp: FormGroup;  
+  formAddMoney: FormGroup;  
+  formAddItem: FormGroup;  
+  formAddMaterial: FormGroup;  
   constructor(
     private router: Router,
+    private materialService: MaterialService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private cookieService: CookieService,
@@ -28,6 +36,17 @@ export class CharacterComponent implements OnInit {
   ) {
     this.formAddXp = this.fb.group({
       xp: ['0', Validators.required]
+    });
+    this.formAddMoney = this.fb.group({
+      money: ['0', Validators.required]
+    });
+    this.formAddMaterial = this.fb.group({
+      material_id: ['', Validators.required]
+    });
+    this.formAddItem = this.fb.group({
+      name: ['', Validators.required],
+      quantity: ['1', Validators.required],
+      description: ['', Validators.required]
     });
   }
  
@@ -40,7 +59,33 @@ export class CharacterComponent implements OnInit {
     this.reloadDataSubscription = this.reloadDataService.reloadData$.subscribe(() => {
       this.reloadData();
     });
+    
+    this.materialService.getMaterials().subscribe(
+      (data: Material[]) => {
+        this.materials = data;
+      },
+      error => {
+        console.error('Error fetching stereotype', error);
+      }
+    );
+
   }
+
+  groupedMaterials: any[] = [];
+  groupMaterials() {
+    const materialMap = new Map();
+    
+    this.character.materials.forEach((material: any) => {
+      if (materialMap.has(material.id)) {
+        materialMap.get(material.id).quantity++;
+      } else {
+        materialMap.set(material.id, { ...material, quantity: 1 });
+      }
+    });
+
+    this.groupedMaterials = Array.from(materialMap.values());
+  }
+
   ngOnDestroy(): void {
     this.reloadDataSubscription.unsubscribe();
   }
@@ -55,6 +100,7 @@ export class CharacterComponent implements OnInit {
         console.log(this.character)
         if (Number(this.cookieService.get('userId')) === this.character.user_id ){ this.createdByUser = true;}
         this.filterTrees();
+        this.groupMaterials();
       },
       error => {
         console.error('Erreur', error);
@@ -66,8 +112,6 @@ export class CharacterComponent implements OnInit {
   filterTrees() {
     this.weaponTrees = this.character.trees.filter((tree: any) => tree.type_tree_id === 1);
     this.magicTrees = this.character.trees.filter((tree: any) => tree.type_tree_id === 2);
-
-    console.log(this.weaponTrees);
   }
 
   onSubmitAddXp(){
@@ -145,6 +189,7 @@ export class CharacterComponent implements OnInit {
   formArmor:boolean = false;
   swapArmor(){this.formArmor = !this.formArmor;}
 
+  roundDown(value: number): number {return Math.floor(value);}
 
 
   addNeutralSkill(){
@@ -152,6 +197,16 @@ export class CharacterComponent implements OnInit {
   }
   
   addTree(){
+    
+  }
+  onSubmitMoney(type:string){
+    
+  }
+  onSubmitAddItem(){
+    
+  }
+  
+  onSubmitAddMaterial(){
     
   }
   

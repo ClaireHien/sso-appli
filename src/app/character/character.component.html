@@ -135,37 +135,143 @@
 
     </div>
     
-    <div class="bg-white6 row-span-3 hover:bg-white rounded pb-1"  [ngClass]="{'bg-gradient':formClothe}">
+    <div class="bg-white6 row-span-2 hover:bg-white rounded pb-1"  [ngClass]="{'bg-gradient':formClothe}">
         <h4 class="uppercase mt-3 font-bold text-center">Vêtements & Ornements</h4>
         <div (click)="swapClothe()" *ngIf="createdByUser" class="uppercase text-center tracking-widest mx-5 text-mid3 text-xs cursor-pointer">
             <span *ngIf="!formClothe">Modifier</span>
             <span *ngIf="formClothe">Annuler</span>
         </div>
-        vêtements
+        <app-stuff *ngIf="!formClothe"
+            [character]="character"
+            [type]="'Clothe'"
+        ></app-stuff>
+        <app-stuff-form *ngIf="formClothe"
+            [character]="character"
+            [type]="'Clothe'"
+        ></app-stuff-form>
     </div>
-    <div class="bg-white6 row-span-3 hover:bg-white rounded pb-1"  [ngClass]="{'bg-gradient':formJewelry}">
+    <div class="bg-white6 row-span-2 hover:bg-white rounded pb-1"  [ngClass]="{'bg-gradient':formJewelry}">
         <h4 class="uppercase mt-3 font-bold text-center">Bijoux & Pierres</h4>
         <div (click)="swapJewelry()" *ngIf="createdByUser" class="uppercase text-center tracking-widest mx-5 text-mid3 text-xs cursor-pointer">
             <span *ngIf="!formJewelry">Modifier</span>
             <span *ngIf="formJewelry">Annuler</span>
         </div>
-        bijoux
+        <app-stuff *ngIf="!formJewelry"
+            [character]="character"
+            [type]="'Jewelry'"
+        ></app-stuff>
+        <app-stuff-form *ngIf="formJewelry"
+            [character]="character"
+            [type]="'Jewelry'"
+        ></app-stuff-form>
     </div>
     <div class="bg-white6 hover:bg-white rounded pb-1"  [ngClass]="{'bg-gradient':formWeapon}">
-        <h4 class="uppercase mt-3 font-bold text-center">Arme</h4>
+        <h4 class="uppercase mt-3 font-bold text-center">Arme & Armure</h4>
         <div (click)="swapWeapon()" *ngIf="createdByUser" class="uppercase text-center tracking-widest mx-5 text-mid3 text-xs cursor-pointer">
             <span *ngIf="!formWeapon">Modifier</span>
             <span *ngIf="formWeapon">Annuler</span>
         </div>
-        arme
+        <app-stuff *ngIf="!formWeapon"
+            [character]="character"
+            [type]="'Weapon'"
+        ></app-stuff>
+        <app-stuff-form *ngIf="formWeapon"
+            [character]="character"
+            [type]="'Weapon'"
+        ></app-stuff-form>
     </div>
-    <div class="bg-white6 hover:bg-white rounded pb-1"  [ngClass]="{'bg-gradient':formArmor}">
-        <h4 class="uppercase mt-3 font-bold text-center">Armure</h4>
-        <div (click)="swapArmor()" *ngIf="createdByUser" class="uppercase text-center tracking-widest mx-5 text-mid3 text-xs cursor-pointer">
-            <span *ngIf="!formArmor">Modifier</span>
-            <span *ngIf="formArmor">Annuler</span>
+
+    <div class="bg-white4 hover:bg-white p-3 rounded">
+        <h3 class="uppercase font-bold tracking-widest text-center mt-2">Cristaux</h3>
+        <div class="text-3xl text-center tracking-widest font-bold">{{character.money}}</div>
+        <form [formGroup]="formAddMoney" *ngIf="createdByUser" class="dot-top pt-3 mt-3 flex flex-col items-center justify-center">
+            <input class="w-12 p-1 font-bold bg-transparent text-center mb-2" formControlName="money">
+            <div class="flex gap-3">
+                <button type="submit" (click)="onSubmitMoney('sub')" class="px-4 text-xs rounded w-full z-10 font-bold uppercase tracking-widest bg-light1 pt-2 pb-1 hover:bg-light3">Retirer</button>
+                <button type="submit" (click)="onSubmitMoney('add')" class="px-4 text-xs rounded w-full z-10 font-bold uppercase tracking-widest bg-mid3 pt-2 pb-1 hover:bg-mid5">Ajouter</button>
+            </div>
+
+        </form>
+
+    </div>
+    <div class="row-span-2 bg-white4 hover:bg-white p-3 rounded">
+        <h3 class="text-center font-blakely uppercase tracking-widest text-4xl mb-3">Matériaux</h3>
+        
+        <div *ngFor="let material of groupedMaterials" class="flex justify-between items-start">
+            <div class="material">
+                <strong>{{material.name}}</strong>
+                <span class="text-xs mx-1">({{material.quantity}})</span>
+                <span class="text-mid4 pl-1 uppercase tracking-widest text-2xs">{{material.type_material.label}} - revente {{roundDown(material.price/4)}} C</span>
+                <div *ngFor="let table of material.craft_tables" class="text-xs pl-5 mt-1">
+                    <div class="uppercase tracking-widest">{{table.craft.name}}</div>
+                    <div class="grid" style="grid-template-columns: 1fr 2fr;">
+                        <strong class="uppercase pr-1 text-mid4">Médiocre</strong><span>{{table.poor}}</span>
+                        <strong class="uppercase pr-1 text-mid4">Correct</strong><span>{{table.fair}}</span>
+                        <strong class="uppercase pr-1 text-mid4">Bon</strong><span>{{table.good}}</span>
+                        <strong class="uppercase pr-1 text-mid4">Super</strong><span>{{table.super}}</span>
+                        <strong class="uppercase pr-1 text-mid4">Excellent</strong><span>{{table.excellent}}</span>
+                    </div>
+                </div>
+                <div *ngIf="material.material_table" class="text-xs pl-5 mt-1">
+                    <div class="grid" style="grid-template-columns: 1fr 2fr;">
+                        <strong class="uppercase pr-1 text-mid4">Sauvage</strong><span>{{material.material_table.wild}}</span>
+                        <strong class="uppercase pr-1 text-mid4">Mystérieux</strong><span>{{material.material_table.mysterious}}</span>
+                        <strong class="uppercase pr-1 text-mid4">Elegant</strong><span>{{material.material_table.elegant}}</span>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="createdByUser" class="flex gap-1">
+                <i class="fa-solid fa-circle-minus text-xl text-light5 cursor-pointer hover:text-mid3"></i>
+                <i class="fa-solid fa-circle-plus text-xl text-mid2 cursor-pointer hover:text-mid4"></i>
+            </div>
         </div>
-        armure
+
+        <form *ngIf="createdByUser" [formGroup]="formAddMaterial" (ngSubmit)="onSubmitAddMaterial()" class="mt-2 dot-top flex flex-col items-center">
+            <label for="material" class="uppercase tracking-widest font-bold mt-3">Ajouter un matériaux</label>
+            <select class="w-full p-2 bg-white" id="material_id" name="material" formControlName="material_id">
+                <option *ngFor="let material of materials" [value]="material.id">{{ material.name }}</option>
+            </select>
+            <button type="submit" class="font-bold rounded pt-2 pb-1 px-3 mt-2 uppercase tracking-widest bg-light1 flex items-center">Ajouter</button>
+        </form>
+
+    </div>
+    <div class="row-span-2 bg-white4 hover:bg-white p-3 rounded">
+        <h3 class="text-center font-blakely uppercase tracking-widest text-4xl mb-3">Inventaire</h3>
+        
+        <div *ngFor="let item of character.items" class="flex justify-between items-start">
+            <div>
+                <strong>{{item.name}}</strong>
+                <span class="text-xs px-1">({{item.quantity}})</span>   
+                <span class="font-light leading-4 text-justify" [innerHTML]="item.description"></span>
+            </div>
+            <div *ngIf="createdByUser" class="flex gap-1">
+                <i class="fa-solid fa-circle-minus text-xl text-light5 cursor-pointer hover:text-mid3"></i>
+                <i class="fa-solid fa-circle-plus text-xl text-mid2 cursor-pointer hover:text-mid4"></i>
+            </div>
+        </div>
+
+        <form *ngIf="createdByUser" [formGroup]="formAddItem" (ngSubmit)="onSubmitAddItem()" class="dot-top flex flex-col items-center">
+            <span class="uppercase tracking-widest font-bold mt-3">Ajouter un objet</span>
+            <input class="p-1 w-full bg-transparent" formControlName="name" placeholder="nom de l'objet">
+            <input class="p-1 font-light w-full bg-transparent" formControlName="description" placeholder="description de l'objet">
+            <button type="submit" class="font-bold rounded pt-2 pb-1 px-3 mt-2 uppercase tracking-widest bg-light1 flex items-center">Ajouter</button>
+        </form>
+
+    </div>
+    <div class="bg-white4 hover:bg-white items-center justify-items-center p-3 rounded grid grid-one">
+        <i class="text-light1 text-7xl fa-solid fa-star" [ngClass]="{
+            'text-black2':character.star==0,
+            'rotate-star':character.star>0
+        }"></i>
+        <div class="relative z-10">
+            <span class="font-blakely uppercase tracking-widest text-4xl">Etoiles</span>
+            <div class="flex justify-center gap-4">
+                <button *ngIf="createdByUser"><i class="text-mid3 hover:text-mid5 cursor-pointer text-2xl fa-solid fa-circle-minus"></i></button>
+                <span class="font-bold text-4xl">{{character.star}}</span>
+                
+                <button *ngIf="createdByUser"><i class="text-mid3 hover:text-mid5 cursor-pointer text-2xl fa-solid fa-circle-plus"></i></button>
+            </div>
+        </div>
     </div>
 
     <div class="col-span-3 bg-mid4 text-white opacity-80 text-center rounded font-bold uppercase tracking-widest pt-2 pb-1">Compétences</div>

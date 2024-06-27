@@ -1,1 +1,35 @@
-<p>stuff works!</p>
+
+<div class="m-3">
+
+    <div *ngIf="type == 'Weapon'">
+        <div class="uppercase tracking-widest font-bold text-mid4">{{character.weapon_name}}</div>
+        <p class="font-light leading-4 text-justify" [innerHTML]="character.weapon_description"></p>
+        <div class="uppercase tracking-widest font-bold text-mid4 mt-5">{{character.armor_name}}</div>
+        <p class="font-light leading-4 text-justify" [innerHTML]="character.armor_description"></p>
+    </div>
+
+    <div *ngIf="type == 'Clothe'">
+        <div class="uppercase tracking-widest font-bold text-mid4">{{character.clothe1_name}}</div>
+        <p class="font-light leading-4 text-justify" [innerHTML]="character.clothe1_description"></p>
+        <div class="ml-5 uppercase tracking-widest font-bold text-mid3 mt-2">{{character.ornament1_name}}</div>
+        <p class="ml-5 font-light leading-4 text-justify" [innerHTML]="character.ornament1_description"></p>
+
+        <div class="mt-5 uppercase tracking-widest font-bold text-mid4">{{character.clothe2_name}}</div>
+        <p class="font-light leading-4 text-justify" [innerHTML]="character.clothe2_description"></p>
+        <div class="ml-5 uppercase tracking-widest font-bold text-mid3 mt-2">{{character.ornament2_name}}</div>
+        <p class="ml-5 font-light leading-4 text-justify" [innerHTML]="character.ornament2_description"></p>
+    </div>
+
+    <div *ngIf="type == 'Jewelry'">
+        <div class="uppercase tracking-widest font-bold text-mid4">{{character.jewelry1_name}}</div>
+        <p class="font-light leading-4 text-justify" [innerHTML]="character.jewelry1_description"></p>
+        <div class="ml-5 uppercase tracking-widest font-bold text-mid3 mt-2">{{character.stone1_name}}</div>
+        <p class="ml-5 font-light leading-4 text-justify" [innerHTML]="character.stone1_description"></p>
+
+        <div class="mt-5 uppercase tracking-widest font-bold text-mid4">{{character.jewelry2_name}}</div>
+        <p class="font-light leading-4 text-justify" [innerHTML]="character.jewelry2_description"></p>
+        <div class="ml-5 uppercase tracking-widest font-bold text-mid3 mt-2">{{character.stone2_name}}</div>
+        <p class="ml-5 font-light leading-4 text-justify" [innerHTML]="character.stone2_description"></p>
+    </div>
+
+</div>

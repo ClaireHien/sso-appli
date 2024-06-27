@@ -7,3 +7,18 @@ section{
 .spirit>div:first-child>*{grid-area:1/1/2/2;}
 .bg-gradient{background:linear-gradient(-45deg, var(--light3) 0%, var(--mid1) 100%)}
 .form-level{border-top:1px dotted var(--mid1); @apply mt-2 pt-2;}
+
+.dot-top{border-top:1px dotted var(--mid4);}
+
+.material>div{height:0px; overflow: hidden;}
+.material:hover>div{height:120px; overflow: auto;}
+.rotate-star{animation: rotate 10s infinite;}
+@keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  

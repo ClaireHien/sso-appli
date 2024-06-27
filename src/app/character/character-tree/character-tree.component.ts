@@ -12,7 +12,6 @@ export class CharacterTreeComponent implements OnInit{
   @Input() createdByUser: any; 
 
   ngOnInit(): void {
-    console.log(this.tree);
   }
 
   unlockSkill(){
