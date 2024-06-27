@@ -144,5 +144,11 @@ export class CharacterComponent implements OnInit {
   
   formArmor:boolean = false;
   swapArmor(){this.formArmor = !this.formArmor;}
+
+
+
+  addNeutralSkill(){
+    
+  }
   
 }

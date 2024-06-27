@@ -29,6 +29,7 @@ import { StatisticFormComponent } from './character/statistic-form/statistic-for
 import { MainStatisticComponent } from './character/main-statistic/main-statistic.component';
 import { MainStatisticFormComponent } from './character/main-statistic-form/main-statistic-form.component';
 import { CharacterTreeComponent } from './character/character-tree/character-tree.component';
+import { NeutralSkillComponent } from './character/neutral-skill/neutral-skill.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { CharacterTreeComponent } from './character/character-tree/character-tre
     MainStatisticComponent,
     MainStatisticFormComponent,
     CharacterTreeComponent,
+    NeutralSkillComponent,
   ],
   imports: [
     BrowserModule,

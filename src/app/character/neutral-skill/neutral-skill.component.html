@@ -1,0 +1,24 @@
+<div class="rounded bg-white4 hover:bg-white8 p-3">
+    <div class="flex justify-between items-end">
+        <h4 class="uppercase tracking-widest font-bold">{{skill.name}}</h4>
+        <div class="flex flex-col items-end uppercase tracking-widest rounded text-2xs pt-2 pb-1 px-3 font-bold" [ngClass]="{
+            'bg-mid3':type=='Artisanat',
+            'bg-light5':type=='Autre',
+            'bg-mid1':type=='Combat',
+            'bg-light3':type=='Neutre',
+        }"><span>{{type}}</span>
+        <span *ngIf="type == 'Artisanat'" class="text-white">{{skill.craft.name}}</span></div>
+    </div>
+    <div class="text-justify leading-4 font-light mt-3">{{skill.description}}</div>
+    
+    <div *ngIf="type == 'Combat'" class="mt-3">
+        <div class="uppercase text-mid4 text-xs font-bold">
+            <span *ngIf="skill.pivot.upgrade_unlock==1">Amélioration</span>
+            <span *ngIf="skill.pivot.upgrade_unlock==0">Amélioration non débloquée</span>
+        </div>
+        
+        <div *ngIf="skill.pivot.upgrade_unlock==1" class="text-justify leading-4 font-light">{{skill.upgrade}}</div>
+        <button *ngIf="skill.pivot.upgrade_unlock==0" class="hover:bg-light3 pt-2 pb-1 px-3 text-2xs font-bold uppercase tracking-widest bg-light1" (click)="unlockUpgrade()">Débloquer (1PC)</button>
+        
+    </div>
+</div>
