@@ -22,7 +22,9 @@ const routes: Routes = [
   { path: 'neutre', component: NeutralComponent },
   { path: 'combat', component: FightComponent },
   { path: 'les-univers', component: WorldComponent },
+  { path: 'personnage/:characterId', component: CharacterComponent },
   { path: 'personnage/:characterId/:characterName', component: CharacterComponent },
+  { path: 'profil/:userId', component: ProfileComponent },
   { path: 'profil/:userId/:userName', component: ProfileComponent },
 ];
 

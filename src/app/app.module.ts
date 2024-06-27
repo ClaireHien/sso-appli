@@ -30,6 +30,8 @@ import { MainStatisticComponent } from './character/main-statistic/main-statisti
 import { MainStatisticFormComponent } from './character/main-statistic-form/main-statistic-form.component';
 import { CharacterTreeComponent } from './character/character-tree/character-tree.component';
 import { NeutralSkillComponent } from './character/neutral-skill/neutral-skill.component';
+import { StuffComponent } from './character/stuff/stuff.component';
+import { StuffFormComponent } from './character/stuff-form/stuff-form.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,8 @@ import { NeutralSkillComponent } from './character/neutral-skill/neutral-skill.c
     MainStatisticFormComponent,
     CharacterTreeComponent,
     NeutralSkillComponent,
+    StuffComponent,
+    StuffFormComponent,
   ],
   imports: [
     BrowserModule,

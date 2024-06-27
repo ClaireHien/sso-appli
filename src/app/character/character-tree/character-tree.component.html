@@ -1,22 +1,68 @@
-<div class="rounded bg-white6 hover:bg-white p-3">
-    {{tree.name}} <br>
-    {{tree.dice}} <br>
-    {{tree.passive_innate}} <br>
-    {{tree.passive_innate_description}} <br>
-    {{tree.ultimate_skill}} <br>
-    {{tree.ultimate_skill_description}} <br>
-    {{tree.range.label}} <br>
-    {{tree.type_damage.label}} <br><br>
-    skill
-    <div *ngFor="let skill of tree.skills">
-        {{skill.name}} <br>
-        {{skill.description}} <br>
-        {{skill.upgrade}} <br>
-        {{skill.ultimate_upgrade}} <br>
-        {{skill.type_skill.label}} <br>
-    </div> <br>
-    pivot <br>
-    {{tree.pivot.innate}} <br>
-    {{tree.pivot.ultimate_unlock}} <br>
-    {{tree.name}} <br>
+<div class="rounded bg-white6 hover:bg-white p-5">
+    <div class="flex justify-between items-start">
+        <h3 class="font-blakely text-5xl">{{tree.name}}</h3>
+        <div class="flex flex-col items-end uppercase tracking-widest rounded text-2xs pt-2 pb-1 px-3 font-bold" [ngClass]="{
+            'bg-mid4 text-white': tree.type_tree_id == 1,
+            'bg-light5': tree.type_tree_id == 2
+        }">
+            <span>{{tree.type_tree.label}}</span>
+        </div>
+    </div>
+    <div class="uppercase tracking-widest text-mid3 mb-3">
+        {{tree.dice}} | {{tree.range.label}} | {{tree.type_damage.label}} <span *ngIf="tree.type_damage_id == 1">type</span>
+    </div>
+    <div *ngIf="tree.pivot.innate == 1" class="passive-innate pb-2">
+        <div class="flex items-center gap-4">
+            <span class="font-bold uppercase tracking-widest text-mid5">{{tree.passive_innate}}</span>
+            <span class="uppercase tracking-widest text-2xs">(Passif inné)</span>
+        </div>
+        
+        <p class="font-light text-justify leading-4" [innerHTML]="tree.passive_innate_description"></p>
+    </div>
+
+    <div *ngFor="let skill of tree.skills" class="my-3">
+        <div class="flex items-center gap-4">
+            <span class="font-bold uppercase tracking-widest text-mid5" [ngClass]="{
+                'text-mid5':characterHaveSkill(skill.id),
+                'text-black4':!characterHaveSkill(skill.id)
+            }">{{skill.name}}</span>
+            <span class="uppercase tracking-widest text-2xs">({{skill.type_skill.label}})</span>
+        </div>
+        <div>
+            <button *ngIf="createdByUser && !characterHaveSkill(skill.id)" class="hover:bg-light3 pt-2 pb-1 px-3 text-2xs font-bold uppercase tracking-widest bg-light1" (click)="unlockSkill()">Débloquer (1PC)</button>
+            <div *ngIf="characterHaveSkill(skill.id)">
+                <p class="font-light text-justify leading-4" [innerHTML]="skill.description"></p>
+                
+                <div class="uppercase text-xs font-bold tracking-widest mt-2 ml-5">
+                    <span class="text-mid3" *ngIf="characterHaveUpgrade(skill.id)">Amélioration</span>
+                    <span class="text-black4" *ngIf="!characterHaveUpgrade(skill.id)">Amélioration non débloquée</span>
+                </div>
+                <button *ngIf="createdByUser && !characterHaveUpgrade(skill.id)" class="hover:bg-light3 ml-5 pt-2 pb-1 px-3 text-2xs font-bold uppercase tracking-widest bg-light1" (click)="unlockSkill()">Débloquer (2PC)</button>
+                <div *ngIf="characterHaveUpgrade(skill.id)" class="ml-5">
+                    <p class="font-light text-justify leading-4" [innerHTML]="skill.upgrade"></p>
+                    
+                    <div class="uppercase text-xs font-bold tracking-widest mt-2">
+                        <span class="text-mid3" *ngIf="characterHaveUpgradeUltimate(skill.id)">Amélioration d'ultime</span>
+                        <span class="text-black4" *ngIf="!characterHaveUpgradeUltimate(skill.id)">Amélioration d'ultime non débloquée</span>
+                    </div>
+                    <button *ngIf="createdByUser && !characterHaveUpgradeUltimate(skill.id)" class="hover:bg-light3 pt-2 pb-1 px-3 text-2xs font-bold uppercase tracking-widest bg-light1" (click)="unlockSkill()">Débloquer (3PC)</button>
+                    <p *ngIf="characterHaveUpgradeUltimate(skill.id)" class="font-light text-justify leading-4" [innerHTML]="skill.upgrade"></p>
+        
+                </div>
+
+            </div>
+        </div>
+    </div> 
+    <div class="dot-top pt-2">
+        <div class="flex items-center gap-4">
+            <span class="font-bold uppercase tracking-widest text-mid5" [ngClass]="{
+                'text-mid5':tree.pivot.ultimate_unlock === 1,
+                'text-black4':tree.pivot.ultimate_unlock === 0
+            }">{{tree.ultimate_skill}}</span>
+            <span class="uppercase tracking-widest text-2xs">(Ultime)</span>
+        </div>
+        <button *ngIf="createdByUser && tree.pivot.ultimate_unlock === 0" class="hover:bg-light3 pt-2 pb-1 px-3 text-2xs font-bold uppercase tracking-widest bg-light1" (click)="unlockSkill()">Débloquer (5PC)</button>
+        <p *ngIf="tree.pivot.ultimate_unlock === 1" class="font-light text-justify leading-4" [innerHTML]="tree.ultimate_skill_description"></p>
+
+    </div>
 </div>

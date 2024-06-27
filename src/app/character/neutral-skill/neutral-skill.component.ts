@@ -10,6 +10,7 @@ export class NeutralSkillComponent implements OnInit {
   @Input() skill: any; 
   @Input() character: any; 
   @Input() type: any; 
+  @Input() createdByUser: any; 
 
   ngOnInit(): void {
   }

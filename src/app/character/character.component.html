@@ -61,8 +61,8 @@
             <div>
                 <span class="uppercase tracking-widest text-mid4 text-xs pr-2">Points d'expériences</span><strong>{{character.xp}} / 10</strong>
             </div>
-            <div class="form-level flex justify-between">
-                <form [formGroup]="formAddXp" *ngIf="createdByUser" (ngSubmit)="onSubmitAddXp()" class="flex text-mid3 items-center">
+            <div class="form-level flex justify-between" *ngIf="createdByUser">
+                <form [formGroup]="formAddXp" (ngSubmit)="onSubmitAddXp()" class="flex text-mid3 items-center">
 
                     <label class="font-bold uppercase tracking-widest text-xs pr-2" for="xp">Ajouter de l'expérience</label>
                     <input class="w-12 p-1 font-bold bg-transparent text-center" formControlName="xp">
@@ -176,24 +176,28 @@
             [skill]="skill"
             [character]="character"
             [type]="'Combat'"
+            [createdByUser]="createdByUser"
         ></app-neutral-skill>
         <app-neutral-skill *ngFor="let skill of character.neutral_skills" 
             [skill]="skill"
             [character]="character"
             [type]="'Neutre'"
+            [createdByUser]="createdByUser"
         ></app-neutral-skill>
         <app-neutral-skill *ngFor="let skill of character.craft_skills" 
             [skill]="skill"
             [character]="character"
             [type]="'Artisanat'"
+            [createdByUser]="createdByUser"
         ></app-neutral-skill>
         <app-neutral-skill *ngFor="let skill of character.personnal_skills" 
             [skill]="skill"
             [character]="character"
             [type]="'Autre'"
+            [createdByUser]="createdByUser"
         ></app-neutral-skill>
 
-        <button class="bg-mid4 text-white rounded uppercase tracking-widest hover:bg-mid2 font-bold pt-2 pb-1" (click)="addNeutralSkill()">AJouter une compétence neutre</button>
+        <button *ngIf="createdByUser" class="bg-mid4 text-white rounded uppercase tracking-widest hover:bg-mid2 font-bold pt-2 pb-1" (click)="addNeutralSkill()">AJouter une compétence neutre</button>
 
     </div>
     <div class="flex flex-col gap-3 col-start-2 col-span-2">
@@ -201,7 +205,11 @@
         <app-character-tree *ngFor="let tree of character.trees" 
             [tree]="tree"
             [character]="character"
+            [createdByUser]="createdByUser"
         ></app-character-tree>
+
+        <button *ngIf="createdByUser" class="bg-mid4 text-white rounded uppercase tracking-widest hover:bg-mid2 font-bold pt-2 pb-1" (click)="addTree()">AJouter un arbre de compétences</button>
+
 
     </div>
 
