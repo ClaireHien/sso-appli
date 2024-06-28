@@ -29,25 +29,37 @@
             <span class="uppercase tracking-widest text-2xs">({{skill.type_skill.label}})</span>
         </div>
         <div>
-            <button *ngIf="createdByUser && !characterHaveSkill(skill.id)" class="hover:bg-light3 pt-2 pb-1 px-3 text-2xs font-bold uppercase tracking-widest bg-light1" (click)="unlockSkill()">Débloquer (1PC)</button>
+            
+            <div *ngIf="createdByUser && !characterHaveSkill(skill.id)">
+                <button *ngIf="character.pc > 0" class="hover:bg-light3 pt-2 pb-1 px-3 text-2xs font-bold uppercase tracking-widest bg-light1" (click)="unlockSkill('new',skill.id)">Débloquer (1PC)</button>
+                <div *ngIf="character.pc < 1" class="tracking-widest leading-4 text-2xs uppercase text-mid4">Pas assez de PC pour débloquer cette compétence (1PC)</div>
+            </div>
+
             <div *ngIf="characterHaveSkill(skill.id)">
                 <p class="font-light text-justify leading-4" [innerHTML]="skill.description"></p>
                 
-                <div class="uppercase text-xs font-bold tracking-widest mt-2 ml-5">
-                    <span class="text-mid3" *ngIf="characterHaveUpgrade(skill.id)">Amélioration</span>
-                    <span class="text-black4" *ngIf="!characterHaveUpgrade(skill.id)">Amélioration non débloquée</span>
-                </div>
-                <button *ngIf="createdByUser && !characterHaveUpgrade(skill.id)" class="hover:bg-light3 ml-5 pt-2 pb-1 px-3 text-2xs font-bold uppercase tracking-widest bg-light1" (click)="unlockSkill()">Débloquer (2PC)</button>
-                <div *ngIf="characterHaveUpgrade(skill.id)" class="ml-5">
-                    <p class="font-light text-justify leading-4" [innerHTML]="skill.upgrade"></p>
-                    
+                <div class="ml-5">
                     <div class="uppercase text-xs font-bold tracking-widest mt-2">
-                        <span class="text-mid3" *ngIf="characterHaveUpgradeUltimate(skill.id)">Amélioration d'ultime</span>
-                        <span class="text-black4" *ngIf="!characterHaveUpgradeUltimate(skill.id)">Amélioration d'ultime non débloquée</span>
+                        <span class="text-mid3" *ngIf="characterHaveUpgrade(skill.id)">Amélioration</span>
+                        <span class="text-black4" *ngIf="!characterHaveUpgrade(skill.id)">Amélioration non débloquée</span>
                     </div>
-                    <button *ngIf="createdByUser && !characterHaveUpgradeUltimate(skill.id)" class="hover:bg-light3 pt-2 pb-1 px-3 text-2xs font-bold uppercase tracking-widest bg-light1" (click)="unlockSkill()">Débloquer (3PC)</button>
-                    <p *ngIf="characterHaveUpgradeUltimate(skill.id)" class="font-light text-justify leading-4" [innerHTML]="skill.upgrade"></p>
-        
+                    <div *ngIf="createdByUser && !characterHaveUpgrade(skill.id)">
+                        <button *ngIf="character.pc > 1" class="hover:bg-light3  pt-2 pb-1 px-3 text-2xs font-bold uppercase tracking-widest bg-light1" (click)="unlockSkill('upgrade',skill.id)">Débloquer (2PC)</button>
+                        <div *ngIf="character.pc < 2" class="tracking-widest leading-4 text-2xs uppercase text-mid4">Pas assez de PC pour débloquer cette amélioration (2PC)</div>
+                    </div>
+                    <div *ngIf="characterHaveUpgrade(skill.id)">
+                        <p class="font-light text-justify leading-4" [innerHTML]="skill.upgrade"></p>
+                        <div class="uppercase text-xs font-bold tracking-widest mt-2">
+                            <span class="text-mid3" *ngIf="characterHaveUpgradeUltimate(skill.id)">Amélioration d'ultime</span>
+                            <span class="text-black4" *ngIf="!characterHaveUpgradeUltimate(skill.id)">Amélioration d'ultime non débloquée</span>
+                        </div>
+                        <div *ngIf="createdByUser && !characterHaveUpgradeUltimate(skill.id)">
+                            <button *ngIf="character.pc > 2" class="hover:bg-light3 pt-2 pb-1 px-3 text-2xs font-bold uppercase tracking-widest bg-light1" (click)="unlockSkill('ultimate_upgrade', skill.id)">Débloquer (3PC)</button>
+                            <div *ngIf="character.pc < 3" class="tracking-widest leading-4 text-2xs uppercase text-mid4">Pas assez de PC pour débloquer cette amélioration (3PC)</div>
+                        </div>
+                        <p *ngIf="characterHaveUpgradeUltimate(skill.id)" class="font-light text-justify leading-4" [innerHTML]="skill.upgrade"></p>
+                    </div>
+
                 </div>
 
             </div>
@@ -61,7 +73,10 @@
             }">{{tree.ultimate_skill}}</span>
             <span class="uppercase tracking-widest text-2xs">(Ultime)</span>
         </div>
-        <button *ngIf="createdByUser && tree.pivot.ultimate_unlock === 0" class="hover:bg-light3 pt-2 pb-1 px-3 text-2xs font-bold uppercase tracking-widest bg-light1" (click)="unlockSkill()">Débloquer (5PC)</button>
+        <div *ngIf="createdByUser && tree.pivot.ultimate_unlock === 0">
+            <button *ngIf="character.pc > 4" class="hover:bg-light3 pt-2 pb-1 px-3 text-2xs font-bold uppercase tracking-widest bg-light1" (click)="unlockSkill('ultimate',tree.id)">Débloquer (5PC)</button>
+            <div *ngIf="character.pc < 5" class="tracking-widest leading-4 text-2xs uppercase text-mid4">Pas assez de PC pour débloquer cet ultime (5PC)</div>
+        </div>
         <p *ngIf="tree.pivot.ultimate_unlock === 1" class="font-light text-justify leading-4" [innerHTML]="tree.ultimate_skill_description"></p>
 
     </div>

@@ -32,6 +32,7 @@ import { CharacterTreeComponent } from './character/character-tree/character-tre
 import { NeutralSkillComponent } from './character/neutral-skill/neutral-skill.component';
 import { StuffComponent } from './character/stuff/stuff.component';
 import { StuffFormComponent } from './character/stuff-form/stuff-form.component';
+import { GeneralRulesComponent } from './general-rules/general-rules.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { StuffFormComponent } from './character/stuff-form/stuff-form.component'
     NeutralSkillComponent,
     StuffComponent,
     StuffFormComponent,
+    GeneralRulesComponent,
   ],
   imports: [
     BrowserModule,

@@ -18,7 +18,10 @@
         </div>
         
         <div *ngIf="skill.pivot.upgrade_unlock==1" class="text-justify leading-4 font-light">{{skill.upgrade}}</div>
-        <button *ngIf="createdByUser && skill.pivot.upgrade_unlock==0" class="hover:bg-light3 pt-2 pb-1 px-3 text-2xs font-bold uppercase tracking-widest bg-light1" (click)="unlockUpgrade()">Débloquer (1PC)</button>
+        <div *ngIf="createdByUser && skill.pivot.upgrade_unlock==0">
+            <button *ngIf="character.pc > 1" class="hover:bg-light3 pt-2 pb-1 px-3 text-2xs font-bold uppercase tracking-widest bg-light1" (click)="unlockUpgrade(skill.id)">Débloquer (2PC)</button>
+            <div *ngIf="character.pc < 2" class="tracking-widest leading-4 text-2xs uppercase text-mid4">Pas assez de PC pour débloquer cette amélioration (2PC)</div>
+        </div>
         
     </div>
 </div>

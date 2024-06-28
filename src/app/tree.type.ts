@@ -11,6 +11,13 @@ export interface Statistic {
   };
 }
 
+export interface Status {
+  id: number;
+  name: string;
+  description: string;
+  healing: string;
+}
+
 export interface FightSkill {
     id: number;
     name: string;

@@ -10,6 +10,7 @@ import { FightComponent } from './skill-book/fight/fight.component';
 import { CharacterComponent } from './character/character.component';
 import { ProfileComponent } from './profile/profile.component';
 import { WorldComponent } from './world/world.component';
+import { GeneralRulesComponent } from './general-rules/general-rules.component';
 import { MessagePageComponent } from './message-page/message-page.component';
 
 
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'magies', component: MagicComponent },
   { path: 'neutre', component: NeutralComponent },
   { path: 'combat', component: FightComponent },
+  { path: 'regles-generales', component: GeneralRulesComponent },
   { path: 'les-univers', component: WorldComponent },
   { path: 'personnage/:characterId', component: CharacterComponent },
   { path: 'personnage/:characterId/:characterName', component: CharacterComponent },
