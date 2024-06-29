@@ -108,7 +108,6 @@ export class CharacterComponent implements OnInit {
     this.neutralSkillService.getSkills().subscribe(
       (data: NeutralSkill[]) => {
         this.neutralSkills = data;
-        console.log(data);
       },
       error => {
         console.error('Error fetching weapon trees', error);
@@ -189,7 +188,6 @@ export class CharacterComponent implements OnInit {
     this.http.get(`${this.backendUrl}/character/${this.route.snapshot.paramMap.get('characterId')}`,{ headers: new HttpHeaders({ 'Authorization': `Bearer ${this.cookieService.get('token')}` }) }).subscribe(
       data => {
         this.character = data;
-        console.log(this.character)
         if (Number(this.cookieService.get('userId')) === this.character.user_id ){ this.createdByUser = true;}
         this.filterTrees();
         this.filterCharacterTrees();
@@ -222,7 +220,6 @@ export class CharacterComponent implements OnInit {
        this.formAddXp.value, { headers }).subscribe(
       (data) => {
         this.reloadData();
-        console.log(data);
         this.formAddXp.reset({ xp: 0 });
       },
       (error) => {
@@ -352,7 +349,6 @@ export class CharacterComponent implements OnInit {
           );
 
           this.PVheal -=1;
-          console.log(i, this.PVheal)
           if (this.PVheal == 0){i = statusBlood.pivot.number}
         };
       }
@@ -572,7 +568,6 @@ export class CharacterComponent implements OnInit {
 
     this.http.put(`${this.backendUrl}/character/${id}/add-neutral-skill/${type}/${skillId}`, {},{ headers }).subscribe(
       data => {
-        console.log(data);
         this.reloadData();
         this.formNewNeutralSkill.reset({ treeType: '',neutralSkill: '',fightSkill: '',craftSkill:''});
       },

@@ -44,11 +44,19 @@
     </button>
     <div *ngIf="isMenuVisible"  (click)="toggleMenu()" class="open-menu absolute top-12 left-0 bg-white w-full">
       <a routerLink="/">Accueil</a>
+      <a routerLink="/regles-generales" routerLinkActive="active">Règles générales</a>
       <a routerLink="/armes" routerLinkActive="active">Armes</a>
       <a routerLink="/magies" routerLinkActive="active">Magies</a>
       <a routerLink="/combat" routerLinkActive="active">Combat</a>
       <a routerLink="/artisanat" routerLinkActive="active">Artisanat</a>
       <a routerLink="/neutre" routerLinkActive="active">Neutre</a>
+      
+      <a  *ngIf="isLoggedIn();"  (click)="profile()" class="bg-mid1 hover:text-mid2 cursor-pointer px-5">Profil</a>
+      <a  *ngIf="isLoggedIn();" (click)="logout()" class="bg-mid1 hover:text-mid2 cursor-pointer px-5">Déconnexion</a>
+      
+      <a (click)="login()" *ngIf="!isLoggedIn();" class="bg-mid1 hover:text-mid2 cursor-pointer px-5">Connexion</a>
+      <a (click)="register()" *ngIf="!isLoggedIn();" class="bg-mid1 hover:text-mid2 cursor-pointer px-5">Inscription</a>
+
     </div>
   </div>
 

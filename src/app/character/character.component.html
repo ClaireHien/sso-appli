@@ -4,7 +4,7 @@
 <section *ngIf="character" class="grid lg:grid-cols-3 pt-20 pl-5 pr-5 pb-20 gap-3 relative z-10 md:grid-cols-2 grid-cols-1">
     
     <!-- perso info -->
-    <div class="global bg-white rounded" [ngClass]="{'bg-gradient':formGlobal}">
+    <div class="md:col-span-2 lg:row-span-2 global bg-white rounded" [ngClass]="{'bg-gradient':formGlobal}">
         
         <app-global *ngIf="!formGlobal"
         [character]="character"
@@ -22,14 +22,14 @@
     </div>
 
     <!-- general hors perso -->
-    <div class="p-2 bg-black2 rounded text-xs uppercase tracking-widest grid grid-cols-2">
+    <div class="md:col-start-2 lg:col-start-3 bg-black2 p-2 rounded text-xs uppercase tracking-widest grid grid-cols-2">
         <strong class="justify-self-end text-white pr-3">Joueur</strong><span>{{character.user.name}}</span>
         <strong class="justify-self-end text-white pr-3">Groupe </strong><span>{{character.group.name}}</span>
         <strong class="justify-self-end text-white pr-3">Monde </strong><span>{{character.group.world.name}}</span>
     </div>
     
     <!-- esprit -->
-    <div class="rounded bg-white6 hover:bg-white pb-5 spirit" [ngClass]="{'bg-gradient':formSpirit}">
+    <div class="md:col-start-2 md:row-span-3 lg:col-start-3 lg:row-span-2 rounded bg-white6 hover:bg-white pb-5 spirit" [ngClass]="{'bg-gradient':formSpirit}">
         <div class="grid">
             <p class="m-3 p-3 bg-white opacity-0 hover:opacity-100 relative z-10 text-sm font-light leading-4 text-justify">{{character.spirit.description}}</p>
             <img [src]="character.spirit.image" class="rounded h-52 overflow-hidden w-full object-cover">
@@ -52,7 +52,7 @@
     </div>
 
     <!-- niveau  -->
-    <div class="rounded bg-white6 hover:bg-white lg:grid items-center lg:grid-cols-3 p-5">
+    <div class="md:row-start-2 md:row-span-2 lg:row-span-1 lg:col-span-2 lg:row-start-3 rounded bg-white6 hover:bg-white lg:grid items-center lg:grid-cols-3 p-5">
 
         <div class="text-center">
             <span class="uppercase tracking-widest pt-2">Niveau</span>
@@ -85,8 +85,28 @@
         
     </div>
 
+    <!-- stat général -->
+    <div class="md:row-start-4 lg:col-start-2 lg:row-span-2 bg-white8 hover:bg-white rounded" [ngClass]="{'bg-gradient':formStatMain}">
+        <h2 class="text-center font-blakely text-5xl tracking-widest pt-5">Statistiques</h2>
+
+        <div (click)="swapStatMain()" *ngIf="createdByUser" class="uppercase text-center tracking-widest mx-5 text-mid3 text-xs cursor-pointer">
+            <span *ngIf="!formStatMain">Modifier</span>
+            <span *ngIf="formStatMain">Annuler</span>
+        </div>
+
+        <app-main-statistic *ngIf="!formStatMain"
+            [character]="character"
+            [createdByUser]="createdByUser"
+        ></app-main-statistic>
+
+        <app-main-statistic-form *ngIf="formStatMain && createdByUser" (formSubmitted)="swapStatMain()"
+            [character]="character"
+        ></app-main-statistic-form>
+
+    </div>
+
     <!-- stat physic -->
-    <div class="bg-white8 hover:bg-white rounded pb-1" [ngClass]="{'bg-gradient':formStatPhysical}">
+    <div class="lg:col-start-1 lg:row-start-4 bg-white8 hover:bg-white rounded pb-1" [ngClass]="{'bg-gradient':formStatPhysical}">
         <h2 class="text-center font-blakely text-3xl tracking-widest pt-5">Le corps</h2>
         <div (click)="swapStatPhysical()" *ngIf="createdByUser" class="uppercase text-center tracking-widest mx-5 text-mid3 text-xs cursor-pointer">
             <span *ngIf="!formStatPhysical">Modifier</span>
@@ -106,28 +126,8 @@
 
     </div>
     
-    <!-- stat général -->
-    <div class="bg-white8 hover:bg-white rounded" [ngClass]="{'bg-gradient':formStatMain}">
-        <h2 class="text-center font-blakely text-5xl tracking-widest pt-5">Statistiques</h2>
-
-        <div (click)="swapStatMain()" *ngIf="createdByUser" class="uppercase text-center tracking-widest mx-5 text-mid3 text-xs cursor-pointer">
-            <span *ngIf="!formStatMain">Modifier</span>
-            <span *ngIf="formStatMain">Annuler</span>
-        </div>
-
-        <app-main-statistic *ngIf="!formStatMain"
-            [character]="character"
-            [createdByUser]="createdByUser"
-        ></app-main-statistic>
-
-        <app-main-statistic-form *ngIf="formStatMain && createdByUser" (formSubmitted)="swapStatMain()"
-            [character]="character"
-        ></app-main-statistic-form>
-
-    </div>
-
     <!-- stat magique -->
-    <div class="bg-white8 hover:bg-white rounded pb-1" [ngClass]="{'bg-gradient':formStatMagic}">
+    <div class="lg:col-start-3 bg-white8 hover:bg-white rounded pb-1" [ngClass]="{'bg-gradient':formStatMagic}">
         <h2 class="text-center font-blakely text-3xl tracking-widest pt-5">L'esprit</h2>
         <div (click)="swapStatMagic()" *ngIf="createdByUser" class="uppercase text-center tracking-widest mx-5 text-mid3 text-xs cursor-pointer">
             <span *ngIf="!formStatMagic">Modifier</span>
@@ -146,43 +146,9 @@
         ></app-statistic-form>
 
     </div>
-    
-    <!-- vêtement -->
-    <div class="bg-white6 hover:bg-white rounded pb-1"  [ngClass]="{'bg-gradient':formClothe}">
-        <h4 class="uppercase mt-3 font-bold text-center">Vêtements & Ornements</h4>
-        <div (click)="swapClothe()" *ngIf="createdByUser" class="uppercase text-center tracking-widest mx-5 text-mid3 text-xs cursor-pointer">
-            <span *ngIf="!formClothe">Modifier</span>
-            <span *ngIf="formClothe">Annuler</span>
-        </div>
-        <app-stuff *ngIf="!formClothe"
-            [character]="character"
-            [type]="'Clothe'"
-        ></app-stuff>
-        <app-stuff-form *ngIf="formClothe && createdByUser" (formSubmitted)="swapClothe()"
-            [character]="character"
-            [type]="'Clothe'"
-        ></app-stuff-form>
-    </div>
-
-    <!-- bijoux -->
-    <div class="bg-white6 hover:bg-white rounded pb-1"  [ngClass]="{'bg-gradient':formJewelry}">
-        <h4 class="uppercase mt-3 font-bold text-center">Bijoux & Pierres</h4>
-        <div (click)="swapJewelry()" *ngIf="createdByUser" class="uppercase text-center tracking-widest mx-5 text-mid3 text-xs cursor-pointer">
-            <span *ngIf="!formJewelry">Modifier</span>
-            <span *ngIf="formJewelry">Annuler</span>
-        </div>
-        <app-stuff *ngIf="!formJewelry"
-            [character]="character"
-            [type]="'Jewelry'"
-        ></app-stuff>
-        <app-stuff-form *ngIf="formJewelry && createdByUser" (formSubmitted)="swapJewelry()"
-            [character]="character"
-            [type]="'Jewelry'"
-        ></app-stuff-form>
-    </div>
 
     <!-- etat -->
-    <div class="bg-white6 hover:bg-white rounded p-3 pb-5">
+    <div class="md:row-start-5 lg:col-start-2 lg:row-start-6 bg-white6 hover:bg-white rounded p-3 pb-5">
         <h2 class="text-center font-blakely text-3xl tracking-widest pt-2">Etats</h2>
 
         <div *ngFor="let status of character.statuses" class="status">
@@ -226,7 +192,7 @@
     </div>
 
     <!-- arme armure -->
-    <div class="bg-white6 hover:bg-white rounded pb-1"  [ngClass]="{'bg-gradient':formWeapon}">
+    <div class="md:row-start-8 md:col-span-2 lg:row-start-7 lg:col-span-1 bg-white6 hover:bg-white rounded pb-1"  [ngClass]="{'bg-gradient':formWeapon}">
         <h4 class="uppercase mt-3 font-bold text-center">Arme & Armure</h4>
         <div (click)="swapWeapon()" *ngIf="createdByUser" class="uppercase text-center tracking-widest mx-5 text-mid3 text-xs cursor-pointer">
             <span *ngIf="!formWeapon">Modifier</span>
@@ -242,8 +208,55 @@
         ></app-stuff-form>
     </div>
 
+    <!-- vêtement -->
+    <div class="lg:row-span-2 bg-white6 hover:bg-white rounded pb-1"  [ngClass]="{'bg-gradient':formClothe}">
+        <h4 class="uppercase mt-3 font-bold text-center">Vêtements & Ornements</h4>
+        <div (click)="swapClothe()" *ngIf="createdByUser" class="uppercase text-center tracking-widest mx-5 text-mid3 text-xs cursor-pointer">
+            <span *ngIf="!formClothe">Modifier</span>
+            <span *ngIf="formClothe">Annuler</span>
+        </div>
+        <app-stuff *ngIf="!formClothe"
+            [character]="character"
+            [type]="'Clothe'"
+        ></app-stuff>
+        <app-stuff-form *ngIf="formClothe && createdByUser" (formSubmitted)="swapClothe()"
+            [character]="character"
+            [type]="'Clothe'"
+        ></app-stuff-form>
+    </div>
+
+    <!-- bijoux -->
+    <div class="lg:row-span-2 bg-white6 hover:bg-white rounded pb-1"  [ngClass]="{'bg-gradient':formJewelry}">
+        <h4 class="uppercase mt-3 font-bold text-center">Bijoux & Pierres</h4>
+        <div (click)="swapJewelry()" *ngIf="createdByUser" class="uppercase text-center tracking-widest mx-5 text-mid3 text-xs cursor-pointer">
+            <span *ngIf="!formJewelry">Modifier</span>
+            <span *ngIf="formJewelry">Annuler</span>
+        </div>
+        <app-stuff *ngIf="!formJewelry"
+            [character]="character"
+            [type]="'Jewelry'"
+        ></app-stuff>
+        <app-stuff-form *ngIf="formJewelry && createdByUser" (formSubmitted)="swapJewelry()"
+            [character]="character"
+            [type]="'Jewelry'"
+        ></app-stuff-form>
+    </div>
+
+    <!-- cristaux -->
+    <div class="lg:row-start-8 bg-white4 hover:bg-white p-3 rounded">
+        <h3 class="uppercase font-bold tracking-widest text-center mt-2">Cristaux</h3>
+        <div class="text-3xl text-center tracking-widest font-bold">{{character.money}}</div>
+        <form [formGroup]="formAddMoney" *ngIf="createdByUser" class="dot-top pt-3 mt-3 flex flex-col items-center justify-center">
+            <input class="w-20 p-1 font-bold bg-transparent text-center mb-2" formControlName="money">
+            <div class="flex gap-3">
+                <button type="submit" (click)="onSubmitMoney('sub')" class="px-4 text-xs rounded w-full z-10 font-bold uppercase tracking-widest bg-light1 pt-2 pb-1 hover:bg-light3">Retirer</button>
+                <button type="submit" (click)="onSubmitMoney('add')" class="px-4 text-xs rounded w-full z-10 font-bold uppercase tracking-widest bg-mid3 pt-2 pb-1 hover:bg-mid5">Ajouter</button>
+            </div>
+        </form>
+    </div>
+
     <!-- matériaux -->
-    <div class="bg-white4 hover:bg-white p-3 rounded">
+    <div class="lg:row-span-3 bg-white4 hover:bg-white p-3 rounded">
         <h3 class="text-center font-blakely uppercase tracking-widest text-4xl mb-3">Matériaux</h3>
         
         <div *ngFor="let material of groupedMaterials" class="flex justify-between items-start">
@@ -289,7 +302,7 @@
     </div>
 
     <!-- inventaire -->
-    <div class="bg-white4 hover:bg-white p-3 rounded">
+    <div class="lg:row-span-3 bg-white4 hover:bg-white p-3 rounded">
         <h3 class="text-center font-blakely uppercase tracking-widest text-4xl mb-3">Inventaire</h3>
         
         <div *ngFor="let item of character.items" class="flex justify-between items-start">
@@ -313,21 +326,8 @@
 
     </div>
 
-    <!-- cristaux -->
-    <div class="bg-white4 hover:bg-white p-3 rounded">
-        <h3 class="uppercase font-bold tracking-widest text-center mt-2">Cristaux</h3>
-        <div class="text-3xl text-center tracking-widest font-bold">{{character.money}}</div>
-        <form [formGroup]="formAddMoney" *ngIf="createdByUser" class="dot-top pt-3 mt-3 flex flex-col items-center justify-center">
-            <input class="w-20 p-1 font-bold bg-transparent text-center mb-2" formControlName="money">
-            <div class="flex gap-3">
-                <button type="submit" (click)="onSubmitMoney('sub')" class="px-4 text-xs rounded w-full z-10 font-bold uppercase tracking-widest bg-light1 pt-2 pb-1 hover:bg-light3">Retirer</button>
-                <button type="submit" (click)="onSubmitMoney('add')" class="px-4 text-xs rounded w-full z-10 font-bold uppercase tracking-widest bg-mid3 pt-2 pb-1 hover:bg-mid5">Ajouter</button>
-            </div>
-        </form>
-    </div>
-
     <!-- étoiles -->
-    <div class="bg-white4 hover:bg-white items-center justify-items-center p-3 rounded grid grid-one">
+    <div class="md:row-start-9 lg:row-start-9 bg-white4 hover:bg-white items-center justify-items-center p-3 rounded grid grid-one">
         <i class="text-7xl fa-solid fa-star" [ngClass]="{
             'text-black2':character.star==0,
             'rotate-star text-light1 ':character.star>0
@@ -343,10 +343,62 @@
         </div>
     </div>
 
-    <div class="bg-mid4 text-white opacity-80 text-center rounded font-bold uppercase tracking-widest pt-2 pb-1">Compétences</div>
+    <div class="md:col-span-2 lg:col-span-3 bg-mid4 text-white opacity-80 text-center rounded font-bold uppercase tracking-widest pt-2 pb-1">Compétences</div>
+
+    <!-- arbres -->
+    <div class="md:col-span-2 lg:col-start-2 flex flex-col gap-3">
+            
+        <app-character-tree *ngFor="let tree of character.trees" 
+            [tree]="tree"
+            [character]="character"
+            [createdByUser]="createdByUser"
+        ></app-character-tree>
+
+        <button *ngIf="createdByUser" class="bg-mid4 text-white rounded uppercase tracking-widest hover:bg-mid2 font-bold pt-2 pb-1" (click)="openTree()">AJouter un arbre de compétences</button>
+
+        <div *ngIf="openTreeForm && character.pc < 1" class="uppercase tracking-widest text-xs font-bold">Pas assez de PC pour débloquer un nouvel arbre (1PC)</div>
+        
+        <div *ngIf="openTreeForm && character.pc > 0" class="bg-gradient">
+            
+            
+            <form [formGroup]="formNewTree" (ngSubmit)="onSubmitNewTree()" class="flex flex-col p-5">
+
+                <div class="flex flex-col mt-2 mb-5">
+                    <label class="uppercase font-bold text-white tracking-widest" for="treeType">Type d'arbre</label>
+                    <select class="bg-white6 hover:bg-white8 pt-2 pb-1 px-2" id="treeType" formControlName="treeType">
+                      <option value=""></option>
+                      <option value="physical">Maniement d'arme</option>
+                      <option value="magical">Manipulation magique</option>
+                    </select>
+                  </div>
+              
+                <div class="flex flex-col mt-2" *ngIf="formNewTree.get('treeType')?.value === 'physical'">
+                  <label class="uppercase font-bold text-white tracking-widest" for="physicalTree">Maniement d'arme</label>
+                  <select class="bg-white6 hover:bg-white8 pt-2 pb-1 px-2" id="physicalTree" formControlName="physicalTree">
+                    <option value="">Sélectionner une arme</option>
+                    <option *ngFor="let tree of filteredPhysicalTrees" [value]="tree.id">{{ tree.name }}</option>
+                  </select>
+                </div>
+              
+                <div class="flex flex-col mt-2" *ngIf="formNewTree.get('treeType')?.value === 'magical'">
+                  <label class="uppercase font-bold text-white tracking-widest" for="magicalTree">Manipulation magique</label>
+                  <select class="bg-white6 hover:bg-white8 pt-2 pb-1 px-2" id="magicalTree" formControlName="magicalTree">
+                    <option value="">Sélectionner une magie</option>
+                    <option *ngFor="let tree of filteredMagicalTrees" [value]="tree.id">{{ tree.name }}</option>
+                  </select>
+                </div>
+              
+                <button type="submit" class="hover:text-mid5 z-10 font-bold uppercase tracking-widest mt-5 p-1">Débloquer un nouvel arbre (1 PC)</button>              
+            </form>
+              
+
+
+        </div>
+ 
+    </div>
 
     <!-- neutre  -->
-    <div class="flex flex-col gap-3">
+    <div class="md:col-span-2 md:grid md:grid-col-2 lg:row-start-11 lg:col-span-1 lg:flex lg:flex-col flex flex-col gap-3">
     
         <app-neutral-skill *ngFor="let skill of character.fight_skills" 
             [skill]="skill"
@@ -415,7 +467,7 @@
                   </select>
                 </div>
               
-                <button type="submit" class="hover:text-mid5 z-10 font-bold uppercase tracking-widest mt-5 p-1">Ajouter la compétence</button>
+                <button type="submit" class="hover:text-mid5 z-10 font-bold uppercase tracking-widest mt-5 p-1">Ajouter la compétence (1PC)</button>
               
               </form>
               
@@ -423,56 +475,5 @@
         
     </div>
     
-    <!-- arbres -->
-    <div class="flex flex-col gap-3">
-            
-        <app-character-tree *ngFor="let tree of character.trees" 
-            [tree]="tree"
-            [character]="character"
-            [createdByUser]="createdByUser"
-        ></app-character-tree>
-
-        <button *ngIf="createdByUser" class="bg-mid4 text-white rounded uppercase tracking-widest hover:bg-mid2 font-bold pt-2 pb-1" (click)="openTree()">AJouter un arbre de compétences</button>
-
-        <div *ngIf="openTreeForm && character.pc < 1" class="uppercase tracking-widest text-xs font-bold">Pas assez de PC pour débloquer un nouvel arbre (1PC)</div>
-        
-        <div *ngIf="openTreeForm && character.pc > 0" class="bg-gradient">
-            
-            
-            <form [formGroup]="formNewTree" (ngSubmit)="onSubmitNewTree()" class="flex flex-col p-5">
-
-                <div class="flex flex-col mt-2 mb-5">
-                    <label class="uppercase font-bold text-white tracking-widest" for="treeType">Type d'arbre</label>
-                    <select class="bg-white6 hover:bg-white8 pt-2 pb-1 px-2" id="treeType" formControlName="treeType">
-                      <option value=""></option>
-                      <option value="physical">Maniement d'arme</option>
-                      <option value="magical">Manipulation magique</option>
-                    </select>
-                  </div>
-              
-                <div class="flex flex-col mt-2" *ngIf="formNewTree.get('treeType')?.value === 'physical'">
-                  <label class="uppercase font-bold text-white tracking-widest" for="physicalTree">Maniement d'arme</label>
-                  <select class="bg-white6 hover:bg-white8 pt-2 pb-1 px-2" id="physicalTree" formControlName="physicalTree">
-                    <option value="">Sélectionner une arme</option>
-                    <option *ngFor="let tree of filteredPhysicalTrees" [value]="tree.id">{{ tree.name }}</option>
-                  </select>
-                </div>
-              
-                <div class="flex flex-col mt-2" *ngIf="formNewTree.get('treeType')?.value === 'magical'">
-                  <label class="uppercase font-bold text-white tracking-widest" for="magicalTree">Manipulation magique</label>
-                  <select class="bg-white6 hover:bg-white8 pt-2 pb-1 px-2" id="magicalTree" formControlName="magicalTree">
-                    <option value="">Sélectionner une magie</option>
-                    <option *ngFor="let tree of filteredMagicalTrees" [value]="tree.id">{{ tree.name }}</option>
-                  </select>
-                </div>
-              
-                <button type="submit" class="hover:text-mid5 z-10 font-bold uppercase tracking-widest mt-5 p-1">Débloquer un nouvel arbre (1 PC)</button>              
-            </form>
-              
-
-
-        </div>
- 
-    </div>
 
 </section>
