@@ -1,1 +1,53 @@
-<p>stuff-form works!</p>
+
+<form [formGroup]="formCharacter" (ngSubmit)="onSubmitCharacter()" class="p-5">
+
+    <div class="flex flex-col" *ngIf="type == 'Weapon'">        
+        <label class="font-bold mt-2 uppercase" for="weapon">Arme</label>
+        <input class="pt-2 pb-1 my-1 px-3 bg-white4 hover:bg-white6" [(ngModel)]="character.weapon_name" formControlName="weapon_name">
+        <input class="pt-2 pb-1 my-1 px-3 bg-white4 hover:bg-white6" [(ngModel)]="character.weapon_description" formControlName="weapon_description">
+        
+        <label class="font-bold mt-2 uppercase" for="armor">Armure</label>
+        <input class="pt-2 pb-1 my-1 px-3 bg-white4 hover:bg-white6" [(ngModel)]="character.armor_name" formControlName="armor_name">
+        <input class="pt-2 pb-1 my-1 px-3 bg-white4 hover:bg-white6" [(ngModel)]="character.armor_description" formControlName="armor_description">
+    </div>
+
+    <div class="flex flex-col" *ngIf="type == 'Clothe'">
+        <label class="font-bold mt-2 uppercase" for="clothe1">Vêtement 1</label>
+        <input class="pt-2 pb-1 my-1 px-3 bg-white4 hover:bg-white6" [(ngModel)]="character.clothe1_name" formControlName="clothe1_name">
+        <input class="pt-2 pb-1 my-1 px-3 bg-white4 hover:bg-white6" [(ngModel)]="character.clothe1_description" formControlName="clothe1_description">
+        
+        <label class="font-bold mt-2 uppercase" for="ornament1">Ornement du vêtement 1</label>
+        <input class="pt-2 pb-1 my-1 px-3 bg-white4 hover:bg-white6" [(ngModel)]="character.ornament1_name" formControlName="ornament1_name">
+        <input class="pt-2 pb-1 my-1 px-3 bg-white4 hover:bg-white6" [(ngModel)]="character.ornament1_description" formControlName="ornament1_description">
+
+        <label class="font-bold mt-2 uppercase" for="clothe2">Vêtement 2</label>
+        <input class="pt-2 pb-1 my-1 px-3 bg-white4 hover:bg-white6" [(ngModel)]="character.clothe2_name" formControlName="clothe2_name">
+        <input class="pt-2 pb-1 my-1 px-3 bg-white4 hover:bg-white6" [(ngModel)]="character.clothe2_description" formControlName="clothe2_description">
+        
+        <label class="font-bold mt-2 uppercase" for="ornament2">Ornement du vêtement 2</label>
+        <input class="pt-2 pb-1 my-1 px-3 bg-white4 hover:bg-white6" [(ngModel)]="character.ornament2_name" formControlName="ornament2_name">
+        <input class="pt-2 pb-1 my-1 px-3 bg-white4 hover:bg-white6" [(ngModel)]="character.ornament2_description" formControlName="ornament2_description">
+    </div>
+
+    <div class="flex flex-col" *ngIf="type == 'Jewelry'">
+        <label class="font-bold mt-2 uppercase" for="jewelry1">Bijoux 1</label>
+        <input class="pt-2 pb-1 my-1 px-3 bg-white4 hover:bg-white6" [(ngModel)]="character.jewelry1_name" formControlName="jewelry1_name">
+        <input class="pt-2 pb-1 my-1 px-3 bg-white4 hover:bg-white6" [(ngModel)]="character.jewelry1_description" formControlName="jewelry1_description">
+        
+        <label class="font-bold mt-2 uppercase" for="stone1">Pierre du Bijoux 1</label>
+        <input class="pt-2 pb-1 my-1 px-3 bg-white4 hover:bg-white6" [(ngModel)]="character.stone1_name" formControlName="stone1_name">
+        <input class="pt-2 pb-1 my-1 px-3 bg-white4 hover:bg-white6" [(ngModel)]="character.stone1_description" formControlName="stone1_description">
+
+        <label class="font-bold mt-2 uppercase" for="jewelry2">Bijoux 2</label>
+        <input class="pt-2 pb-1 my-1 px-3 bg-white4 hover:bg-white6" [(ngModel)]="character.jewelry2_name" formControlName="jewelry2_name">
+        <input class="pt-2 pb-1 my-1 px-3 bg-white4 hover:bg-white6" [(ngModel)]="character.jewelry2_description" formControlName="jewelry2_description">
+        
+        <label class="font-bold mt-2 uppercase" for="stone2">Pierre du Bijoux 2</label>
+        <input class="pt-2 pb-1 my-1 px-3 bg-white4 hover:bg-white6" [(ngModel)]="character.stone2_name" formControlName="stone2_name">
+        <input class="pt-2 pb-1 my-1 px-3 bg-white4 hover:bg-white6" [(ngModel)]="character.stone2_description" formControlName="stone2_description">
+    </div>
+
+
+    <button type="submit" class="mt-5 w-full col-span-3 z-10 font-bold uppercase tracking-widest mt-3 p-1 bg-light3 pt-2 pb-1 my-1 hover:bg-light1">Valider</button>
+    
+</form>

@@ -8,6 +8,7 @@ import { AuthService } from '../../services/auth.service'
 import { ReloadDataService } from '../../services/reload-data.service';
 
 
+
 @Component({
   selector: 'app-main-statistic',
   templateUrl: './main-statistic.component.html',
@@ -30,7 +31,7 @@ export class MainStatisticComponent implements OnInit{
     private fb: FormBuilder,
     private cookieService: CookieService,
     private authService: AuthService,
-    private cdr: ChangeDetectorRef 
+    private cdr: ChangeDetectorRef,
   ) {
     this.formEditPV = this.fb.group({
       damageValue: ['0', Validators.required],
@@ -52,6 +53,8 @@ export class MainStatisticComponent implements OnInit{
     this.heartBeat(this.character.pv);
     this.pts_tech = +this.character.pt_max + +this.character.pt_bonus
     this.pts_esp = +this.character.pe_max + +this.character.pe_bonus
+    
+
   }
   
   heartBeat(pv:number){
@@ -84,29 +87,46 @@ export class MainStatisticComponent implements OnInit{
 
   onSubmitEditPV(action: string) {
 
-    if(this.formEditPV.value.damageValue !== "0" || this.formEditPV.value.healValue !== "0" || action == "fullHeal"){
     
-      const id = this.route.snapshot.paramMap.get('characterId');
-      const token = this.cookieService.get('token');
-      const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      });
+    const id = this.route.snapshot.paramMap.get('characterId');
+    const token = this.cookieService.get('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    });
 
-      this.http.put(`${this.backendUrl}/character/${id}/pv/${action}`,
-        this.formEditPV.value, { headers }).subscribe(
-        (data: any) => {
-          console.log(data);
-          this.reloadDataService.triggerReload();
-          this.formSubmitted.emit();
-          this.formEditPV.reset({ healValue: 0, damageValue:0 });
-          this.heartBeat(data.pv);
-        },
-        (error) => {
-          console.error('Erreur', error);
-        }
-      );
+    const statuses = this.character.statuses;
+    let bloodNbr =0;
+    const statusBlood = statuses.find((status: { id: number; pivot: { number: number } }) => status.id === 1);
+    if(statusBlood && this.formEditPV.value.healValue > 0){
+      if (this.formEditPV.value.healValue>0){
+        for (let i=0;i<statusBlood.pivot.number;i++){
+          this.http.put(`${this.backendUrl}/character/${id}/status/minus/1`, {},{ headers }).subscribe(
+            data => {},
+            (error) => {
+              console.error('Erreur', error);
+            }
+          );
+
+          this.formEditPV.value.healValue -=1;
+          if (this.formEditPV.value.healValue == 0){i = statusBlood.pivot.number};
+        };
+      }
     }
+    this.character.pv += this.formEditPV.value.healValue;
+
+    this.http.put(`${this.backendUrl}/character/${id}/pv/${action}`,
+      this.formEditPV.value, { headers }).subscribe(
+      (data: any) => {
+        this.reloadDataService.triggerReload();
+        this.formSubmitted.emit();
+        this.formEditPV.reset({ healValue: 0, damageValue:0 });
+        this.heartBeat(data.pv);
+      },
+      (error) => {
+        console.error('Erreur', error);
+      }
+    );
 
 
   }

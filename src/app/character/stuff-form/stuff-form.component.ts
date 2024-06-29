@@ -31,8 +31,26 @@ export class StuffFormComponent {
     private authService: AuthService,
   ) {
     this.formCharacter = this.fb.group({
-      affinity: ['', Validators.required],
-      spirit_level: ['', Validators.required]
+      weapon_name: ['', Validators.required],
+      weapon_description: ['', Validators.required],
+      armor_name: ['', Validators.required],
+      armor_description: ['', Validators.required],
+      clothe1_name: ['', Validators.required],
+      clothe1_description: ['', Validators.required],
+      ornament1_name: ['', Validators.required],
+      ornament1_description: ['', Validators.required],
+      clothe2_name: ['', Validators.required],
+      clothe2_description: ['', Validators.required],
+      ornament2_name: ['', Validators.required],
+      ornament2_description: ['', Validators.required],
+      jewelry1_name: ['', Validators.required],
+      jewelry1_description: ['', Validators.required],
+      stone1_name: ['', Validators.required],
+      stone1_description: ['', Validators.required],
+      jewelry2_name: ['', Validators.required],
+      jewelry2_description: ['', Validators.required],
+      stone2_name: ['', Validators.required],
+      stone2_description: ['', Validators.required],
     });
   }
 
@@ -46,7 +64,7 @@ export class StuffFormComponent {
       Authorization: `Bearer ${token}`
     });
 
-    this.http.put(`${this.backendUrl}/character/${id}/spirit`,
+    this.http.put(`${this.backendUrl}/character/${id}/stuff`,
        this.formCharacter.value, { headers }).subscribe(
       (data) => {
         this.reloadDataService.triggerReload();

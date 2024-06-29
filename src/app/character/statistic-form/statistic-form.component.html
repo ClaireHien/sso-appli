@@ -1,1 +1,54 @@
-<p>statistic-form works!</p>
+<div class="dot-bot pb-2 mb-2 mx-3 mt-3 uppercase tracking-widest">
+
+    <div class="flex items-center gap-2"><span class="text-white text-xs">Points de compétences</span><strong class="text-xl"> {{pc}}</strong></div>
+    <div class="flex items-center gap-2"><span class="text-white text-xs">Points de statistiques libres</span><strong class="text-xl"> {{free_stat}}</strong></div>
+    <em class="text-xs">1 PC = 3 pts de statistiques</em>
+    <div *ngIf="!pcEnough" class="mt-2 text-center font-bold text-xs">Pas assez de points de statistiques ou de PC pour monter les statistiques de base</div>
+
+</div>
+
+<form [formGroup]="formCharacter" (ngSubmit)="onSubmitCharacter()"
+    class="grid grid-cols-3 p-5 gap-1 items-center justify-items-center">
+    <div class="uppercase tracking-widest font-bold"></div>
+    <div class="uppercase tracking-widest font-bold">Base</div>
+    <div class="uppercase tracking-widest font-bold">Bonus</div>
+
+    <label class="font-bold text-xl uppercase" for="stat0">{{abreviation[0]}}</label>
+    <div class="flex justify-between items-center gap-1">
+        <span class="text-2xl pt-1 font-bold">{{formCharacter.get('stat0')?.value}}</span>
+        <span class="font-bold text-white" *ngIf="statAdd0 > 0"> (+{{statAdd0}})</span>
+        <i (click)="addStat(0)" *ngIf="pcEnough" class="fa-solid fa-circle-plus font-bold text-2xl text-white cursor-pointer hover:scale-110 hover:text-mid5 flex items-center"></i>
+    </div>
+    <input class="w-16 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6 hidden" formControlName="stat0">
+    <input class="w-16 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6" formControlName="stat0_bonus">
+
+    <label class="font-bold text-xl uppercase" for="stat1">{{abreviation[1]}}</label>
+    <div class="flex justify-between items-center gap-2">
+        <span class="text-2xl pt-1 font-bold">{{formCharacter.get('stat1')?.value}}</span>
+        <span class="font-bold text-white" *ngIf="statAdd1 > 0"> (+{{statAdd1}})</span>
+        <i (click)="addStat(1)" *ngIf="pcEnough" class="fa-solid fa-circle-plus font-bold text-2xl text-white cursor-pointer hover:scale-110 hover:text-mid5 flex items-center"></i>
+    </div>
+    <input class="w-16 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6 hidden" formControlName="stat1">
+    <input class="w-16 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6" formControlName="stat1_bonus">
+    
+    <label class="font-bold text-xl uppercase" for="stat2">{{abreviation[2]}}</label>
+    <div class="flex justify-between items-center gap-2">
+        <span class="text-2xl pt-1 font-bold">{{formCharacter.get('stat2')?.value}}</span>
+        <span class="font-bold text-white" *ngIf="statAdd2 > 0"> (+{{statAdd2}})</span>
+        <i (click)="addStat(2)" *ngIf="pcEnough" class="fa-solid fa-circle-plus font-bold text-2xl text-white cursor-pointer hover:scale-110 hover:text-mid5 flex items-center"></i>
+    </div>
+    <input class="w-16 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6 hidden" formControlName="stat2">
+    <input class="w-16 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6" formControlName="stat2_bonus">
+    
+    <label class="font-bold text-xl uppercase" for="stat3">{{abreviation[3]}}</label>
+    <div class="flex justify-between items-center gap-2">
+        <span class="text-2xl pt-1 font-bold">{{formCharacter.get('stat3')?.value}}</span>
+        <span class="font-bold text-white" *ngIf="statAdd3 > 0"> (+{{statAdd3}})</span>
+        <i (click)="addStat(3)" *ngIf="pcEnough" class="fa-solid fa-circle-plus font-bold text-2xl text-white cursor-pointer hover:scale-110 hover:text-mid5 flex items-center"></i>
+    </div>
+    <input class="w-16 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6 hidden" formControlName="stat3">
+    <input class="w-16 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6" formControlName="stat3_bonus">
+
+    <button type="submit" class="mt-5 w-full col-span-3 z-10 font-bold uppercase tracking-widest p-1 bg-light3 pt-2 pb-1 hover:bg-light1">Valider</button>
+</form>
+

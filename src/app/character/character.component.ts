@@ -38,6 +38,10 @@ export class CharacterComponent implements OnInit {
   formAddItem: FormGroup;  
   formAddMaterial: FormGroup;  
   formAddStatus: FormGroup;  
+
+  formNewNeutralSkill: FormGroup;  
+  formNewTree: FormGroup;  
+
   constructor(
     private router: Router,
     private weaponTreeService: WeaponTreeService,
@@ -68,6 +72,17 @@ export class CharacterComponent implements OnInit {
     this.formAddItem = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required]
+    });
+    this.formNewNeutralSkill = this.fb.group({
+      skillType: ['', Validators.required],
+      neutralSkill: ['', Validators.required],
+      craftSkill: ['', Validators.required],
+      fightSkill: ['', Validators.required]
+    });
+    this.formNewTree = this.fb.group({
+      treeType: ['', Validators.required],
+      physicalTree: ['', Validators.required],
+      magicalTree: ['', Validators.required]
     });
   }
  
@@ -177,6 +192,7 @@ export class CharacterComponent implements OnInit {
         console.log(this.character)
         if (Number(this.cookieService.get('userId')) === this.character.user_id ){ this.createdByUser = true;}
         this.filterTrees();
+        this.filterCharacterTrees();
         this.groupMaterials();
       },
       error => {
@@ -251,6 +267,7 @@ export class CharacterComponent implements OnInit {
     this.http.put(`${this.backendUrl}/character/${id}/status/${type}/${statusId}`, {},{ headers }).subscribe(
       data => {
         this.reloadData();
+        this.formAddStatus.reset({ status_id: ''});
       },
       (error) => {
         console.error('Erreur', error);
@@ -311,10 +328,37 @@ export class CharacterComponent implements OnInit {
           break;
       }
     });
-  
-    const newPV = Math.floor(this.PVheal - this.PVlost);
-    console.log(newPV)
-    this.character.pv += newPV;
+
+    this.character.pv -= this.PVlost;
+
+    let bloodNbr =0;
+    const statusBlood = statuses.find((status: { id: number; pivot: { number: number } }) => status.id === 1);
+    if(statusBlood && this.PVheal > 0){
+      if (this.PVheal>0){
+        for (let i=0;i<statusBlood.pivot.number;i++){
+          
+          const id = this.route.snapshot.paramMap.get('characterId');
+          const token = this.cookieService.get('token');
+          const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+          });
+
+          this.http.put(`${this.backendUrl}/character/${id}/status/minus/1`, {},{ headers }).subscribe(
+            data => {},
+            (error) => {
+              console.error('Erreur', error);
+            }
+          );
+
+          this.PVheal -=1;
+          console.log(i, this.PVheal)
+          if (this.PVheal == 0){i = statusBlood.pivot.number}
+        };
+      }
+    }
+    this.character.pv += this.PVheal;
+
     if (this.character.pv < 0){this.character.pv = 0;}
 
     const id = this.route.snapshot.paramMap.get('characterId');
@@ -336,7 +380,6 @@ export class CharacterComponent implements OnInit {
 
   }
 
-
   formGlobal:boolean = false;
   swapGlobal(){this.formGlobal = !this.formGlobal;}
 
@@ -350,10 +393,10 @@ export class CharacterComponent implements OnInit {
   swapStatMain(){this.formStatMain = !this.formStatMain;}
 
   formStatPhysical:boolean = false;
-  swapStatPhysical(){this.formStatPhysical = !this.formStatPhysical;}
+  swapStatPhysical(){this.formStatPhysical = !this.formStatPhysical; this.formStatMagic = false;}
   
   formStatMagic:boolean = false;
-  swapStatMagic(){this.formStatMagic = !this.formStatMagic;}
+  swapStatMagic(){this.formStatMagic = !this.formStatMagic; this.formStatPhysical = false;}
   
   formClothe:boolean = false;
   swapClothe(){this.formClothe = !this.formClothe;}
@@ -486,6 +529,119 @@ export class CharacterComponent implements OnInit {
   openTreeForm: boolean=false;
   openTree(){
     this.openTreeForm = !this.openTreeForm;
+  }
+
+
+  
+  onSkillTypeChange(event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    const type = selectElement.value;
+
+    // Reset the specific skill select when skillType changes
+    if (type === 'neutral') {
+      this.formNewNeutralSkill.get('fightSkill')?.reset(); // Use optional chaining
+      this.formNewNeutralSkill.get('craftSkill')?.reset(); // Use optional chaining
+    } else if (type === 'fight') {
+      this.formNewNeutralSkill.get('neutralSkill')?.reset(); // Use optional chaining
+      this.formNewNeutralSkill.get('craftSkill')?.reset(); // Use optional chaining
+    } else if (type === 'craft') {
+      this.formNewNeutralSkill.get('neutralSkill')?.reset();
+      this.formNewNeutralSkill.get('fightSkill')?.reset();
+    }
+  }
+
+  onSubmitNewNeutralSkill(){
+    
+    let skillId = "";
+    if (this.formNewNeutralSkill.value.skillType == 'neutral'){
+      skillId = this.formNewNeutralSkill.value.neutralSkill;
+    } else if (this.formNewNeutralSkill.value.skillType == 'fight'){
+      skillId = this.formNewNeutralSkill.value.fightSkill;
+    } else {
+      skillId = this.formNewNeutralSkill.value.craftSkill;
+    };
+    
+    const id = this.route.snapshot.paramMap.get('characterId');
+    const token = this.cookieService.get('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    });
+
+    const type = this.formNewNeutralSkill.value.skillType;
+
+    this.http.put(`${this.backendUrl}/character/${id}/add-neutral-skill/${type}/${skillId}`, {},{ headers }).subscribe(
+      data => {
+        console.log(data);
+        this.reloadData();
+        this.formNewNeutralSkill.reset({ treeType: '',neutralSkill: '',fightSkill: '',craftSkill:''});
+      },
+      (error) => {
+        console.error('Erreur', error);
+      }
+    );
+  }
+
+
+
+  onTreeTypeChange(type: string) {
+    if (type === 'physical') {
+      this.formNewTree.get('magicalTree')!.reset();
+    } else if (type === 'magical') {
+      this.formNewTree.get('physicalTree')!.reset();
+    }
+  }
+
+  
+  filteredPhysicalTrees:any;
+  filteredMagicalTrees:any;
+  filteredNeutralSkills:any;
+  filteredFightSkills:any;
+  filteredCraftSkills:any;
+  filterCharacterTrees() {
+    if (this.character && this.physicalTrees.length && this.magicalTrees.length) {
+      const characterTreeIds = this.character.trees.map((tree: any) => tree.id);
+      this.filteredPhysicalTrees = this.physicalTrees.filter(tree => !characterTreeIds.includes(tree.id));
+      this.filteredMagicalTrees = this.magicalTrees.filter(tree => !characterTreeIds.includes(tree.id));
+    }
+    if (this.character && this.neutralSkills.length && this.fightSkills.length && this.craftSkills.length) {
+      const characterNeutralSkillIds = this.character.neutral_skills.map((skill: any) => skill.id);
+      const characterFightSkillIds = this.character.fight_skills.map((skill: any) => skill.id);
+      const characterCraftSkillIds = this.character.craft_skills.map((skill: any) => skill.id);
+
+      this.filteredNeutralSkills = this.neutralSkills.filter(skill => !characterNeutralSkillIds.includes(skill.id));
+      this.filteredFightSkills = this.fightSkills.filter(skill => !characterFightSkillIds.includes(skill.id));
+      this.filteredCraftSkills = this.craftSkills.filter(skill => !characterCraftSkillIds.includes(skill.id));
+    }
+ 
+  }
+  onSubmitNewTree(){
+
+    let treeId = "";
+    if (this.formNewTree.value.treeType == 'physical'){
+      treeId = this.formNewTree.value.physicalTree;
+    } else {
+      treeId = this.formNewTree.value.magicalTree;
+    };
+
+    const id = this.route.snapshot.paramMap.get('characterId');
+    const token = this.cookieService.get('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    });
+
+    this.http.put(`${this.backendUrl}/character/${id}/add-tree/${treeId}`, {},{ headers }).subscribe(
+      data => {
+        this.reloadData();
+        this.formNewTree.reset({ treeType: '',magicalTree: '',physicalTree: ''});
+      },
+      (error) => {
+        console.error('Erreur', error);
+      }
+    );
+    
+    
   }
 
 }
