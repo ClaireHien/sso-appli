@@ -192,6 +192,7 @@ export class CharacterComponent implements OnInit {
         this.filterTrees();
         this.filterCharacterTrees();
         this.groupMaterials();
+        //console.log(data);
       },
       error => {
         console.error('Erreur', error);
@@ -261,6 +262,15 @@ export class CharacterComponent implements OnInit {
       Authorization: `Bearer ${token}`
     });
 
+    let existingStatus = null;
+    for (let status of this.character.statuses) {
+      if (status.id == statusId) {
+        existingStatus = status;
+        break;
+      }
+    }
+    if (existingStatus && type === 'new') {type = 'add';}
+
     this.http.put(`${this.backendUrl}/character/${id}/status/${type}/${statusId}`, {},{ headers }).subscribe(
       data => {
         this.reloadData();
@@ -309,6 +319,10 @@ export class CharacterComponent implements OnInit {
               break;
             case 5:
               this.brulureDmg = rollDice(12)
+              this.PVlost += this.brulureDmg;
+              break;
+            case 6:
+              this.brulureDmg = rollDice(20)
               this.PVlost += this.brulureDmg;
               break;
             default:
@@ -431,27 +445,28 @@ export class CharacterComponent implements OnInit {
   }
 
   onSubmitMoney(type:string){
+    if (this.formAddMoney.value.money > 0){
+      if (type=='add'){this.character.money += Math.floor(this.formAddMoney.value.money);}
+      else {this.character.money -= Math.floor(this.formAddMoney.value.money);}
+      if (this.character.money < 0){this.character.money = 0;}
 
-    if (type=='add'){this.character.money += Math.floor(this.formAddMoney.value.money);}
-    else {this.character.money -= Math.floor(this.formAddMoney.value.money);}
-    if (this.character.money < 0){this.character.money = 0;}
+      const id = this.route.snapshot.paramMap.get('characterId');
+      const token = this.cookieService.get('token');
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      });
 
-    const id = this.route.snapshot.paramMap.get('characterId');
-    const token = this.cookieService.get('token');
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`
-    });
-
-    this.http.put(`${this.backendUrl}/character/${id}/money/${this.character.money}`, {},{ headers }).subscribe(
-      data => {
-        this.reloadData();
-        this.formAddMoney.reset({ money: 0 });
-      },
-      (error) => {
-        console.error('Erreur', error);
-      }
-    );
+      this.http.put(`${this.backendUrl}/character/${id}/money/${this.character.money}`, {},{ headers }).subscribe(
+        data => {
+          this.reloadData();
+          this.formAddMoney.reset({ money: 0 });
+        },
+        (error) => {
+          console.error('Erreur', error);
+        }
+      );
+    };
     
   }
 

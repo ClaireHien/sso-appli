@@ -133,6 +133,8 @@ export class NavbarComponent implements OnInit {
   invalidCredentialsErrorRegister: boolean = false;
 
   onSubmitRegister(): void {
+
+    console.log(this.formRegister.value)
     
     const code = this.formRegister.get('code')?.value;
 

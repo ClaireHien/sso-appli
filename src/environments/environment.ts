@@ -8,5 +8,5 @@ export const environment = {
   //backendUrl: 'http://sso-api.test/api'
 
   production: true,
-  backendUrl: 'https://sso-api.nhei.fr/api'
+  backendUrl: 'https://soul-spirit-api.nhei.fr/api'
 };

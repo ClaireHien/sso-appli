@@ -55,6 +55,7 @@ export class CraftComponent implements OnInit {
     this.materialService.getMaterials().subscribe(
       (data: Material[]) => {
         this.materials = data;
+        console.log(data);
       },
       error => {
         console.error('Error fetching stereotype', error);

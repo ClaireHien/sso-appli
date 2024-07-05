@@ -56,6 +56,11 @@ export class StatisticFormComponent {
   stat2_bonus:number =0;
   stat3_bonus:number =0;
 
+  stat0Visible: boolean= true;
+  stat1Visible: boolean= true;
+  stat2Visible: boolean= true;
+  stat3Visible: boolean= true;
+
   pc:number=0;
   free_stat:number=0;
   
@@ -69,12 +74,16 @@ export class StatisticFormComponent {
     }
 
     this.stat0 = this.valueStat(this.abreviation[0]).pivot.value
+    if (this.valueStat(this.abreviation[0]).pivot.value == 100){this.stat0Visible = false;}
     this.stat0_bonus = this.valueStat(this.abreviation[0]).pivot.bonus
     this.stat1 = this.valueStat(this.abreviation[1]).pivot.value
+    if (this.valueStat(this.abreviation[1]).pivot.value == 100){this.stat1Visible = false;}
     this.stat1_bonus = this.valueStat(this.abreviation[1]).pivot.bonus
     this.stat2 = this.valueStat(this.abreviation[2]).pivot.value
+    if (this.valueStat(this.abreviation[2]).pivot.value == 100){this.stat2Visible = false;}
     this.stat2_bonus = this.valueStat(this.abreviation[2]).pivot.bonus
     this.stat3 = this.valueStat(this.abreviation[3]).pivot.value
+    if (this.valueStat(this.abreviation[3]).pivot.value == 100){this.stat3Visible = false;}
     this.stat3_bonus = this.valueStat(this.abreviation[3]).pivot.bonus
 
     this.formCharacter = this.fb.group({
@@ -108,18 +117,22 @@ export class StatisticFormComponent {
       case 0:
         this.statAdd0 +=1;
         this.formCharacter.get('stat0')?.setValue(this.formCharacter.get('stat0')?.value + 1);
+        if (this.formCharacter.value.stat0 == 100){this.stat0Visible = false;}
         break;
       case 1:
         this.statAdd1 +=1;
         this.formCharacter.get('stat1')?.setValue(this.formCharacter.get('stat1')?.value + 1);
+        if (this.formCharacter.value.stat1 == 100){this.stat1Visible = false;}
         break;
       case 2:
         this.statAdd2 +=1;
         this.formCharacter.get('stat2')?.setValue(this.formCharacter.get('stat2')?.value + 1);
+        if (this.formCharacter.value.stat2 == 100){this.stat2Visible = false;}
         break;
       case 3:
         this.statAdd3 +=1;
         this.formCharacter.get('stat3')?.setValue(this.formCharacter.get('stat3')?.value + 1);
+        if (this.formCharacter.value.stat3 == 100){this.stat3Visible = false;}
         break;
     }
 

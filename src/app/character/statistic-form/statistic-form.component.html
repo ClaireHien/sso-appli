@@ -17,7 +17,7 @@
     <div class="flex justify-between items-center gap-1">
         <span class="text-2xl pt-1 font-bold">{{formCharacter.get('stat0')?.value}}</span>
         <span class="font-bold text-white" *ngIf="statAdd0 > 0"> (+{{statAdd0}})</span>
-        <i (click)="addStat(0)" *ngIf="pcEnough" class="fa-solid fa-circle-plus font-bold text-2xl text-white cursor-pointer hover:scale-110 hover:text-mid5 flex items-center"></i>
+        <i (click)="addStat(0)" *ngIf="pcEnough && stat0Visible" class="fa-solid fa-circle-plus font-bold text-2xl text-white cursor-pointer hover:scale-110 hover:text-mid5 flex items-center"></i>
     </div>
     <input class="w-16 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6 hidden" formControlName="stat0">
     <input class="w-16 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6" formControlName="stat0_bonus">
@@ -26,7 +26,7 @@
     <div class="flex justify-between items-center gap-2">
         <span class="text-2xl pt-1 font-bold">{{formCharacter.get('stat1')?.value}}</span>
         <span class="font-bold text-white" *ngIf="statAdd1 > 0"> (+{{statAdd1}})</span>
-        <i (click)="addStat(1)" *ngIf="pcEnough" class="fa-solid fa-circle-plus font-bold text-2xl text-white cursor-pointer hover:scale-110 hover:text-mid5 flex items-center"></i>
+        <i (click)="addStat(1)" *ngIf="pcEnough && stat1Visible" class="fa-solid fa-circle-plus font-bold text-2xl text-white cursor-pointer hover:scale-110 hover:text-mid5 flex items-center"></i>
     </div>
     <input class="w-16 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6 hidden" formControlName="stat1">
     <input class="w-16 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6" formControlName="stat1_bonus">
@@ -35,7 +35,7 @@
     <div class="flex justify-between items-center gap-2">
         <span class="text-2xl pt-1 font-bold">{{formCharacter.get('stat2')?.value}}</span>
         <span class="font-bold text-white" *ngIf="statAdd2 > 0"> (+{{statAdd2}})</span>
-        <i (click)="addStat(2)" *ngIf="pcEnough" class="fa-solid fa-circle-plus font-bold text-2xl text-white cursor-pointer hover:scale-110 hover:text-mid5 flex items-center"></i>
+        <i (click)="addStat(2)" *ngIf="pcEnough && stat2Visible" class="fa-solid fa-circle-plus font-bold text-2xl text-white cursor-pointer hover:scale-110 hover:text-mid5 flex items-center"></i>
     </div>
     <input class="w-16 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6 hidden" formControlName="stat2">
     <input class="w-16 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6" formControlName="stat2_bonus">
@@ -44,7 +44,7 @@
     <div class="flex justify-between items-center gap-2">
         <span class="text-2xl pt-1 font-bold">{{formCharacter.get('stat3')?.value}}</span>
         <span class="font-bold text-white" *ngIf="statAdd3 > 0"> (+{{statAdd3}})</span>
-        <i (click)="addStat(3)" *ngIf="pcEnough" class="fa-solid fa-circle-plus font-bold text-2xl text-white cursor-pointer hover:scale-110 hover:text-mid5 flex items-center"></i>
+        <i (click)="addStat(3)" *ngIf="pcEnough && stat3Visible" class="fa-solid fa-circle-plus font-bold text-2xl text-white cursor-pointer hover:scale-110 hover:text-mid5 flex items-center"></i>
     </div>
     <input class="w-16 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6 hidden" formControlName="stat3">
     <input class="w-16 pt-2 pb-1 text-center text-2xl bg-white4 hover:bg-white6" formControlName="stat3_bonus">
