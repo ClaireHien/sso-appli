@@ -30,12 +30,10 @@
                 </span> 
             </div>
             
-            <div class="mb-4 font-light text-justify">
-                {{ skill.description }}
-            </div>
+            <div class="mb-4 font-light text-justify" [innerHTML]="skill.description"></div>
             <div class="font-light text-justify">
                 <div class="uppercase tracking-widest text-xs font-bold text-mid3">Amélioration</div>
-                {{ skill.upgrade }}
+                <div [innerHTML]="skill.upgrade"></div>
             </div>
             
         </div> 

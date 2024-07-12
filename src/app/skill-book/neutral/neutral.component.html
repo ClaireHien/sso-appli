@@ -11,7 +11,7 @@
 
     <div class="md:w-80 w-full bg-white4 hover:bg-white p-4" *ngFor="let skill of skills">
         <div class="uppercase tracking-widest font-bold text-mid3">{{skill.name}}</div>
-        <div class="font-light text-justify">{{skill.description}}</div>
+        <div class="font-light text-justify" [innerHTML]="skill.description"></div>
        
     </div>
     </div>

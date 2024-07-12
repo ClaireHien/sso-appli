@@ -1,0 +1,28 @@
+<div class="pt-10"></div>
+<section *ngFor="let world of worlds" 
+    class="world p-20 bg-img lg:overflow-auto" 
+    [ngStyle]="{'background-image': 'url(../../assets/image/landscape/' + world.image + ')'}">
+
+    <div *ngFor="let group of world.groups">
+        <h1 class="bg-light1 pt-2 pb-1 px-5 uppercase tracking-widest font-bold inline">{{world.name}} - <span class="text-mid4">{{group.name}}</span></h1>
+        
+        <div class="flex gap-3 justify-center flex-wrap mt-10">
+
+            <app-character-card *ngFor="let character of group.characters"
+                [name]="character.name"
+                [id]="character.id"
+                [image]="character.image"
+                [level]="character.level"
+                [group]="group.name"
+                [world]="world.name"
+                [user]="character.user.name"
+                [description]="character.description"
+            ></app-character-card>
+
+
+        </div>
+
+
+    </div>
+    <div *ngIf="world.groups.length == 0" class="uppercase font-bold">Pas de personnages</div>
+</section>

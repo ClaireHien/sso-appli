@@ -2,13 +2,7 @@
     <div id="section0" class="lg:h-screen p-20 lg:overflow-auto">
         <h1 class="font-blakely text-6xl uppercase tracking-widest text-center">Les 13 plateaux</h1>
 
-        <p class="text-justify p-5">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dapibus, eros ut gravida cursus, massa turpis eleifend mauris, sodales vestibulum ante nibh eu mauris. Praesent lacinia nulla ut dolor euismod condimentum. Aenean porta mollis varius. Aliquam nec nisl eu nulla dapibus efficitur. Nulla facilisi. Pellentesque vel hendrerit sem, eget condimentum magna. Quisque varius neque vitae purus lobortis, eget luctus risus dignissim. Donec pharetra vel nunc dapibus iaculis. Aenean in justo ac elit dapibus ultrices non sed libero. Suspendisse in est sed nisi cursus iaculis. Sed interdum malesuada enim at posuere. Curabitur leo magna, euismod nec lacus et, luctus maximus dolor. Praesent suscipit nec purus at dapibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam id aliquam tellus.
-
-            Vestibulum dapibus porta pretium. Ut accumsan laoreet sapien et consequat. Sed ex mi, euismod vitae facilisis ac, blandit non tortor. Cras leo libero, volutpat nec lorem in, finibus gravida diam. Vestibulum ut turpis et diam ornare pulvinar bibendum suscipit mauris. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla viverra porta lectus, nec eleifend ante. In id scelerisque nunc. Sed vitae sapien ut odio lobortis ultrices ut quis est. Fusce porta, massa maximus euismod tempor, diam sapien finibus ante, et tincidunt enim nulla non erat. Sed pretium eget arcu sed dapibus. Suspendisse ac orci rhoncus, laoreet magna sit amet, sagittis lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim velit ante, aliquam eleifend augue varius nec. Curabitur pharetra tincidunt tortor quis bibendum. Maecenas id ligula malesuada, euismod enim at, dignissim libero.
-            
-            Nullam eu elementum diam. Nullam varius sagittis velit a maximus. Pellentesque volutpat aliquet dignissim. Nunc egestas pretium odio, nec aliquet elit dictum feugiat. Nunc gravida risus metus, at iaculis justo euismod sed. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas in imperdiet felis. Curabitur consectetur justo tellus, ac fringilla nisi tincidunt non. Proin sit amet eros et enim fringilla aliquet. Nunc ullamcorper fermentum nisi, in gravida mauris. Phasellus non leo tortor. Integer sit amet vestibulum enim. Fusce semper congue nisl. Donec efficitur urna nibh. 
-        </p>
+        <p class="text-justify p-5"></p>
         <div class="flex flex-wrap justify-center">
             
             <div *ngFor="let world of worlds" 
@@ -16,7 +10,7 @@
                 [ngStyle]="{'background-image': 'url(../../assets/image/landscape/' + world.image + ')'}"
                 (click)="scrollToSection(world.id)">    
                 
-                <h2 class="bg-light1 pt-2 pb-1 px-2 uppercase tracking-widest">{{world.name}}</h2>
+                <h2 class="bg-light1 mx-5 text-center pt-2 pb-1 px-2 uppercase tracking-widest">{{world.name}}</h2>
                 
             </div>
 
@@ -27,24 +21,27 @@
         class="world p-20 lg:h-screen bg-img lg:overflow-auto" 
         [ngStyle]="{'background-image': 'url(../../assets/image/landscape/' + world.image + ')'}">
 
-        <div class="grid gap-3 lg:grid-cols-4">
+            <div class="h-full flex justify-center flex-col gap-5 items-center">
 
-            <div class="lg:col-span-2 lg:row-span-2 bg-light1 rounded p-5 opacity-60 hover:opacity-100">
-                <h2 class="font-blakely text-6xl text-center uppercase tracking-widest mt-2">{{world.name}}</h2>
-                <p class="text-justify" [innerHTML]="world.description"></p>
-            </div>
-
-            <div *ngFor="let spirit of world.spirits"
-            [ngStyle]="{'background-image': 'url(' + spirit.image + ')'}"
-            class="rounded mb-1 p-5 bg-img opacity-90 hover:opacity-100">
-                <div class="bg-light1 p-2 opacity-0 hover:opacity-100">
-                    <h3 class="font-bold uppercase tracking-widest">{{spirit.name}}</h3>
-                    <p class="text-justify leading-3 text-xs">{{spirit.description}}</p>
+                <div class="bg-light1 rounded p-5 opacity-60 hover:opacity-100">
+                    <h2 class="font-blakely text-6xl text-center uppercase tracking-widest mt-2">{{world.name}}</h2>
+                    <p  *ngIf="!world.showList" class="text-justify" [innerHTML]="world.description"></p>
                 </div>
+                <div class="font-blakely text-3xl justify-self-center bg-white8 rounded hover:bg-white cursor-pointer pt-2 pb-1 px-5" (click)="toggleList(world)">
+                    <span *ngIf="!world.showList">Les esprits</span><span *ngIf="world.showList">Description du monde</span>
+                </div>
+                <div *ngIf="world.showList" class="grid grid-cols-3 gap-5">
+                    <div *ngFor="let spirit of world.spirits"
+                    [ngStyle]="{'background-image': 'url(' + spirit.image + ')'}"
+                    class="rounded mb-1 p-5 bg-img opacity-90 hover:opacity-100">
+                        <div class="bg-light1 p-2 opacity-0 hover:opacity-100 pt-3">
+                            <h3 class="leading-3 font-bold uppercase tracking-widest">{{spirit.name}}</h3>
+                            <p class="text-justify font-light leading-3 text-xs" [innerHTML]="spirit.description"></p>
+                        </div>
+                    </div>
+                </div>
+    
             </div>
-
-        </div>
-        
     </div>
 
 </section>

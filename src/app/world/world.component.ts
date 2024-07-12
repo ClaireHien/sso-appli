@@ -76,7 +76,6 @@ export class WorldComponent  implements OnInit{
     this.http.get(`${this.backendUrl}/world`).subscribe(
       data => {
         this.worlds = data;
-        console.log(data);
       },
       error => {
         console.error('Erreur', error);
@@ -84,5 +83,9 @@ export class WorldComponent  implements OnInit{
     );
   }
 
+  
+  toggleList(world: any): void {
+    world.showList = !world.showList;
+  }
 
 }

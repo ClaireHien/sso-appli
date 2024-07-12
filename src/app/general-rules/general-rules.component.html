@@ -1,2 +1,793 @@
+<div class="pt-20 px-10 mb-10 bg-white4 pb-5">
+    <h1 class="font-blakely text-6xl text-center">Règles générales</h1>
+    <div class="text-justify leading-3 intro">
+        <p>
+            L’objectif de Soul Spirit Online est de permettre à chaque joueur de vivre une aventure épique, pleine de rebondissements et de défis. 
 
-<div class="h-screen w-screen flex justify-center items-center text-3xl uppercase">Page en construction</div>
+            Le jeu est conçu pour encourager la créativité, la coopération et la stratégie. Chaque session de jeu est une nouvelle opportunité pour explorer, combattre et faire évoluer son personnage. 
+        </p>
+        <p>
+            En petits groupes de 4 à 5 joueurs, vous allez pouvoir explorer les scénarios de ce JDR et faire grandir votre personnage. 
+        </p>
+        <p>
+            L’univers de SSO se déroule au travers de 13 plateaux presque tous indépendants les uns des autres. Il se passe une campagne nouvelle sur chacun de ses plateaux et donc vous aurez à créer un nouveau personnage. Néanmoins vous jouant toujours “vous” en dehors du casque VR de cet univers, vous conserverez souvenirs, connaissances etc… d’un personnage à l’autre. 
+            Votre XP et avancement sera remis à zéro, néanmoins c’est l’occasion de tester de nouvelles compétences et de nouveaux gameplay d’une campagne à l’autre.
+        </p>
+    </div>
+</div>
+<div class="main-info md:grid mx-10 px-5 lg:px-0 gap-5 mb-20">
+    <div class="mb-20 md:mb-5">
+        <div class="top-20 lg:sticky flex flex-col gap-2">
+            <div class="rounded flex flex-col cursor-pointer w-full pt-2 pb-1 px-3 text-left text-xs"
+                [ngClass]="{'bg-mid4 text-light1': ong == 'crea','bg-white6 hover:bg-white':ong != 'crea'}"
+                (click)="clickOng('crea')">
+                <strong class="uppercase tracking-widest pt-1">I - Création de personnage</strong>
+                <span>1 - Arme et magie innée</span>
+                <span>2 - Statistiques</span>
+                <span>3 - Equipement</span>
+                <span>4 - Esprit</span>
+            </div>
+            <div class="rounded flex flex-col cursor-pointer w-full pt-2 pb-1 px-3 text-left text-xs"
+                [ngClass]="{'bg-mid4 text-light1': ong == 'stat','bg-white6 hover:bg-white':ong != 'stat'}"
+                (click)="clickOng('stat')">
+                <strong class="uppercase tracking-widest pt-1">II - Statistiques</strong>
+                <span>1 - Statistiques principales</span>
+                <span>2 - Statistiques secondaires</span>
+                <span>3 - Amélioration des Statistiques</span>
+                <span>4 - Utilisation des statistiques hors combat</span>
+                <span>5 - Calcul et utilisation des statistiques en combat</span>
+            </div>
+            <div class="rounded flex flex-col cursor-pointer w-full pt-2 pb-1 px-3 text-left text-xs"
+                [ngClass]="{'bg-mid4 text-light1': ong == 'sys','bg-white6 hover:bg-white':ong != 'sys'}"
+                (click)="clickOng('sys')">
+                
+                <strong class="uppercase tracking-widest pt-1">III - Système de jeu</strong>
+                <span>1 - Mort, niveau et XP</span>
+                <span>2 - Combat</span>
+                <span>3 - Esprit</span>
+                <span>4 - Gestion des ressources hors combat</span>
+                <span>5 - Etats</span>
+                <span>6 - Autres règles</span>
+            </div>
+            <div class="rounded flex flex-col cursor-pointer w-full pt-2 pb-1 px-3 text-left text-xs"
+                [ngClass]="{'bg-mid4 text-light1': ong == 'craft','bg-white6 hover:bg-white':ong != 'craft'}"
+                (click)="clickOng('craft')">
+                <strong class="uppercase tracking-widest pt-1">IV - Artisanat</strong>
+                <span>1 - Artisanats</span>
+                <span>2 - Création d'équipement</span>
+                <span>3 - Pierres et ornements</span>
+            </div>
+        </div>
+
+    </div>
+    <div class="bg-white rounded p-10 mb-10">
+
+        <div *ngIf="ong=='crea'">
+            <h2>I - Création de personnages</h2>
+            <p>La création du personnage est une étape cruciale qui permet de définir les capacités, forces et faiblesses de votre héros. Ou tout du monde dans les premiers niveaux, en augmentant votre niveau, vous pourrez compenser vos faiblesses, renforcer vos forces ou au contraire les équilibrer etc… La progression est plus impactante que la création de personnage mais cette dernière permet de diriger les premières lignes de votre personnage. 
+            </p>
+
+            <h3>1 - Choix des magies et armes innées</h3>
+            <p>
+                <strong>Chaque personnage peut choisir une arme et une magie innée.</strong>
+                <br>
+                -    Il débloque alors immédiatement le maniement de l’arme et son passif inné. <br>
+                -    Il débloque alors immédiatement la manipulation de la magie et son passif inné. 
+                <br><br>
+                Choisir une arme et une magie à la création du personnage est l’unique moyen (en dehors de la compétence de combat “Magie innée” ou “Arme innée) de débloquer le passif inné. 
+                <br><br>
+                Cette arme et cette magie détermineront également les statistiques de départ du personnage. 
+                <br><br>
+                Il y a également certaines compétences de combat qui ne fonctionnent que sur les armes ou magiques innées. 
+                <br><br>
+                Il faut donc prendre en compte tous ces points ci-dessous lors du choix des deux arbres de compétences de la création du personnage. 
+            </p>
+
+            <h3>2 - Statistiques</h3>
+            <p class="cursor-pointer text-mid4 italic" (click)="clickOng('stat')">Plus de détails dans le chapitre “statistiques” </p>
+            <p>Les statistiques définissent les capacités de base de votre personnage. </p>
+
+            <h4>2.1 - Statistiques principales</h4>
+            <p>
+                A la création de votre personnage chaque personnage commence avec <strong> 10 dans chaque statistique principales</strong> (les huit statistiques de corps et d’esprit) 
+                <br><br>
+                Il faut ensuite ajouter <strong>+10 dans les deux statistiques de corps de votre arme innée et les deux statistiques d’esprit de votre magie innée</strong>.  <br>
+                    - Pour les arbres se jouant sur toutes les statistiques le bonus est de +5 dans les 4 statistiques correspondantes <br>
+                    - Pour les arbres se jouant sur aucune statistique : vous lancerez 4 fois 1D10 et vous pourrez librement répartir les dés entre les statistiques. 
+
+                <br><br>
+                Vous avez ensuite <strong>+20 points de statistiques libres</strong> à répartir librement entre toutes vos statistiques (corps et esprit) avec un maximum de +10 dans une même statistique. 
+            </p>
+
+            <h4>2.2 - Statistiques secondaires</h4>
+
+            <p>
+                Les statistiques secondaires sont fixes pour tous les personnages (sauf si un passif inné donne un bonus ou malus immédiat spécifique)
+            </p>
+            <div class="stat-annexe-crea flex flex-wrap gap-5 justify-center">
+                <div><span>PV</span><span>Points de vie</span><span>10</span></div>
+                <div><span>RP</span><span>Résistance <br> physique</span><span>0</span></div>
+                <div><span>RM</span><span>Résistance <br> magique</span><span>0</span></div>
+                <div><span>PT</span><span>Points de <br> technique</span><span>2</span></div>
+                <div><span>PE</span><span>Points <br>d'esprit</span><span>2</span></div>
+                <div><span>VIT</span><span>Vitesse</span><span>3</span></div>
+            </div>
+            
+            <h3>3 - Equipement</h3>
+            <p>
+                Chaque personnage commence avec <strong>une arme en fer de son arme innée</strong> : cette dernière n'accorde aucun bonus ni malus supplémentaire mais permet de jouer avec son arme dès la création du personnage. 
+                    <br><br>
+                De manière générale, un personnage peut équiper : <br>
+                <strong>
+                - Une arme <br>
+                - Une armure <br>
+                - Deux vêtements (avec ornements)  <br>
+                - Deux bijoux (avec pierre)
+                </strong>
+                <br><br>
+                Il est rare qu’un personnage fraîchement créé possède déjà complètement son équipement, cependant en fonction du bon vouloir du MJ et du scénario, d’autres équipements ou objets peuvent être ajoutés à la création du personnage.
+            </p>
+            <h3>4 - Esprit</h3>
+            <p>
+                Chaque personnage choisit un esprit en fonction de ceux disponibles sur le plateau et pour le scénario en cours. L’esprit apporte une quête personnelle au joueur ainsi que des compétences d’esprits précises. 
+                <br><br>
+                Chaque esprit à un caractère qui lui est propre, il est conseillé de prendre un esprit avec lequel votre personnage s’entendra bien. 
+                <br><br>
+                <strong>A la création du personnage le niveau de l’esprit est de 1 et l’affinité de 0. </strong>
+                <br><br>
+                <span class="cursor-pointer text-mid4 italic" (click)="clickOng('sys')">Plus de détails dans le chapitre “esprits”</span>
+                
+            </p>
+        </div>
+
+        <div *ngIf="ong=='stat'">
+            <h2>II - Statistiques</h2>
+
+            <p>Les statistiques de votre personnage déterminent ses capacités. Elles sont essentielles pour résoudre des défis, réussir les actions et augmenter votre potentiel en combat. </p>
+
+            <h3>1 - Statistiques principales</h3>
+
+            <p>
+                Les statistiques principales sont divisées en deux catégories : <strong>le corps et l’esprit. </strong>
+                <br><br>
+                Chaque statistique peut aller de 0 à 100 (incluant les bonus et malus)
+            </p>
+            
+            <h4>1.1 - Statistiques de corps</h4>
+                
+            <p>
+                Elles déterminent principalement des actions physiques et sont impliquées dans les compétences d’arme. 
+            </p>
+
+            <div class="grid gap-3 stat-grid grid-cols-2 md:grid-cols-4">
+                <div><span>Constitution</span><span>CON</span><span>
+                    <strong>La résistance physique de votre personnage : </strong>
+                    Sa résistance aux poisons, à l’alcool, aux chutes etc…
+                </span></div>
+                <div><span>Force</span><span>FOR</span><span>
+                    <strong>La force brute : </strong>
+                    Porter des charges lourdes, enfoncer une porte, nager etc…
+                </span></div>
+                <div><span>Dextérité</span><span>DEX</span><span>
+                    <strong>La capacité à se mouvoir agilement ou à réaliser des tâches minutieuse : </strong>
+                    Crocheter des portes, se faufiler discrètement, marcher sur un fils etc…
+                </span></div>
+                <div><span>Perception</span><span>PER</span><span>
+                    <strong>L’utilisation de ses cinq sens : </strong>
+                    Voir au loin, entendre un bruit minime, poursuivre des traces etc…  
+                </span></div>
+            </div>
+            <h4>1.2 - Statistiques d’esprit</h4>
+                
+            <p>
+                Elles déterminent principalement des actions spirituelles, mentales ou sociales et sont impliquées dans les compétences de magie. 
+            </p>
+
+            <div class="grid gap-3 stat-grid grid-cols-2 md:grid-cols-4">
+                <div><span>Intelligence</span><span>INT</span><span>
+                    <strong>La capacité à raisonner et faire preuve de logique : </strong>
+                    Se souvenir d’un élément précis, décrypter un texte etc…
+                </span></div>
+                <div><span>Charisme</span><span>CHA</span><span>
+                    <strong>Les capacités sociales : </strong>
+                    Mentir ouvertement, sympathiser avec un animal ou une personnage, attirer l’attention etc…
+                </span></div>
+                <div><span>Vivacité</span><span>VIV</span><span>
+                    <strong>Les réflexes et la rapidité d’esprit : </strong>
+                    Esquiver une flèche soudaine, analyser rapidement une situation etc…
+                </span></div>
+                <div><span>Sensibilité</span><span>SENSI</span><span>
+                    <strong>L'empathie, capacités artistiques et les relations avec les esprit : </strong>
+                    Sympathiser avec un animal, réaliser une sculpture, communiquer avec les esprits etc… 
+                </span></div>
+            </div>
+                
+            <h3>2 - Statistiques secondaires</h3>
+            
+            <p>
+                Les statistiques secondaires ne sont pas directement impliquées lors de la résolution d’action mais sont déterminantes pour l’état et les capacités de votre personnage, principalement en combat. 
+            </p>
+                
+            <h4>2.1 - Points de vie (PV)</h4>
+                
+            <p>
+                <strong>Il déterminent la vie de votre personnage : </strong> <br>
+                         
+                - Pour chaque dégâts reçus, il faut déduire les dégâts reçus de vos PVs. <br>
+                - Arrivé à 0, votre personnage meurt (Plus de détails dans le chapitre “mort, niveau et XP” ) <br>
+                - Les soins vous permette de récupérer les points de vie perdus et -sauf exception précisés dans les compétences- ne peuvent aller au-delà de vos PV max. 
+
+                <br><br>
+                A la création du personnage, les PV max sont à 10 et augmentent avec les niveaux : <strong>10 PV + 1 PV par dizaine de niveaux</strong>. 
+                <br>
+                Il est également possible d’augmenter ses PV max avec certaines compétences ou avec des équipements. 
+            </p>
+
+            <h4>2.2 - Résistance</h4>
+                
+            <p>
+                Il y a deux résistances : <br>
+                <strong>- Résistance physique (RP)</strong> : qui va s’appliquer sur les coups physiques reçus <br>
+                <strong>- Résistance magique (RM)</strong> : qui va s’appliquer sur les coups magiques reçus
+                <br><br>
+                Cette statistique de résistance est de 0 à la création du personnage.  <br>
+                Elle peut augmenter avec certaines compétences (définitivement ou temporairement) ou avec des équipements. 
+                <br><br>
+                Elle sert à <strong>réduire les dégâts reçus </strong>: chaque point de résistance diminue les attaques reçus de ce type (physique ou magique) ainsi, si une résistance est plus élevée qu’une attaque reçue, le personnage ne prend aucun dégâts et donc, ne perd aucun PV. 
+            </p>
+
+            <h4>2.3 - Points de techniques (PT)</h4>
+
+            <p>    
+                <strong>Les points de techniques permettent de lancer des techniques </strong> (compétences d’armes) 
+                <br>
+                - Chaque technique lancée coûte 1 PT
+                <br><br>
+                Ces points sont réinitialisés à chaque fin de combat ou à chaque début de nouvelle journée (dans le maximum de PT disponible)
+                <br><br>
+                Certaines capacités peuvent rendre des PT en cours de combat ou de journée mais cela ne peut jamais excéder les PT max. 
+            </p>  
+
+            <h4>2.4 - Points d’esprit (PE)</h4>
+                
+            <p>
+                <strong>Les points d’esprit permettent de lancer des sorts</strong> (compétences de magie) 
+                <br>
+                - Chaque sort lancé coûte 1 PE
+                <br><br>
+                Ces points sont réinitialisés à chaque fin de combat ou à chaque début de nouvelle journée (dans le maximum de PE disponible)
+                <br><br>
+                Certaines capacités peuvent rendre des PE en cours de combat ou de journée mais cela ne peut jamais excéder les PE max. 
+            </p>
+
+            <h4>2.5 - Vitesse (VIT) </h4>
+            
+            <p>
+                <strong>La vitesse détermine l’ordre des actions en combat</strong> et certaines compétences peuvent également dépendre de cette statistique. 
+                <br><br>
+                Chaque personnage commence avec 3 de vitesse mais cette dernière peut augmenter ou baisser en fonction des compétences, équipement ou inventaire. 
+                <br><br>
+                Si les combat se déroulent sur une carte à case, elle peut impacter la capacité de déplacement :  <br>
+                - <strong>1 à 3 de VIT </strong>: déplacement de 3 cases <br>
+                - <strong>VIT supérieure à 3</strong> : nombre de case égal à la vitesse du personnage
+
+                <br><br>
+
+                Elle peut être négative. <br>
+                <span class="cursor-pointer text-mid4 italic" (click)="clickOng('sys')">Plus de détails dans le chapitre “vitesse négative” (système de jeu - autres règles)</span>
+
+            </p>
+            <h4>2.6 - Capacité de l’inventaire</h4>
+            
+            <p>
+                <strong>Il s’agit du nombre d'objets différents que vous pouvez porter. </strong>
+                <br>
+                - Vous pouvez cumuler autant de quantité que vous souhaitez sur un seul emplacement. 
+                <br>
+                - A la création du personnage, vous avez une capacité d’inventaire de 10.
+                <br>
+                - Elle peut augmenter ou baisser en fonction des compétences ou de l’équipement
+                <br>
+                - Vous pouvez dépasser le maximum d’inventaire mais pour chaque objet (sans prendre en compte la quantité) supplémentaires dans l’inventaire, votre vitesse baisse de 1.
+            </p>
+
+            <h3>3 - Amélioration des statistiques</h3>
+                        
+            <p>
+                Les statistiques principales de corps et d’esprit peuvent être augmentés en faisant progresser votre personnage : <br>
+                <strong>Vous pouvez basiquement dépenser 1 points de compétence (PC) pour obtenir 3 points de statistique à répartir librement (sur une même statistique ou sur des différentes) </strong>
+
+                <br><br>
+
+                L’équipement peut également vous donner des points de statistiques dans des statistiques précises mais dans ce cas, cela donne des statistiques bonus qui sont retirées si l’objet n’est plus équipé. 
+
+            </p>
+
+            <h3>4 - Utilisation des statistiques hors combat</h3>
+                            
+            <p>
+                Pour effectuer une action hors combat nécessitant un jet de statistique (demandé par le MJ) il faudra lancer <strong class="text-mid4">1D100</strong> : 
+                <br>
+                - <strong>Sur un 1, la réussite est critique</strong>  : l’effet est réussi à coup sûr avec des effets augmentés
+                <br>
+                - <strong>Sur un 100 : l’échec est critique </strong>: l’effet est raté à coup sûr avec des conséquences dramatiques
+
+                <br><br>
+                Sur tout autre résultat, il faut le comparer avec la statistique du personnage : <strong>si le résultat du dés est égal ou inférieur à la statistique, l’action est réussie sinon elle est échouée</strong>. 
+
+                <br><br>
+                Les bonus des équipements et certaines compétences sont pris en compte dans la statistique globale. 
+
+                <br><br>
+                Selon la  difficulté des actions, le MJ peut vous donner des bonus à ajouter à la statistique pour la faire augmenter ou des malus à déduire de vos statistiques afin de la faire baisser. 
+
+            </p>
+
+            <h3>5 - Calcul et utilisation des statistiques en combat</h3>
+                        
+            <p>
+                Lorsque vous utilisez une statistique pour un bonus ou un effet en combat, <strong>seule la dizaine de la statistique est prise en compte</strong>. 
+
+                <br><br>
+                Lorsqu’une statistique est divisée par deux, elle est toujours <strong>arrondie à l’inférieur</strong>. 
+            </p>
+        </div>
+
+        <div *ngIf="ong=='sys'">
+            <h2>III - Système de jeu</h2>
+
+            <p>
+                 Ce chapitre rassemble les principaux principes du système de jeu de SSO, les combats et la progression du personnage. 
+            </p>
+
+            <h3>1 - Mort, niveau et XP</h3>
+            <h4>1.1 - Mort</h4>
+            <p>   
+                <strong> Lorsque votre personnage à 0 PV, il meurt. </strong>
+                <br>
+           
+                - Cela lui fait perdre 5 XP <br>
+                - Il réapparaît avec le reste du groupe avec tous ces PVs, PT, PE et charge d’ultime. 
+                <br><br>
+                Dans certaines situations, la résurrection peut ne pas être immédiate. Il faudra attendre la fin de l’action ou de l'événement. 
+                En combat, le personnage revient à la vie à la fin du combat uniquement. 
+                <br> <br>
+
+                A cause de la perte d’XP, votre XP peut être négatif. Votre niveau ne change pas mais vous avez désormais une dette d’XP qu’il faudra compenser avec les prochains gains d’XP. 
+                <br>
+                - L’XP ne peut descendre en dessous de -30 XP. 
+            </p>
+
+            <h4>1.2 - Gain d’XP et niveau</h4>
+            <p>
+                <strong>Tous les 10 XP gagnés</strong><br>
+                - Votre personnage augmente son niveau de 1 <br>
+                - Il gagne 1 points de compétence (PC) <br>
+                - Son XP se réinitialise à 0 (pour recommencer le compte pour la prochaine montée de niveau)
+                <br><br>
+                Si plusieurs niveaux sont montés d’un coup ou que l’XP ne donne pas un compte rond, le joueur conserve l’XP restant en attente et il gagne 1 PC pour chaque niveau augmenté.
+            </p>
+
+            <h4> 1.3 - Progression</h4>  
+            <p>
+                En montant de niveau, votre personnage pourra donc accumuler des points de compétences. 
+                <strong>Ces points de compétences pourront être dépensés pour faire progresser votre personnage.</strong>
+            </p>  
+            <div class="shop-pc">
+                <div><span>3 Points de statistiques libres</span><span>1 PC</span></div>
+                <div><span>Nouvelle arme ou magie</span><span>1 PC</span></div>
+                <div><span>Nouvelle compétence d’une arme ou d’une magie apprise</span><span>1 PC</span></div>
+                <div><span>Amélioration d’une compétence apprise</span><span>2 PC</span></div>
+                <div><span>Amélioration d’ultime d’une compétence déjà améliorée</span><span>3 PC</span></div>
+                <div><span>Ultime d’arme ou de magie</span><span>5 PC</span></div>
+                <div><span>Compétence d’artisanat</span><span>1 PC</span></div>
+                <div><span>Compétence neutre</span><span>1 PC</span></div>
+                <div><span>Compétence de combat</span><span>1 PC</span></div>
+                <div><span>Amélioration d’une compétence de combat</span><span>2 PC</span></div>
+            </div>    
+            <h3>2 - Combat</h3>
+            <p>
+                Le combat est un élément central de SSO. La plupart des quêtes incluent un combat qu’il faudra surmonter -sans mourir c’est mieux- pour pouvoir avancer dans l’histoire. 
+                <br><br>
+                Les combats de Soul Spirit Online se déroulent au tour par tour comme un jeux vidéos : <strong>les actions libres sont limités au profit des compétences que vous avez débloqué pour votre personnage</strong> (tirer entre les deux yeux de manière RP pour donner un coup ne vous donnera pas plus de dégâts mais si vous avez la compétence “sniper” vous pouvez alors l’utiliser et celle-ci infliger d’important dégâts)
+            </p>
+            
+            <h4>2.1 - Tour de combat</h4>
+            <p>
+                           
+                Se jouant au tour par tour, <strong>l’ordre du combat est déterminé par la vitesse : du plus rapide au plus lent</strong> puis, la boucle continue. 
+                <br>
+                - Si un personnage à une vitesse égale à celle d’un ennemi, c’est toujours l’ennemi qui joue en premier <br>
+                - Si deux personnages ont la même vitesse : ils peuvent déterminer qui joue en premier d’un commun accord ou lancer 1D20 pour les départager. 
+
+                <br><br>
+
+                Lorsque votre tour arrive, vous pouvez effectuer : <br>
+                <strong>
+                    - 1 action secondaire  <br>
+                    - 1 action principale
+                </strong>
+            </p>
+
+            <h5>Actions secondaires</h5>
+
+            <p>
+                Les actions secondaires ne sont pas obligatoires, cela peut être :  <br>
+                - Un déplacement<br>
+                - Une action RP<br>
+                - Utiliser un consommable<br>
+                - Activer ou désactiver une aura
+
+                <br><br>
+                Si les combat se déroulent sur une carte à case, la vitesse peut impacter la capacité de déplacement : <br>
+                - 1 à 3 de VIT : déplacement de 3 cases<br>
+                - VIT supérieure à 3 : nombre de case égal à la vitesse du personnage
+
+                <br><br>
+                <strong>Les actions RP peuvent nécessiter d’un jet de dès scénaristique</strong> (comme les jets de dés hors combat sur 1D100) les effets d’une réussite ou d’un échec varient en fonction de l’action tenté par le joueur, du dés et de l’interprétation du MJ.
+                <br><br>
+                <strong>Il n’est possible d’utiliser qu’un seul consommable à la fois</strong>
+                 en tant qu’action secondaire. Qu’il s’agisse d’une potion ou d’un objet infligeant des dégâts ou autre. 
+                <br><br>
+                <strong>Activer ou désactiver une aura consomme l’action secondaire</strong> : il n’est donc pas possible de l’activer et désactiver dans le même tour.
+                <br><br>
+                Etant donné qu’il n’est possible d’effectuer qu’une seule action secondaire par tour (sauf exception de certaines compétences ou utilisation de l’action principale pour effectuer une seconde action secondaire) il n’est pas possible de cumuler deux actions différentes : se déplacer et boire une potion ou activer une aura et utiliser un consommable etc… 
+                <br>
+                - Pour les actions RP, cela peut varier en fonction de ce qui est souhaité : escalader un mur en plus du déplacement peut être demandé au MJ, il pourra néanmoins refuser ou imposer un jet de dès avec des conséquences en cas d'échec. 
+
+            </p>
+            
+            <h5>Action principale</h5>
+        
+            <p>
+                <strong>L’action principale est obligatoire et met directement fin au tour </strong>
+                (sauf compétence précisant “à la fin du tour”) ce qui fait qu’il n’est pas possible de se déplacer ou consommer une potion après avoir effectué son action principale. 
+                <br><br>
+                Une action principale peut être : <br>
+                - Une attaque ou compétence (simple, technique, sort ou ultime) <br>
+                - Une autre action secondaire
+            </p>
+
+            <h5>Action supplémentaire</h5>
+
+            <p>
+                Certaines compétences peuvent octroyer des actions supplémentaires précises, dans ce cas, l’action et le moment où l’effectuer dépend de la compétence. 
+                Il n’y a pas de limite au nombre d'actions supplémentaires possible, tant que la compétence indique qu’il est possible de faire une action supplémentaire. 
+            </p>
+        
+            <h4>2.2 - Arbre de compétence</h4>
+            <p>      
+                Un arbre de compétence est déterminé par quatre éléments.
+            </p>
+            <div class="tree-grid grid grid-cols-2 gap-3">
+                <div><strong>type de dégâts</strong>
+                    <span>
+                        - Aucun <br>
+                        - Contondant <br>
+                        - Perforant <br>
+                        - Tranchant
+                    </span>
+                    <span>Ce type permet des synergies avec les alliés, équipement et compétences neutres</span>
+                </div>
+                <div><strong>dès de base</strong>
+                    <span>
+                        - D4<br>
+                        - D6<br>
+                        - D8<br>
+                        - D10
+                    </span>
+                    <span>Dés de dégâts qui est repris pour les attaques simples ou les compétences de l’arbre</span>
+                </div>
+                <div><strong>portée</strong>
+                    <span>
+                        - Corps à corps <br>
+                        - Moyenne portée <br>
+                        - Distance <br>
+                        - Longue distance
+                    </span>
+                    <span>Par défaut, sans précision contraire, les sorts, techniques et ultimes d’un arbre dépendent de la portée de base de l’arbre de compétence.</span>
+                </div>
+                <div><strong>statistiques</strong>
+                    <span>
+                        - CON / FOR / DEX / PER <br>
+                        ou <br>
+                        - INT / CHA / VIV / SENSI
+                    </span>
+                    <span>Les statistiques n’interviennent que pour certaines compétences et à la création du personnage. Basiquement, les arbres ont deux statistiques (4 ou aucunes lors de rares cas)</span>
+                </div>
+            </div>
+
+            <h5>Arbres d’arme</h5>
+            <p> 
+            
+                Les dégâts des attaques ou des effets de l’arme sont <strong>physiques</strong>.
+                <br><br>
+                Débloquer un arbre d’arme permet d’avoir immédiatement le maniement de l’arme : cela signifie que vous pouvez immédiatement équiper l’arme et effectuer des attaques simples avec.
+
+                <br><br>
+                Les passifs des armes ne s'appliquent que si le joueur est équipé de l’arme en question.
+
+            </p>
+            
+            <h5>Arbre de magie</h5>
+            <p>
+            
+                Les dégâts des attaques ou des effets de la magie sont <strong>magiques</strong>.
+                <br><br>
+                Débloquer un arbre de magie permet d’avoir immédiatement la manipulation de la magie : cela signifie que vous pouvez immédiatement manipuler l’élément hors combat et effectuer des attaques simples avec.
+                
+                <br><br>
+
+                Manipuler un élément débloqué demande hors combat un jet scénaristique dépendant de l’une des deux statistiques de magie. 
+  
+            </p>
+
+            <h4>2.3 - Précisions sur les compétences</h4>
+
+            <h5>Les attaques simples</h5>
+            <p>
+                Les attaques simples sont les attaques de base (arme ou magie) n'activant aucune compétence (technique, sort ou ultime) néanmoins les passifs de l’arbre de compétence et les passifs neutres s’appliquent. 
+            </p>
+
+            <h5>La puissance ou l’effet</h5>
+            <p>
+                La puissance est déterminée par le dès de base de l’arbre de compétence (D4 à D10) ce dès peut être augmenté ou baissé en fonction des compétences propres à l’arbre, des compétences neutres et de l’équipement. 
+                <br><br>
+                <strong>Une puissance de dés ne peut excéder le D20</strong>
+                <br><br>
+                Lorsqu’une compétence indique “attaque” ou “attaque avec un bonus” cela signifie qu’il faut donc lancer le dés de base de l’arbre de compétence (avec potentiel bonus et malus)
+            </p>
+
+            <h5>Multi-coups</h5>
+            <p>
+                Certains effets permettent de lancer plusieurs attaques. Dans ce cas, <strong>chaque attaque se heurte à la défense correspondante</strong> (magique ou physique) de la cible. 
+                <br><br>
+                - Les compétences permettant de renforcer la prochaine <strong>“attaque”</strong> ne renforce que la première attaque des multi-coups. 
+                <br>
+                - Les compétences permettant de renforcer la prochaine <strong>“action”</strong> renforce toutes les attaques des multi-coups. 
+                <br><br>
+                Cette distinction s’applique également aux compétences permettant de réduire les effets d’un ennemi. 
+            </p>
+            
+            <h5>Les contres</h5>
+            <p>
+                Certaines compétences peuvent être utilisées en contre, c’est à dire dans un schéma bien précis (la plupart du temps “au moment de recevoir une attaque”) dans ce cas là, <strong> le joueur peut l’utiliser même s’il ne s’agit pas de son tour de jeu</strong>. 
+                <br><br>
+                Cependant, <strong>un seul contre par action et par joueur peut être effectué en même temps</strong>. 
+                <br>
+                Si le joueur a un passif de contre permanent (réduction de dégâts, esquive, contre attaque etc…) Ce dernier ne s’active pas si le joueur décide d’effectuer un autre contre. 
+            </p>
+            
+            <h5>Dès spécifiquement écrit dans une compétence</h5>
+            <p>
+                Dans certaines compétence, lorsqu'il est écrit directement un dés à lancer, <strong>celui-ci ne peut pas être augmenté ou baissé</strong> avec les compétences (sauf indication contraire)
+            </p>
+            
+            <h5>Les auras</h5>
+            <p>
+                Un joueur ne peut bénéficier que d’<strong>
+                une seule aura simultanée</strong> et cela lui demande une action secondaire pour l’activer ou la désactiver. 
+            </p>
+
+            <h5>Effets constants</h5>
+            <p>
+                Les effets constant, c’est à dire <strong>tous ceux qui perdurent plus d’un tour</strong> (que se soit passivement, dûe à une aura ou un sort, une technique etc…) <strong>ne peuvent pas être augmenté</strong> par des effets de compétences ou d’équipement (sauf indication contraire, généralement dans le même arbre d’arme ou de magie) 
+                <br><br>
+                Cela s’applique aux soins (régénération etc…) comme aux dégâts. 
+                <br><br>
+                <strong>La fin d'un combat désactive tous les effets constant</strong> (sort, technique, aura etc…) hors passif, et ce, même si deux combats s’enchaînent. 
+            </p> 
+
+            <h4> 2.4 - Les échecs</h4>
+            <p>
+                <strong>Obtenir un 1 sur un dès</strong> (hors jets scénaristique ou conditionnel au D100) est considéré comme un échec et l’action est ratée, les effets ne sont pas appliqués. 
+                <br><br>
+                Si plusieurs dés sont lancés : tous les 1 sont retirés du jeu et l'attaque se poursuit avec les non 1 obtenus. S'il n'y a plus de dès (que tous les dès sont des 1), l’attaque est ratée. 
+            </p>
+
+            <h3>3 - Esprit</h3>
+            <p>
+                Chaque personnage possède un et un seul esprit qui l’accompagnera du début à la fin. Il est nécessaire de bien s’entendre avec son esprit (lors de la création de personnage, une petite description vous sera proposé pour faire votre choix) 
+
+                <br><br>
+            - Les esprits possèdent un niveau : de 1 à 4 <br>
+            - Votre relation avec votre esprit est symbolisée par des points d’affinité : de 0 à 10.  
+            </p>
+            <div class="spirit-level">
+                <div>
+                    <div>Niveau 1</div>
+                    <div>
+                        <strong>Murmure de l’esprit - </strong>
+                        Tous les joueurs possèdent cette compétence dès le début de l’aventure.
+                    </div>
+                    <div>
+                        Permet de demander de l'aide à son esprit. Le joueur lance alors 1d12 et il doit obtenir sa statistique d'AFFINITÉ ou moins pour le réussir. L'aide apporté intervient alors de manière RP, il faut donc que l'esprit ai les connaissances ou les capacités pour aider son joueur. 
+                    </div>
+                </div>
+                <div>
+                    <div>Niveau 2</div>
+                    <div>
+                        Pour atteindre le niveau 2, il faut réaliser la 1ère quête d’esprit
+                    </div>
+                    <div>
+                        Le niveau 2 vous débloque une compétence propre à votre esprit
+                    </div>
+                </div>
+                <div>
+                    <div>Niveau 3</div>
+                    <div>
+                        Pour atteindre le niveau 3, il faut réaliser la 2ère quête d’esprit
+                    </div>
+                    <div>
+                        Le niveau 3 améliore la compétence d’esprit que vous avez acquis au niveau 2.
+                    </div>
+                </div>
+                <div>
+                    <div>Niveau 4</div>
+                    <div>
+                        Pour atteindre le niveau 4, il faut réaliser la 3ère quête d’esprit
+                    </div>
+                    <div>
+                        Le niveau 4 vous débloque une amélioration d’ultime, utilisable avec tous les ultimes du jeu au moment où vous le lancez. 
+                    </div>
+                </div>
+
+            </div>
+            
+            <h4>Les quêtes d’esprit</h4>
+            <p>
+                Elles sont propre à chaque esprit et s'enchaînent les unes après les autres au fur et à mesure que vous progressez dans l’aventure. Certaines quêtes sont plus “facile” ou “accessibles” que d’autres mais les compétences seront peut être moins “fortes” et inversement. 
+            </p>
+
+            <h4>Compétences d’esprit</h4>
+            <p>
+                Les compétences d’esprit varient du tout au tout en fonction de l’esprit que vous avez choisi. Cela peut être une compétence offensive, un passif etc… Basiquement, les compétences ne consomment ni PE ni PT mais les utilisations et conditions pour les utiliser varient de l’une à l’autre. 
+                <br><br>
+                Dans tous les cas, la compétence de base ou l’amélioration <strong> se joue en fonction de votre affinité</strong> et non en fonction des statistiques générales.
+            </p>
+            
+            <h4>Affinité</h4>
+            <p>
+                L’affinité correspond au lien entre votre personnage et son esprit. Plus elle est haute, plus la compétence d’esprit sera puissante et ce dernier plus enclin à vous aider si vous êtes en difficulté. 
+                <br><br>
+                <strong>L’affinité se monte au travers des quêtes d’esprit mais principalement en fonction de vos actions RPs :</strong>
+                 si elles vont dans le sens de votre esprit et lui plaisent, celui-ci vous donnera arbitrairement +1 d’affinité. Sur la même logique, si vous faîtes des actions allant à l’encontre de votre esprit, celui-ci pourra ne pas apprécier et baisser votre affinité. 
+                <br><br>
+                Si votre affinité est de 0, il n’est pas possible de faire un murmure de l’esprit ou d’utiliser les compétences d’esprit. 
+            </p>
+        
+            <h3>4 - Gestion des ressources hors combat</h3>
+
+            <h4> 4.1 - Soins hors combat</h4>
+            <p>
+                Il y a plusieurs manières de se soigner hors combat. 
+            </p>
+            <h5>Attendre</h5>
+            <p>
+               Attendre que le scénario vous dise à un endroit que vous récupérez tous les PVs (il faut avoir le MJ en bon terme)
+            </p>
+            <h5>Les potions</h5>
+            <p>
+                Il n’est pas nécessaire d’être en combat pour consommer des potions. Les PV rendus sont variables en fonction d’un jet mais cela ne demande que quelques cristaux pour les acquérir. 
+            </p>
+
+            <h5>Les compétences de soin</h5>
+            <p>
+                Il est possible de lancer des compétences de soin hors combat (hors ultime), cependant cela consomme les PT ou PE comme habituellement. 
+                <br><br>
+                <em>Pour rappel : les PE et PT ne se réinitialisent qu’au début d’une nouvelle journée ou la fin d’un combat, cela signifie que si une ressource est consommée pour un soin hors combat, celle-ci sera manquante au début du prochain combat. </em>
+                <br><br>
+                <strong>Les compétences de soin hors combat ne demandent pas de lancer de dés et sont toujours maximal. </strong>
+            </p>
+            <h4>4.2 - Sorts et techniques hors combat</h4>
+            <p>
+                De la même manière que pour les compétences de soin, il est possible d’utiliser des sorts ou techniques hors combat. Cela consomme également le PE ou PT utilisé mais permet un bonus aux jets scénaristique ou une réussite automatique de l’action selon les cas. 
+            </p>
+
+            <h3>5 - États</h3>
+            <p>
+                Avec vos compétences, vous pourrez ajouter des états aux ennemis mais ces derniers pourront également en recevoir. 
+                <br><br>
+                <strong>Voici une liste des états de base, leur effet et la manière de les retirer. </strong>
+                <br>
+                (Les états spécifiques à des mécaniques de plateau, de combat ou d’ennemis ne sont pas listé ici) 
+                <br><br>
+                Les états infligeant des dégâts font perdre des PV brut au début du tour de jeu du joueur avant toute autre action ou effet. 
+            </p>
+            <div *ngFor="let status of statuses" class="one-status">
+                <span class="uppercase font-bold tracking-widest">{{status.name}}</span>
+                <br>
+                {{status.description}}
+                <br>
+                <span *ngIf="status.healing != '//'" class="text-mid4"><strong>SOIN : </strong>{{status.healing}}</span>
+            </div>
+
+            <h3>6 - Règles générales</h3>
+            <h4>6.1 - Vitesse négative</h4>
+            <p>
+                Il est possible d’avoir une vitesse négative à cause d’un inventaire trop important, une armure trop lourde ou des malus dans les compétences. 
+                <br><br>
+                Hors combat, la vitesse négative n’a aucune influence. 
+                <br><br>
+                En combat, même si votre vitesse est négative, votre vitesse basique de combat sera de 1 (cela vous fait tout de même jouer en dernier) mais pour <strong>chaque point de vitesse négatif réel, vos dégâts infligés sont réduits de 1.</strong>
+                <br>
+                <em class="text-mid4">
+                    Si une attaque inflige donc 0 dégâts mais qu’elle n’est pas raté : les effets sont tout de même pris en compte (provocation, états etc…) 
+                </em>
+            </p>
+
+            <h4>6.4 - Statistique à 0</h4>
+            <p>
+                En combat comme hors combat, si une statistique tombe à 0 à cause d’un malus sur votre personnage, <strong>il s’évanouit</strong>. Il n’est pas mort, il n’y aura donc pas de perte d’XP mais pas de regains de PV non plus mais il ne pourra effectuer aucune action tant que cette statistique n’aura pas remonté. 
+                <br><br>
+                En combat, cela signifie la fin du combat ou la fin de l’effet baissant ses statistiques. Cela désactive son aura ou tout autre effet passif activables. Si le joueur a lancé des sorts ou technique à longue durée, ces derniers cessent également. 
+                <br><br>
+                Même si le joueur est inconscient et ne joue pas, les ennemis peuvent toujours l’attaquer et il peut donc toujours mourir. Les états continuent également de faire effet (perte de PV par exemple) mais de la même manière les alliés peuvent également le soigner. 
+            </p>
+        </div>
+
+        <div *ngIf="ong=='craft'">
+            <h2>VI - Artisanat</h2>
+
+            <p>
+                L’artisanat est une composante essentielle à SSO qui vous permet de  <strong>créer votre propre équipement à partir de matériaux</strong>. Un aspect indispensable de l’évolution de votre personnage. 
+                <br><br>
+                Pour rappel, chaque personnage peut posséder :<br> 
+                - Une arme<br>
+                - Une armure<br>
+                - Deux vêtements (et ornements)<br>
+                - Deux bijoux (et pierres)<br>
+            </p>
+
+            <h3>1 - Artisanats</h3>
+            <p>
+                Il existe 4 types d’artisanat différents.
+            </p>
+            <div class="craft-list grid gap-2 grid-cols-2">
+                <div><strong>Forge d’arme </strong><span>Permet de forger des armes et d’utiliser des attaques d’armes et techniques</span></div>
+                <div><strong>Forge d’armure</strong><span>Augmente les résistances physiques et magiques</span></div>
+                <div><strong>Couture</strong><span>Permet de confectionner des vêtements, augmentant les statistiques de corps. Certains vêtements peuvent recevoir un ornement, ce dernier apporte des bonus divers. </span></div>
+                <div><strong>Bijouterie</strong><span>Permet de confectionner des bijoux, augmentant les statistiques d’esprits. Certains bijoux peuvent recevoir une pierre, cette dernière apporte des bonus divers. </span></div>
+            </div>
+
+            <h3>2 - Création d’équipement</h3>
+            <p>
+                La création d’équipement se fait avec <strong>1D20 qui déterminera la qualité de l’objet</strong> (ou si l’objet est raté) 
+                <br><br>
+                Les compétences d’artisanat peuvent octroyer des bonus à ce jet. 
+                <br><br>
+                Les effets de l’équipement sont à consulter dans la liste des équipements en fonction de la qualité obtenue. 
+            </p>
+            <div class="craft-info">
+                <div><strong>5 ou moins</strong><span>raté</span></div>
+                <div><strong>6 à 9</strong><span>Médiocre</span></div>
+                <div><strong>10 à 13</strong><span>Correct</span></div>
+                <div><strong>14 à 16</strong><span>Bon</span></div>
+                <div><strong>17 à 19</strong><span>Super</span></div>
+                <div><strong>20</strong><span>Excellent</span></div>
+            </div>
+            
+            <h3>3 - Pierre et ornement</h3>
+            <p>
+                Certains vêtements peuvent recevoir un ornement et certains bijoux peuvent être sertis d’une pierre. Il est précisé dans l'effet du tissu ou du minerais si l'objet peut avoir un emplacement d'ornement ou de pierre. 
+                <br><br>
+                L’ornement et la pierre apportent des effets divers et variés. 
+                <br><br>
+                Greffer un ornement ou sertir une pierre n’a aucun risque d’échec : ils sont ajoutés dans tous les cas. Cependant, <strong>leurs effets varient en fonction de 1D6 au moment de l’ajout</strong> sur le vêtement ou le bijoux. 
+            </p>
+            <div class="craft-info">
+                <div><strong>1 / 2</strong><span>Sauvage</span></div>
+                <div><strong>3 / 4</strong><span>Mystérieux</span></div>
+                <div><strong>5 / 6</strong><span>Elegant</span></div>
+            </div>
+            <p>
+                Des compétences d’artisanat peuvent permettre de retirer un ornement ou une pierre pour l’ajouter de nouveau. Cependant cette mécanique a des risques de perte d’ornement et de pierre. 
+            </p>
+
+            <a class="hover:bg-mid4 block text-white mt-5 font-bold bg-mid1 pt-2 pb-1 text-center uppercase tracking-widest" href="/artisanat">Tous les détails des matériaux sur la page "Artisanat"</a>
+
+        </div>
+
+    </div>
+    
+</div>

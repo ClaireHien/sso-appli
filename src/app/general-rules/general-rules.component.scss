@@ -1,0 +1,81 @@
+p{@apply text-justify leading-5 my-3 font-light;}
+
+$wrapper:1200px;
+.intro{max-width: $wrapper; margin:auto;}
+
+.main-info{grid-template-columns: 20em 1fr; max-width: $wrapper; margin:auto;}
+h2{
+    @apply text-6xl font-blakely text-center;
+}
+h3{
+    @apply uppercase tracking-widest font-bold text-xl mt-10;
+}
+h4{
+    @apply text-mid4 uppercase tracking-widest font-bold mt-5;
+}
+h5{
+    @apply font-bold uppercase mt-5 tracking-widest;
+}
+
+.stat-annexe-crea>div,
+.stat-grid>div,
+.tree-grid>div,
+.craft-list>div{
+    @apply flex flex-col bg-light1 rounded p-2;
+}
+.stat-annexe-crea span, .stat-grid{
+    text-align:center;
+}
+.stat-annexe-crea>div>span:nth-child(1),
+.stat-grid>div>span:nth-child(2){
+    @apply text-xl text-mid4 font-bold;
+}
+.stat-annexe-crea>div>span:nth-child(2),
+.stat-grid>div>span:nth-child(1), 
+.tree-grid strong{
+    @apply uppercase text-xs text-mid4;
+}
+.stat-annexe-crea>div>span:nth-child(3){
+    @apply text-xl font-bold;
+}
+.shop-pc>div{
+    @apply flex justify-between pt-2 items-center px-10;
+    border-bottom:1px dotted var(--light4);
+}
+.one-status, .craft-info>div{
+    border-bottom:1px dotted var(--light4);
+    @apply pt-4 pb-2 font-light text-justify;
+}
+.shop-pc>div>span:first-child{
+    @apply text-mid5;
+}
+.shop-pc>div>span:last-child{
+    @apply text-lg font-bold;
+}
+.tree-grid>div>span:last-child{
+    @apply font-light text-justify;
+}
+.spirit-level>div{
+    @apply grid mt-3;
+    grid-template-columns: 8em 1fr;
+}
+.spirit-level>div>div:first-child{
+    @apply row-span-2 uppercase tracking-widest font-bold text-mid4 text-center;
+}
+.spirit-level>div>div:nth-child(2){
+    @apply font-light text-justify text-mid4;
+}
+.spirit-level>div>div:nth-child(3), 
+.craft-list span{
+    @apply font-light text-justify;
+}
+.craft-list strong{@apply uppercase tracking-widest text-mid4;}
+.craft-info>div{
+    @apply uppercase tracking-widest grid grid-cols-2 gap-4;
+}
+.craft-info>div>strong{
+    @apply text-right;
+}
+.craft-info>div>span{
+    @apply text-mid4;
+}

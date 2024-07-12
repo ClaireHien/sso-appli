@@ -12,6 +12,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { WorldComponent } from './world/world.component';
 import { GeneralRulesComponent } from './general-rules/general-rules.component';
 import { MessagePageComponent } from './message-page/message-page.component';
+import { CharacterListComponent } from './character-list/character-list.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'neutre', component: NeutralComponent },
   { path: 'combat', component: FightComponent },
   { path: 'regles-generales', component: GeneralRulesComponent },
+  { path: 'liste-des-personnages', component: CharacterListComponent },
   { path: 'les-univers', component: WorldComponent },
   { path: 'personnage/:characterId', component: CharacterComponent },
   { path: 'personnage/:characterId/:characterName', component: CharacterComponent },

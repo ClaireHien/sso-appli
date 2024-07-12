@@ -71,7 +71,7 @@ export class NavbarComponent implements OnInit {
     const userName = this.cookieService.get('userName');
     this.router.navigate([`/profil/${userId}/${this.slugify(userName)}`]);
   }
-  
+   
   slugify(text: string): string {
     return text.toLowerCase().replace(/\s+/g, '-');
   }
