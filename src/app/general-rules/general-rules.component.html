@@ -57,6 +57,12 @@
                 <span>2 - Création d'équipement</span>
                 <span>3 - Pierres et ornements</span>
             </div>
+            <div class="rounded flex flex-col cursor-pointer w-full pt-2 pb-1 px-3 text-left text-xs"
+                [ngClass]="{'bg-mid4 text-light1': ong == 'flag','bg-white6 hover:bg-white':ong != 'flag'}"
+                (click)="clickOng('flag')">
+                <strong class="uppercase tracking-widest pt-1">V - Annexes</strong>
+                <span>1 - Flag des compétences</span>
+            </div>
         </div>
 
     </div>
@@ -571,9 +577,11 @@
 
             <h5>Effets constants</h5>
             <p>
-                Les effets constant, c’est à dire <strong>tous ceux qui perdurent plus d’un tour</strong> (que se soit passivement, dûe à une aura ou un sort, une technique etc…) <strong>ne peuvent pas être augmenté</strong> par des effets de compétences ou d’équipement (sauf indication contraire, généralement dans le même arbre d’arme ou de magie) 
+                Les effets constant, c’est à dire <strong>tous ceux qui perdurent plus d’un tour</strong> (que se soit passivement, dûe à une aura ou un sort, une technique etc… c'est la nature de la compétence qui est prise en compte et non son application -en cas de désactivation de l'aura après un tour, d'une durée dépendante des statistiques etc... ) <strong>ne peuvent pas être augmenté</strong> par des effets de compétences ou d’équipement (sauf indication contraire, généralement dans le même arbre d’arme ou de magie) 
                 <br><br>
                 Cela s’applique aux soins (régénération etc…) comme aux dégâts. 
+                <br><br>
+                Les effets constant ne peuvent pas être augmentés mais ils ne peuvent pas non plus être diminués (effet de vitesse négative, compétences neutres etc... )
                 <br><br>
                 <strong>La fin d'un combat désactive tous les effets constant</strong> (sort, technique, aura etc…) hors passif, et ce, même si deux combats s’enchaînent. 
             </p> 
@@ -681,7 +689,7 @@
             </p>
             <h4>4.2 - Sorts et techniques hors combat</h4>
             <p>
-                De la même manière que pour les compétences de soin, il est possible d’utiliser des sorts ou techniques hors combat. Cela consomme également le PE ou PT utilisé mais permet un bonus aux jets scénaristique ou une réussite automatique de l’action selon les cas. 
+                De la même manière que pour les compétences de soin, il est possible d’utiliser certains sorts ou techniques hors combat. Cela consomme également le PE ou PT utilisé mais permet un bonus aux jets scénaristique ou une réussite automatique de l’action selon les cas. 
             </p>
 
             <h3>5 - États</h3>
@@ -716,13 +724,26 @@
                 </em>
             </p>
 
-            <h4>6.4 - Statistique à 0</h4>
+            <h4>6.2 - Statistique à 0</h4>
             <p>
                 En combat comme hors combat, si une statistique tombe à 0 à cause d’un malus sur votre personnage, <strong>il s’évanouit</strong>. Il n’est pas mort, il n’y aura donc pas de perte d’XP mais pas de regains de PV non plus mais il ne pourra effectuer aucune action tant que cette statistique n’aura pas remonté. 
                 <br><br>
                 En combat, cela signifie la fin du combat ou la fin de l’effet baissant ses statistiques. Cela désactive son aura ou tout autre effet passif activables. Si le joueur a lancé des sorts ou technique à longue durée, ces derniers cessent également. 
                 <br><br>
                 Même si le joueur est inconscient et ne joue pas, les ennemis peuvent toujours l’attaquer et il peut donc toujours mourir. Les états continuent également de faire effet (perte de PV par exemple) mais de la même manière les alliés peuvent également le soigner. 
+            </p>
+
+            <h4>6.3 - PV d'armure</h4>
+            <p>
+                Par défaut, des soins ne peuvent excéder les PV maximum des joueurs. <br>
+                <strong>Les soins permettant des "PV d'armure" permettent d'aller au delà de ce maximum</strong><br><br>
+                - Il n'est pas possible d'ajouter des PV d'armure alors qu'un joueur a déjà des PV d'armure (c'est pas cumulable) <br>
+                - A la fin d'un combat, tous les PV d'armure (donc exédent les PV max) sont perdu, le joueur revient "juste" à son maximum de PV
+            </p>
+
+            <h4>6.4 - Consommable</h4>
+            <p>
+                Les dégâts et soin des consommables dépendent de ces derniers et ne peuvent être ni augmenté ni baissé avec l'équipement du joueur ou ses compétences (sauf précision contraire)
             </p>
         </div>
 
@@ -788,6 +809,73 @@
 
         </div>
 
+        
+        <div *ngIf="ong=='flag'">
+            <h2>I - Annexes</h2>
+            <h3>Les flag des compétences</h3>
+            <p>
+                Pour simplifier la lecture des compétences et la liaison avec certaines règles spécifiques, certaines compétences possèdent un ou plusieurs "Flag" permettant de les <strong> assimiler directement avec la règle correspondante</strong>. 
+                <br><br>
+                Ci-dessous la liste des flag que vous pouvez rencontrer dans les compétences ainsi qu'un résumé des règles importantes correspondantes.
+            </p>
+            <div class="flag">
+                <div>
+                    <strong>Aura</strong>
+                    <p>
+                        Une seule aura peut être activée simultanément
+                        <br>
+                        Activer et désactiver une aura consomme l'action secondaire
+                    </p>
+                </div>
+                <div>
+                    <strong>Contre</strong>
+                    <p>Compétence pouvant être utilisé en dehors de son tour de jeu en réaction à une situation précise (le plus souvent une attaque ennemis) 
+                        <br>
+                        Un seul contre peut être effectué par un même joueur sur une même réaction
+                    </p>
+                </div>
+                <div>
+                    <strong>Constant</strong>
+                    <p>
+                        Effet sur la durée ne pouvant être augmentés ou baissé par des équipement ou compétences (sauf précision contraire et spécifique)
+                    </p>
+                </div>
+                <div>
+                    <strong>Hors combat</strong>
+                    <p>Compétence pouvant être lancé hors combat (contre 1 PE ou PT s'il s'agit d'un sort ou d'une technique) ayant des effets similaire ou particulier en dehors des combats</p>
+                </div>
+                <div>
+                    <strong>Action supplémentaire</strong>
+                    <p>Action pouvant être effectué en plus de l'action secondaire et principale</p>
+                </div>
+                <div>
+                    <strong>Météo</strong>
+                    <p>
+                        Type de sort constant durant jusqu'à la fin du combat recouvrant l'ensemble du champ de bataille
+                        <br>
+                        Une seule météo peut être active simultanément : lancer une nouvelle météo remplace le précédent
+                        <br>
+                        Il n'est pas possible de cumuler plusieurs fois la même météo en même temps. 
+                    </p>
+                </div>
+                <div>
+                    <strong>Terrain</strong>
+                    <p>
+                        Effet constant recouvrant le sol sur tout ou une partie du champ de bataille. 
+                        <br>
+                        Un seul type de terrain peut être présent sur une même zone mais les zones peuvent se coller l'une à l'autre si la taille le permet
+                        <br>
+                        Agit sans distinction sur les alliés et ennemis
+                        <br>
+                        Les personnes ou créatures volantes ne sont pas impactées. 
+                    </p>
+                </div>
+
+            </div>
+
+        
+
+        </div>
     </div>
     
 </div>

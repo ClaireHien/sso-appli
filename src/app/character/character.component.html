@@ -26,6 +26,16 @@
         <strong class="justify-self-end text-white pr-3">Joueur</strong><span>{{character.user.name}}</span>
         <strong class="justify-self-end text-white pr-3">Groupe </strong><span>{{character.group.name}}</span>
         <strong class="justify-self-end text-white pr-3">Monde </strong><span>{{character.group.world.name}}</span>
+        <div class="col-span-2 text-center cursor-pointer hover:bg-black4 pt-2 pb-1 text-2xs text-white" (click)="checkDelete()" *ngIf="createdByUser">Supprimer mon personnage</div>
+    </div>
+    <!-- pop up check delete -->
+    <div *ngIf="popDelete && createdByUser" class="popup w-96 bg-black8 p-5 text-white rounded z-90">
+        <strong>Confirmes-tu la suppression de ton personnage ?</strong>
+        <div class="text-light3 uppercase tracking-widest text-xs">Les données ne pourront pas être récupérées. </div>        
+        <div class="grid grid-cols-2 gap-2 mt-10">
+            <button class="pt-2 uppercase tracking-widest pb-1 text-light1 hover:text-mid1" (click)="deleteCharacter()">Oui, supprimer</button>
+            <button class="pt-2 uppercase tracking-widest rounded pb-1 bg-mid4 hover:bg-mid2" (click)="checkDelete()">Annuler</button>
+        </div>
     </div>
     
     <!-- esprit -->
@@ -36,19 +46,10 @@
         </div>
         <h2 class="mt-3 mb-0 font-blakely uppercase tracking-widest text-center text-3xl">{{character.spirit.name}}</h2>
 
-        <div (click)="swapSpirit()" *ngIf="createdByUser" class="uppercase text-center tracking-widest text-mid3 text-xs my-2 mx-5 cursor-pointer">
-            <span *ngIf="!formSpirit">Modifier</span>
-            <span *ngIf="formSpirit">Annuler</span>
-        </div>
-
         <app-spirit *ngIf="!formSpirit"
             [character]="character"
+            [createdByUser]="createdByUser"
         ></app-spirit>
-
-        <app-spirit-form *ngIf="formSpirit && createdByUser" (formSubmitted)="swapSpirit()"
-            [character]="character"
-        ></app-spirit-form>
-
     </div>
 
     <!-- niveau  -->
@@ -170,14 +171,6 @@
             </p>
         </div>
         <div *ngIf="character.statuses.length == 0" class="text-center uppercase tracking-widest text-mid4">Aucune altération d'état</div>
-        <div (click)="newturn()" *ngIf="character.statuses.length != 0 && createdByUser" class="text-center uppercase tracking-widest text-mid4 bg-light1 pt-2 pb-1 hover:bg-light3 font-bold text-xs mt-2 cursor-pointer">
-            Début de tour
-        </div>
-        <div *ngIf="statusRecap" class="uppercase mt-1 tracking-widest text-mid4 text-xs">
-            {{PVlost}} PV perdu dû aux états <br>
-            dont {{brulureDmg}} PV perdu dûes aux brûlures <br>
-            {{PVheal}} PV soignés de régénération
-        </div>
 
         <form *ngIf="createdByUser" [formGroup]="formAddStatus" (ngSubmit)="onSubmitAddStatus('new',0)" class="mt-2 dot-top flex flex-col items-center">
             <label for="material" class="uppercase tracking-widest font-bold mt-3">Ajouter status</label>

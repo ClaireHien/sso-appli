@@ -79,3 +79,13 @@ h5{
 .craft-info>div>span{
     @apply text-mid4;
 }
+
+.flag>div{
+    @apply grid gap-3 pt-2;
+    grid-template-columns: 10em 1fr;
+    border-bottom:1px dotted var(--light4);
+}
+.flag strong{
+    justify-self: end;
+    @apply block mt-3 text-mid4 text-right uppercase tracking-widest;
+}

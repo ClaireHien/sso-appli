@@ -23,7 +23,6 @@ import { MessagePageComponent } from './message-page/message-page.component';
 import { GlobalComponent } from './character/global/global.component';
 import { GlobalFormComponent } from './character/global-form/global-form.component';
 import { SpiritComponent } from './character/spirit/spirit.component';
-import { SpiritFormComponent } from './character/spirit-form/spirit-form.component';
 import { StatisticComponent } from './character/statistic/statistic.component';
 import { StatisticFormComponent } from './character/statistic-form/statistic-form.component';
 import { MainStatisticComponent } from './character/main-statistic/main-statistic.component';
@@ -54,7 +53,6 @@ import { CharacterListComponent } from './character-list/character-list.componen
     GlobalComponent,
     GlobalFormComponent,
     SpiritComponent,
-    SpiritFormComponent,
     StatisticComponent,
     StatisticFormComponent,
     MainStatisticComponent,

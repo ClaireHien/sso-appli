@@ -30,8 +30,8 @@ export class FightComponent implements OnInit{
 
     this.fightSkillService.getSkills().subscribe(
       (data: FightSkill[]) => {
-        this.skills = data; 
-        this.filteredSkills = data; 
+        this.skills = data.sort((a, b) => a.name.localeCompare(b.name)); 
+        this.filteredSkills = data.sort((a, b) => a.name.localeCompare(b.name));
         console.log(data);
       },
       error => {

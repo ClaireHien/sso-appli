@@ -3,7 +3,7 @@
     class="world p-20 bg-img lg:overflow-auto" 
     [ngStyle]="{'background-image': 'url(../../assets/image/landscape/' + world.image + ')'}">
 
-    <div *ngFor="let group of world.groups">
+    <div *ngFor="let group of world.groups" class="mt-20">
         <h1 class="bg-light1 pt-2 pb-1 px-5 uppercase tracking-widest font-bold inline">{{world.name}} - <span class="text-mid4">{{group.name}}</span></h1>
         
         <div class="flex gap-3 justify-center flex-wrap mt-10">

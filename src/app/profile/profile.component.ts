@@ -13,7 +13,11 @@ interface CharacterResponse {
   characterId?: number;
   characterName: string;
 }
-
+interface Group {
+  id: number;
+  name: string;
+  world_id: number;
+}
 
 @Component({
   selector: 'app-profile',
@@ -105,16 +109,21 @@ export class ProfileComponent {
 
   spiritVisible:boolean = false;
   spirits:any;
+
   onGroupChange(): void {
-    this.spiritVisible = true;
-    this.http.get(`${environment.backendUrl}/spirits/${this.formCharacter.value.group_id}`).subscribe(
-      (data) => {
-        this.spirits = data;
+    const selectedGroup = this.groups.find((group:Group) => group.id == this.formCharacter.value.group_id);
+
+    const worldId = selectedGroup.world_id;
+
+    this.http.get<any[]>(`${environment.backendUrl}/spirits/${worldId}`).subscribe(
+      (spiritsData) => {
+        this.spirits = spiritsData;
       },
       (error) => {
-        console.error('Erreur lors du chargement des groupes :', error);
+        console.error('Erreur lors du chargement des esprits :', error);
       }
     );
+    this.spiritVisible = true;
   }
 
   buttonCreateVisible: boolean = false;

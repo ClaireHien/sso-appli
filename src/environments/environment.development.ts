@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    backendUrl: 'http://sso-api.test/api'
+    backendUrl: 'http://soul-spirit-api.test/api'
 };

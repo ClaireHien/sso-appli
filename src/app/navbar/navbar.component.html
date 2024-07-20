@@ -52,6 +52,7 @@
       <a routerLink="/artisanat" routerLinkActive="active">Artisanat</a>
       <a routerLink="/neutre" routerLinkActive="active">Neutre</a>
       
+      <a  *ngIf="isLoggedIn();"  href="/liste-des-personnages"  class="bg-mid1 hover:text-mid2 cursor-pointer px-5">Liste des personnages</a>
       <a  *ngIf="isLoggedIn();"  (click)="profile()" class="bg-mid1 hover:text-mid2 cursor-pointer px-5">Profil</a>
       <a  *ngIf="isLoggedIn();" (click)="logout()" class="bg-mid1 hover:text-mid2 cursor-pointer px-5">Déconnexion</a>
       

@@ -2,9 +2,14 @@
 <div class="grid grid-cols-2 justify-items-center uppercase mt-2">
     <span class="tracking-widest text-mid4 font-bold">Affinité</span>
     <span class="tracking-widest text-mid4 font-bold">Niveau</span>
-    <span class="text-2xl">{{character.affinity}}</span>
+    <div class="grid grid-cols-3 justify-items-center gap-2 items-center">
+        <i *ngIf="createdByUser" (click)="qteAff('sub')" class="fa-solid fa-circle-minus text-xl text-light5 cursor-pointer hover:text-mid3"></i>
+        <span class="text-2xl">{{character.affinity}}</span>
+        <i *ngIf="createdByUser" (click)="qteAff('add')" class="fa-solid fa-circle-plus text-xl text-mid2 cursor-pointer hover:text-mid4"></i>
+    </div>
     <span class="text-2xl">{{character.spirit_level}}</span>
 </div>
+
 
 <div class="spirit-murmur mt-5 leading-4 font-light text-sm text-justify mx-3">
     <strong class="block uppercase tracking-widest font-bold cursor-pointer">Murmure de l'esprit</strong>

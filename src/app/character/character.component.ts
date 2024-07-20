@@ -199,7 +199,6 @@ export class CharacterComponent implements OnInit {
       }
     );
 
-    this.statusRecap = false;
 
   }
 
@@ -251,7 +250,6 @@ export class CharacterComponent implements OnInit {
 
   }
 
-  statusRecap:boolean = false;
   brulureDmg:number = 0;
   onSubmitAddStatus(type:string, statusId:number){
     if (type == 'new'){statusId = this.formAddStatus.value.status_id;}
@@ -280,114 +278,6 @@ export class CharacterComponent implements OnInit {
         console.error('Erreur', error);
       }
     );
-  }
-
-  PVlost: number = 0;
-  PVheal: number = 0;
-  newturn(){
-    
-    this.PVlost = 0;
-    this.PVheal = 0;
-    const statuses = this.character.statuses;
-
-    const rollDice = (sides: number) => {
-      return Math.floor(Math.random() * sides) + 1;
-    };
-
-    statuses.forEach((status: { id: number; pivot: { number: number } }) => {
-      switch (status.id) {
-        case 1:
-          this.PVlost += status.pivot.number;
-          break;
-        case 2:
-          switch (status.pivot.number) {
-            case 1:
-              this.brulureDmg = rollDice(4)
-              this.PVlost += this.brulureDmg;
-              break;
-            case 2:
-              this.brulureDmg = rollDice(6)
-              this.PVlost += this.brulureDmg;
-              break;
-            case 3:
-              this.brulureDmg = rollDice(8)
-              this.PVlost += this.brulureDmg;
-              break;
-            case 4:
-              this.brulureDmg = rollDice(10)
-              this.PVlost += this.brulureDmg;
-              break;
-            case 5:
-              this.brulureDmg = rollDice(12)
-              this.PVlost += this.brulureDmg;
-              break;
-            case 6:
-              this.brulureDmg = rollDice(20)
-              this.PVlost += this.brulureDmg;
-              break;
-            default:
-              break;
-          }
-          break;
-        case 3:
-          this.PVlost += status.pivot.number;
-          break;
-        case 10:
-          this.PVheal += status.pivot.number;
-          break;
-        default:
-          break;
-      }
-    });
-
-    this.character.pv -= this.PVlost;
-
-    let bloodNbr =0;
-    const statusBlood = statuses.find((status: { id: number; pivot: { number: number } }) => status.id === 1);
-    if(statusBlood && this.PVheal > 0){
-      if (this.PVheal>0){
-        for (let i=0;i<statusBlood.pivot.number;i++){
-          
-          const id = this.route.snapshot.paramMap.get('characterId');
-          const token = this.cookieService.get('token');
-          const headers = new HttpHeaders({
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
-          });
-
-          this.http.put(`${this.backendUrl}/character/${id}/status/minus/1`, {},{ headers }).subscribe(
-            data => {},
-            (error) => {
-              console.error('Erreur', error);
-            }
-          );
-
-          this.PVheal -=1;
-          if (this.PVheal == 0){i = statusBlood.pivot.number}
-        };
-      }
-    }
-    this.character.pv += this.PVheal;
-
-    if (this.character.pv < 0){this.character.pv = 0;}
-
-    const id = this.route.snapshot.paramMap.get('characterId');
-    const token = this.cookieService.get('token');
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`
-    });
-
-    this.http.put(`${this.backendUrl}/character/${id}/pv-status/${this.character.pv}`, {}, { headers }).subscribe(
-      (data: any) => {
-        this.reloadData();
-        this.statusRecap = true;
-      },
-      (error) => {
-        console.error('Erreur', error);
-      }
-    );
-
   }
 
   formGlobal:boolean = false;
@@ -654,4 +544,36 @@ export class CharacterComponent implements OnInit {
     
   }
 
+  popDelete:boolean = false;
+  checkDelete(){
+    this.popDelete = !this.popDelete;
+  }
+  deleteCharacter(){
+    console.log(this.character.user.id, this.cookieService.get('userId'))
+    if (this.character.user.id == this.cookieService.get('userId')){
+      
+      const id = this.route.snapshot.paramMap.get('characterId');
+      const token = this.cookieService.get('token');
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      });
+
+      this.http.delete(`${this.backendUrl}/character/${id}`, { headers }).subscribe(
+        (data) => {
+          console.log("personnage supprimé");
+          this.router.navigate([`/profil/${this.cookieService.get('userId')}/${this.cookieService.get('userName')}`]);
+        },
+        (error) => {
+          console.error('Erreur', error);
+        }
+      );
+
+    } else {
+      console.log("Suppression impossible : seul le propriétaire de la fiche peut le faire")
+    }
+    /**/
+    
+  }
+  
 }

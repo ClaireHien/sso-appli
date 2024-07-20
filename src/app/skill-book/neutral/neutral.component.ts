@@ -19,8 +19,7 @@ export class NeutralComponent implements OnInit{
 
     this.neutralSkillService.getSkills().subscribe(
       (data: NeutralSkill[]) => {
-        this.skills = data;
-        console.log(data);
+        this.skills = data.sort((a, b) => a.name.localeCompare(b.name));
       },
       error => {
         console.error('Error fetching weapon trees', error);
