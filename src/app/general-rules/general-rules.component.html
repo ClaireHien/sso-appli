@@ -102,7 +102,7 @@
                     - Pour les arbres se jouant sur aucune statistique : vous lancerez 4 fois 1D10 et vous pourrez librement répartir les dés entre les statistiques. 
 
                 <br><br>
-                Vous avez ensuite <strong>+20 points de statistiques libres</strong> à répartir librement entre toutes vos statistiques (corps et esprit) avec un maximum de +10 dans une même statistique. 
+                Vous avez ensuite <strong>+50 points de statistiques libres</strong> à répartir librement entre toutes vos statistiques (corps et esprit) avec un maximum de +15 dans une même statistique. 
             </p>
 
             <h4>2.2 - Statistiques secondaires</h4>
@@ -114,8 +114,8 @@
                 <div><span>PV</span><span>Points de vie</span><span>10</span></div>
                 <div><span>RP</span><span>Résistance <br> physique</span><span>0</span></div>
                 <div><span>RM</span><span>Résistance <br> magique</span><span>0</span></div>
-                <div><span>PT</span><span>Points de <br> technique</span><span>2</span></div>
-                <div><span>PE</span><span>Points <br>d'esprit</span><span>2</span></div>
+                <div><span>PT</span><span>Points de <br> technique</span><span>1</span></div>
+                <div><span>PE</span><span>Points <br>d'esprit</span><span>1</span></div>
                 <div><span>VIT</span><span>Vitesse</span><span>3</span></div>
             </div>
             
@@ -156,7 +156,8 @@
             <p>
                 Les statistiques principales sont divisées en deux catégories : <strong>le corps et l’esprit. </strong>
                 <br><br>
-                Chaque statistique peut aller de 0 à 100 (incluant les bonus et malus)
+                Chaque statistique peut aller de 0 à 100 (incluant les bonus et malus) <br><br>
+                Il <strong>ne peut y avoir un écart de plus de 60</strong> entre deux statistiques de corps ou deux statistiques d'esprits. 
             </p>
             
             <h4>1.1 - Statistiques de corps</h4>
@@ -252,6 +253,8 @@
                 Ces points sont réinitialisés à chaque fin de combat ou à chaque début de nouvelle journée (dans le maximum de PT disponible)
                 <br><br>
                 Certaines capacités peuvent rendre des PT en cours de combat ou de journée mais cela ne peut jamais excéder les PT max. 
+                <br><br>
+                A la création, chaque personnage a 1 PT et gagne +1 PT pour chaque compétence débloquée de son arme innée. 
             </p>  
 
             <h4>2.4 - Points d’esprit (PE)</h4>
@@ -264,6 +267,8 @@
                 Ces points sont réinitialisés à chaque fin de combat ou à chaque début de nouvelle journée (dans le maximum de PE disponible)
                 <br><br>
                 Certaines capacités peuvent rendre des PE en cours de combat ou de journée mais cela ne peut jamais excéder les PE max. 
+                <br><br>
+                A la création, chaque personnage a 1 PE et gagne +1 PE pour chaque compétence débloquée de sa magie innée. 
             </p>
 
             <h4>2.5 - Vitesse (VIT) </h4>
@@ -808,10 +813,9 @@
             <a class="hover:bg-mid4 block text-white mt-5 font-bold bg-mid1 pt-2 pb-1 text-center uppercase tracking-widest" href="/artisanat">Tous les détails des matériaux sur la page "Artisanat"</a>
 
         </div>
-
         
         <div *ngIf="ong=='flag'">
-            <h2>I - Annexes</h2>
+            <h2>V - Annexes</h2>
             <h3>Les flag des compétences</h3>
             <p>
                 Pour simplifier la lecture des compétences et la liaison avec certaines règles spécifiques, certaines compétences possèdent un ou plusieurs "Flag" permettant de les <strong> assimiler directement avec la règle correspondante</strong>. 
@@ -873,7 +877,28 @@
 
             </div>
 
-        
+            <h3>Les créatures en combat</h3>
+            <p>Les combats se jouant de manière stratégique, le fonctionnement des attaques des adversaires est également un élément à prendre en compte. </p>
+            
+            <h4>La priorité des attaques</h4>
+            <p>
+                <strong>ATTAQUE AU CORPS A CORPS</strong> - Vise aléatoirement un des joueurs au corps à corps de la créature. <br>
+                <strong>ATTAQUE A DISTANCE</strong> - Vise aléatoirement un des joueurs à moyenne portée, distance (et longue distance selon les attaques) <br>
+                <strong>ZONE AUTOUR DE LUI</strong> - La créature se déplace de manière à toucher le plus de joueurs dans la portée (corps à corps ou moyenne portée généralement) autour de lui. Si deux groupes sont similaires, le hasard tranche. <br>
+                <strong>ZONE</strong> - La créature vise le plus grand nombre d'ennemis, si deux groupes sont similaires, le hasard tranche. <br>
+                <strong>LIGNE</strong> - La créature se déplace pour viser le plus grand nombre d'ennemis, si deux groupes sont similaires, le hasard tranche. 
+            </p>
+            <p>
+                Si un joueur ne peut être visé durant le tour grâce à une compétence : <br>
+                - Il n'est pas inclus dans le jet de dès déterminant la cible <br>
+                - Il n'est pas inclus dans le compte de cible pour les attaques de zone, mais peut tout de même être touché s'il est dans la portée de la zone. </p>
+            <p>
+                Si un joueur prend la priorité des attaques : <br>
+                - Les attaques ciblées le visent<br>
+                - Les attaques de zone doivent inclure le joueur provoquant la cible dans la zone, mais cette dernière peut être déplacée de sorte à toucher le plus grand nombre de joueurs. <br>
+                - Les attaques de zone ayant une cible centrale ou les attaques en ligne doivent nécessairement avoir le joueur qui provoque comme centre. 
+            </p>
+
 
         </div>
     </div>
